@@ -9,6 +9,7 @@ import Posts from './components/Posts/Posts';
 // import Create from './components/Create/Create';
 // import Details from './components/Details/Details.jsx';
 import NotFound from './components/NotFound/NotFound';
+import ProductList from './components/ProductList/ProductList';
 
 function App() {
   const {pathname} = useLocation()
@@ -18,6 +19,7 @@ function App() {
       {pathname === '/'?null:<NavBar/>}
       <Routes>
         <Route path='/posts' element={<Posts/>}/>
+        <Route path='/equipos' element={<ProductList/>}/>
         {/* <Route path='/' element={<Landing/>}/> */}
         {/* <Route path="/home" element={<Home />}/> */}
         {/* <Route path="/create" element={<Create />}/> */}

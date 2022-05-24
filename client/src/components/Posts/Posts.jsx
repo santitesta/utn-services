@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import styles from './Posts.module.css'
 
 const equipos = [
@@ -118,9 +117,10 @@ const Posts = () => {
         return(
           <div key={equipos.id} className={styles.cardContainer}>
             <p className={styles.link}>Tipo: {e.type}</p>
-            <p className={styles.link}>Tipo: {e.type}</p>
-            <NavLink className={styles.link} to='/details'>Tipo: {e.type}</NavLink>
-            <NavLink className={styles.link} to='/details'>Nº UTN: {e.nutn}</NavLink>
+            <p className={styles.link}>Nº UTN: {e.nutn}</p>
+            <p className={styles.link}>Servicio: Fantasia</p>
+            <p className={styles.link}>Instituto: INEI</p>
+            <button className={styles.button} >Solicitud</button>
           </div>
         )
       })}    
