@@ -1,0 +1,129 @@
+.condet {
+  width: 100%;
+  height: 600px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  background-image: url(https://images.pexels.com/photos/1435895/pexels-photo-1435895.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  color: black;
+}
+
+.createleft {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 30%;
+}
+
+.createright {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 70%;
+}
+
+.createbottom {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+}
+
+.minicont{
+  width: 150%;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 15px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.formLabel {
+  width: 30%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.insideLabel {
+  margin-left: 30px;
+  font-size: larger;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: chartreuse;
+}
+
+.formInput {
+  width: 30%;
+}
+
+.formErrors {
+  width: 30%;
+  height: 100%;
+  margin-left: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.errorsp {
+  height: 60%;
+  font-size: smaller;
+}
+
+.inputsc {
+  border-radius: 10px;
+  border-width: 2;
+  border-color: greenyellow;
+  font-family: 'Trebuchet MS';
+}
+
+.summaryInput {
+  width: 90%;
+  height: 100px;
+  border-radius: 10px;
+  border-width: 2;
+  border-color: greenyellow;
+  font-family: 'Trebuchet MS';
+}
+
+.dietchose {
+  background-color: green;
+}
+
+.delete {
+  height: 10px;
+  width: 300px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  font-size: small;
+}
+
+.deleteBtn {
+  width: 28px;
+  height: 25px;
+}
+
+.deleteX {
+  position: relative;
+  bottom: 8px;
+  font-size: xx-small;
+  border: solid 1px black;
+  background-color: red;
+}
+
+.textarea {
+  width: 500px;
+  height: 200px;
+}
+  
+  .submitbutton{
+    width: 270px;
+    height: 60px;
+  }
+  
+  .submitbutton:hover {
+    color: green;
+  }

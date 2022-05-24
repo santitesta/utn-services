@@ -1,0 +1,63 @@
+.detailsCont {
+  display: flex;
+  flex-direction: column;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.detailsMiniCont {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.detailsLeft {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.detailsImage {
+  width: 400px;
+  height: 300px;
+}
+
+.detailsLabels {
+  font-weight: bold;
+}
+
+.detailsRight {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.detTitle {
+  font-size: 40px;
+  margin: 0;
+}
+
+.detailsSummary {
+  text-align: left;
+  font-size: 15px;
+}
+
+.steps {
+  width: 80%;
+  background-color: antiquewhite;
+  padding: 5px;
+}
+
+.detailsReturn {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  /* align-self: flex-start;
+  margin-left: 10px; */
+}
+
+.detailsLoading {
+  align-self: center;
+  justify-self: center;
+}

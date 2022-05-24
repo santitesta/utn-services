@@ -1,0 +1,22 @@
+.inputSearch {
+    height: 50px;
+    width: 230px;
+    border-width: 3px;
+    border-radius: 25px;
+    border-color: cyan;
+    text-align: center;
+    font-size: larger;
+}
+
+.inputSearch:focus {
+    border-width: 3px;
+    border-radius: 25px;
+    border-color: blue;
+    outline: none;
+}
+
+#myForm {
+    position: fixed;
+    left: 50px;
+    top: 75px;
+}
