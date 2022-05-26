@@ -8,7 +8,6 @@ function Pagination({ currentPage, productsPerPage, totalProducts, paginate }) {
 		};
 		return (
 				<nav className={style.container}>
-						{/* <ul className={style.pageList}> */}
 								{pageNumbers.map(number => {
 										return (
 												<li
@@ -24,7 +23,6 @@ function Pagination({ currentPage, productsPerPage, totalProducts, paginate }) {
 												</li>
 										)
 								})}
-						{/* </ul> */}
 				</nav>
 		)
 }

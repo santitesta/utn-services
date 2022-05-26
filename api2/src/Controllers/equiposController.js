@@ -3,7 +3,7 @@ const { utnModel } = require("../db")
 async function getEquipos(req,res){
   try {
     allDevices = await utnModel.findAll({
-      limit: 10
+      limit: 100
     })
   res.send(allDevices)
   } catch (error) {
