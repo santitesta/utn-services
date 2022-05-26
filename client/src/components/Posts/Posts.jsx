@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { getEquipos } from '../../redux/actions';
 import styles from './Posts.module.css'
 
 const equipos = [
@@ -110,9 +112,16 @@ const equipos = [
 ]
 
 const Posts = () => {
+  const dispatch = useDispatch()
+  
+  function handleClick(e) {
+    e.preventDefault()
+    dispatch(getEquipos())
+  }
 
   return (
     <div className={styles.container}>
+      <button className={styles.button} onClick={handleClick}>Buscar equipos</button>
       {equipos.map(e => {
         return(
           <div key={equipos.id} className={styles.cardContainer}>
@@ -120,7 +129,7 @@ const Posts = () => {
             <p className={styles.link}>Nº UTN: {e.nutn}</p>
             <p className={styles.link}>Servicio: Fantasia</p>
             <p className={styles.link}>Instituto: INEI</p>
-            <button className={styles.button} >Solicitud</button>
+            {/* <button className={styles.button} onClick={handleClick}>Solicitud</button> */}
           </div>
         )
       })}    
