@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getEquipos } from '../../redux/actions';
 import styles from './Posts.module.css'
 
@@ -113,6 +113,8 @@ const equipos = [
 
 const Posts = () => {
   const dispatch = useDispatch()
+
+  const devices = useSelector(state => state.equipos)
   
   function handleClick(e) {
     e.preventDefault()
@@ -122,7 +124,7 @@ const Posts = () => {
   return (
     <div className={styles.container}>
       <button className={styles.button} onClick={handleClick}>Buscar equipos</button>
-      {equipos.map(e => {
+      {devices.map(e => {
         return(
           <div key={equipos.id} className={styles.cardContainer}>
             <p className={styles.link}>Tipo: {e.type}</p>

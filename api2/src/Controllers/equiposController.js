@@ -1,7 +1,11 @@
+const { utnModel } = require("../db")
+
 async function getEquipos(req,res){
   try {
-  console.log('Bravo')
-  res.send({id: 401, equipo: 101})
+    allDevices = await utnModel.findAll({
+      limit: 10
+    })
+  res.send(allDevices)
   } catch (error) {
     res.status(500).send(error)
   }
