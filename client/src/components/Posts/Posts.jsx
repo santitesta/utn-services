@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEquipos } from '../../redux/actions';
+import Pagination from '../Pagination/Pagination';
 import styles from './Posts.module.css'
 
 const equipos = [
@@ -121,20 +122,38 @@ const Posts = () => {
     dispatch(getEquipos())
   }
 
+  //PAGINATION
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(5);
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const paginate = function (pageNumber) {
+      setCurrentPage(pageNumber);
+  };
+  const currentProducts = devices.slice(indexOfFirstProduct, indexOfLastProduct);
+
   return (
-    <div className={styles.container}>
-      <button className={styles.button} onClick={handleClick}>Buscar equipos</button>
-      {devices.map(e => {
-        return(
-          <div key={equipos.id} className={styles.cardContainer}>
-            <p className={styles.link}>Tipo: {e.type}</p>
-            <p className={styles.link}>Nº UTN: {e.nutn}</p>
-            <p className={styles.link}>Servicio: Fantasia</p>
-            <p className={styles.link}>Instituto: INEI</p>
-            {/* <button className={styles.button} onClick={handleClick}>Solicitud</button> */}
-          </div>
-        )
-      })}    
+    <div>
+      <div className={styles.container}>
+        <button className={styles.button} onClick={handleClick}>Buscar equipos</button>
+        {currentProducts?.map(e => {
+          return(
+            <div key={equipos.id} className={styles.cardContainer}>
+              <p className={styles.link}>Tipo: {e.type}</p>
+              <p className={styles.link}>Nº UTN: {e.nutn}</p>
+              <p className={styles.link}>Servicio: Fantasia</p>
+              <p className={styles.link}>Instituto: INEI</p>
+              {/* <button className={styles.button} onClick={handleClick}>Solicitud</button> */}
+            </div>
+          )
+        })}    
+      </div>
+      <Pagination
+        currentPage={currentPage}
+        productsPerPage={productsPerPage}
+        totalProducts={devices.length}
+        paginate={paginate}
+      />
     </div>
   );
 };

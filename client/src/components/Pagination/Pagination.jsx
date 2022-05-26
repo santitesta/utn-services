@@ -1,24 +1,32 @@
-import React from 'react';
-import './Pagination.css'
+import style from './Pagination.module.css'
 
-const Pagination = ({ allPosts, currentPage, postsPerPage, paginate }) => {
-  const pageNumbers = [];
-  
-  for (let i = 1; i <= Math.ceil(allPosts.length / postsPerPage); i++) {
-    pageNumbers.push(i);
-  } 
-  
-  return (
-    <nav className='paginationnav'>
-      <div className='ulnav'>
-        {pageNumbers.map(number => (
-          <button key={number} className={currentPage==number?'activePage':null} onClick={() => paginate(number)}>
-              {number}
-          </button>
-        ))}
-      </div>
-    </nav>
-  );
-};
+function Pagination({ currentPage, productsPerPage, totalProducts, paginate }) {
+
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
+        pageNumbers.push(i);
+    };
+    return (
+        <nav className={style.container}>
+            {/* <ul className={style.pageList}> */}
+                {pageNumbers.map(number => {
+                    return (
+                        <li
+                            key={number}
+                            className={style.items}
+                        >
+                            <a
+                                onClick={() => paginate(number)}
+                                href='#top'
+                                className={currentPage===number?style.pageSel:style.pages}
+                            >{number}
+                            </a>
+                        </li>
+                    )
+                })}
+            {/* </ul> */}
+        </nav>
+    )
+}
 
 export default Pagination;
