@@ -16,6 +16,12 @@
   font-size: xx-large;
 }
 
+.byId {
+  width: 50px;
+  border: solid 1px blue;
+  border-radius: 15px;
+}
+
 .right {
   display: flex;
   flex-direction: column;

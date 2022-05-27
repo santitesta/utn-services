@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getEquipos } from '../../redux/actions';
+import { getDeviceById, getEquipos } from '../../redux/actions';
 import Pagination from '../Pagination/Pagination';
 import styles from './Posts.module.css'
 
 const Posts = () => {
   const dispatch = useDispatch()
-
+  
   const devices = useSelector(state => state.equipos)
+
+  const [query, setQuery] = useState([])
   
   function handleClick(e) {
     e.preventDefault()
     dispatch(getEquipos())
+  }
+  
+  function filterById(e) {
+    e.preventDefault()
+    console.log(query)
+    dispatch(getDeviceById(query))
+    setQuery([])
   }
 
   //PAGINATION
@@ -29,6 +38,11 @@ const Posts = () => {
       <div className={styles.filters}>
         <h1 className={styles.filterTitle}>Filters</h1>
         <button className={styles.button} onClick={handleClick}>Buscar equipos</button>
+        <input className={styles.inputquery} type="text"
+          placeholder='Ingrese el id...' 
+          value={query}
+          onChange={e => setQuery(e.target.value)}/>
+        <button className={styles.byId} onClick={e => filterById(e)}>GO</button>
       </div>
       <div className={styles.right}>
         <div className={styles.displayitems}>
@@ -45,7 +59,7 @@ const Posts = () => {
                 <p className={styles.link}>Modelo: {e.modelo}</p>
               </div>
             )
-          })}    
+          })}
         </div>
         {
           currentProducts.length?
