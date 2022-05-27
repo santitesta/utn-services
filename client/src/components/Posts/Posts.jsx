@@ -26,41 +26,38 @@ const Posts = () => {
 
   return (
     <div className={styles.bigcont}>
+      <div className={styles.filters}>
+        <h1 className={styles.filterTitle}>Filters</h1>
         <button className={styles.button} onClick={handleClick}>Buscar equipos</button>
-      <div className={styles.container}>
-        {currentProducts?.map(e => {
-          return(
-            <div key={e.id} className={styles.cardContainer}>
-              <p className={styles.link}>Nº UTN: {e.id_inei}</p>
-              <p className={styles.link}>Instituto: {e.instituto}</p>
-              <p className={styles.link}>Departamento: {e.departamento}</p>
-              <p className={styles.link}>Servicio: {e.servicio}</p>
-              <p className={styles.link}>Equipo: {e.equipo}</p>
-              <p className={styles.link}>Estado: {e.e_tecnico}</p>
-              <p className={styles.link}>Marca: {e.marca}</p>
-              <p className={styles.link}>Modelo: {e.modelo}</p>
-              {/* "id_inei": {type: Sequelize.INTEGER, primaryKey: true},
-              "Instituto": Sequelize.INTEGER,
-              "Departamento": Sequelize.VARCHAR,
-              "Servicio": Sequelize.VARCHAR,
-              "equipo": Sequelize.VARCHAR,
-              "e_tecnico": Sequelize.VARCHAR,
-              "marca": Sequelize.VARCHAR,
-              "modelo": Sequelize.VARCHAR */}
-            </div>
-          )
-        })}    
       </div>
-      {
-        currentProducts.length?
-        <Pagination
-          currentPage={currentPage}
-          productsPerPage={productsPerPage}
-          totalProducts={devices.length}
-          paginate={paginate}
-        />
-        :null
-      }
+      <div className={styles.right}>
+        <div className={styles.displayitems}>
+          {currentProducts?.map(e => {
+            return(
+              <div key={e.id} className={styles.cardContainer}>
+                <p className={styles.link}>Nº UTN: {e.id_inei}</p>
+                <p className={styles.link}>Instituto: {e.instituto}</p>
+                <p className={styles.link}>Departamento: {e.departamento}</p>
+                <p className={styles.link}>Servicio: {e.servicio}</p>
+                <p className={styles.link}>Equipo: {e.equipo}</p>
+                <p className={styles.link}>Estado: {e.e_tecnico}</p>
+                <p className={styles.link}>Marca: {e.marca}</p>
+                <p className={styles.link}>Modelo: {e.modelo}</p>
+              </div>
+            )
+          })}    
+        </div>
+        {
+          currentProducts.length?
+          <Pagination
+            currentPage={currentPage}
+            productsPerPage={productsPerPage}
+            totalProducts={devices.length}
+            paginate={paginate}
+          />
+          :null
+        }
+      </div>
     </div>
   );
 };

@@ -1,10 +1,28 @@
 .bigcont {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.filters {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: solid 1px gray;
+}
+
+.filterTitle {
+  font-size: xx-large;
+}
+
+.right {
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.container {
+.displayitems {
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
