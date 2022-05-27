@@ -4,11 +4,9 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-  { name: 'Equipos', href: '#', current: false },
+  { name: 'Landing', href: '/', current: false },
+  { name: 'Home', href: '/home', current: true },
+  { name: 'About', href: '/about', current: false },
 ]
 
 function classNames(...classes) {

@@ -51,12 +51,16 @@ const Posts = () => {
           )
         })}    
       </div>
-      <Pagination
-        currentPage={currentPage}
-        productsPerPage={productsPerPage}
-        totalProducts={devices.length}
-        paginate={paginate}
-      />
+      {
+        currentProducts.length?
+        <Pagination
+          currentPage={currentPage}
+          productsPerPage={productsPerPage}
+          totalProducts={devices.length}
+          paginate={paginate}
+        />
+        :null
+      }
     </div>
   );
 };

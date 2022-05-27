@@ -1,15 +1,16 @@
 import React from 'react';
 
 import Posts from '../Posts/Posts';
-import './Home.module.css'
+import styles from './Home.module.css'
 
 function Home() {
 
   return (
-      <div>
+      <div className={styles.container}>
+        <h1 className={styles.title}>Buscador de equipos</h1>
         <Posts />
       </div>
   );
 };
-  
+
 export default Home;
