@@ -37,12 +37,14 @@ const Posts = () => {
     <div className={styles.bigcont}>
       <div className={styles.filters}>
         <h1 className={styles.filterTitle}>Filters</h1>
-        <button className={styles.button} onClick={handleClick}>Buscar equipos</button>
-        <input className={styles.inputquery} type="text"
-          placeholder='Ingrese el id...' 
-          value={query}
-          onChange={e => setQuery(e.target.value)}/>
-        <button className={styles.byId} onClick={e => filterById(e)}>GO</button>
+        <button className={styles.generalQuery} onClick={handleClick}>Buscar equipos</button>
+        <div className={styles.iddiv}>
+          <input className={styles.idInput} type="text"
+            placeholder='Ingrese el id...' 
+            value={query}
+            onChange={e => setQuery(e.target.value)}/>
+          <button className={styles.idQuery} onClick={e => filterById(e)}>GO</button>
+        </div>
       </div>
       <div className={styles.right}>
         <div className={styles.displayitems}>

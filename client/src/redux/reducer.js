@@ -13,6 +13,10 @@ export function rootReducer(state = initialState, {type, payload}){
         case GET_EQUIPOS:
             return {...state, equipos: payload}
         case GET_DEVICE_BY_ID:
+            if(!payload.length) {
+                alert('No encontrado')
+                return {...state}
+            }
             return {...state, equipos: payload}
         default: return state;
     }
