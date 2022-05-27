@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.username {
+  font-size: large;
+}
+
+.mail {
+  font-size: smaller;
+}
+
+.type {
+  text-align: center;
+  width: 70px;
+  font-weight: bold;
+  border: solid 1px green;
+  margin: 5px;
+}
