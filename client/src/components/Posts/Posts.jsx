@@ -25,9 +25,9 @@ const Posts = () => {
   const currentProducts = devices.slice(indexOfFirstProduct, indexOfLastProduct);
 
   return (
-    <div>
-      <div className={styles.container}>
+    <div className={styles.bigcont}>
         <button className={styles.button} onClick={handleClick}>Buscar equipos</button>
+      <div className={styles.container}>
         {currentProducts?.map(e => {
           return(
             <div key={e.id} className={styles.cardContainer}>
