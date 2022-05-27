@@ -4,114 +4,6 @@ import { getEquipos } from '../../redux/actions';
 import Pagination from '../Pagination/Pagination';
 import styles from './Posts.module.css'
 
-const equipos = [
-  {
-    id: 1,
-    type: 'AC',
-    nutn: 3001
-  },
-  {
-    id: 2,
-    type: 'Autoclave',
-    nutn: 729
-  },
-  {
-    id: 3,
-    type: 'Incinerador',
-    nutn: 4001
-  },
-  {
-    id: 4,
-    type: 'Heladera',
-    nutn: 1525
-  },
-  {
-    id: 5,
-    type: 'Freezer',
-    nutn: 3252
-  },
-  {
-    id: 1,
-    type: 'AC',
-    nutn: 3001
-  },
-  {
-    id: 2,
-    type: 'Autoclave',
-    nutn: 729
-  },
-  {
-    id: 3,
-    type: 'Incinerador',
-    nutn: 4001
-  },
-  {
-    id: 4,
-    type: 'Heladera',
-    nutn: 1525
-  },
-  {
-    id: 5,
-    type: 'Freezer',
-    nutn: 3252
-  },
-  {
-    id: 1,
-    type: 'AC',
-    nutn: 3001
-  },
-  {
-    id: 2,
-    type: 'Autoclave',
-    nutn: 729
-  },
-  {
-    id: 3,
-    type: 'Incinerador',
-    nutn: 4001
-  },
-  {
-    id: 4,
-    type: 'Heladera',
-    nutn: 1525
-  },
-  {
-    id: 5,
-    type: 'Freezer',
-    nutn: 3252
-  },
-  {
-    id: 1,
-    type: 'AC',
-    nutn: 3001
-  },
-  {
-    id: 2,
-    type: 'Autoclave',
-    nutn: 729
-  },
-  {
-    id: 3,
-    type: 'Incinerador',
-    nutn: 4001
-  },
-  {
-    id: 4,
-    type: 'Heladera',
-    nutn: 1525
-  },
-  {
-    id: 4,
-    type: 'Heladera',
-    nutn: 1525
-  },
-  {
-    id: 4,
-    type: 'Heladera',
-    nutn: 1525
-  }
-]
-
 const Posts = () => {
   const dispatch = useDispatch()
 
@@ -133,17 +25,28 @@ const Posts = () => {
   const currentProducts = devices.slice(indexOfFirstProduct, indexOfLastProduct);
 
   return (
-    <div>
-      <div className={styles.container}>
+    <div className={styles.bigcont}>
         <button className={styles.button} onClick={handleClick}>Buscar equipos</button>
+      <div className={styles.container}>
         {currentProducts?.map(e => {
           return(
-            <div key={equipos.id} className={styles.cardContainer}>
-              <p className={styles.link}>Tipo: {e.type}</p>
-              <p className={styles.link}>Nº UTN: {e.nutn}</p>
-              <p className={styles.link}>Servicio: Fantasia</p>
-              <p className={styles.link}>Instituto: INEI</p>
-              {/* <button className={styles.button} onClick={handleClick}>Solicitud</button> */}
+            <div key={e.id} className={styles.cardContainer}>
+              <p className={styles.link}>Nº UTN: {e.id_inei}</p>
+              <p className={styles.link}>Instituto: {e.instituto}</p>
+              <p className={styles.link}>Departamento: {e.departamento}</p>
+              <p className={styles.link}>Servicio: {e.servicio}</p>
+              <p className={styles.link}>Equipo: {e.equipo}</p>
+              <p className={styles.link}>Estado: {e.e_tecnico}</p>
+              <p className={styles.link}>Marca: {e.marca}</p>
+              <p className={styles.link}>Modelo: {e.modelo}</p>
+              {/* "id_inei": {type: Sequelize.INTEGER, primaryKey: true},
+              "Instituto": Sequelize.INTEGER,
+              "Departamento": Sequelize.VARCHAR,
+              "Servicio": Sequelize.VARCHAR,
+              "equipo": Sequelize.VARCHAR,
+              "e_tecnico": Sequelize.VARCHAR,
+              "marca": Sequelize.VARCHAR,
+              "modelo": Sequelize.VARCHAR */}
             </div>
           )
         })}    

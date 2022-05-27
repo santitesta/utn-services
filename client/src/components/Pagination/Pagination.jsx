@@ -10,17 +10,12 @@ function Pagination({ currentPage, productsPerPage, totalProducts, paginate }) {
 				<nav className={style.container}>
 								{pageNumbers.map(number => {
 										return (
-												<li
-														key={number}
-														className={style.items}
-												>
-														<a
-																onClick={() => paginate(number)}
-																href='#top'
-																className={currentPage===number?style.pageSel:style.pages}
-														>{number}
-														</a>
-												</li>
+												<a key={number} className={currentPage===number?style.selected:style.items} onClick={() => paginate(number)} href='#top'>
+													{number}
+													{/* <a onClick={() => paginate(number)} href='#top' className={currentPage===number?style.pageSel:style.pages}>
+														{number}
+													</a> */}
+												</a>
 										)
 								})}
 				</nav>

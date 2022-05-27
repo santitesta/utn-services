@@ -5,7 +5,8 @@ async function getEquipos(req,res){
     allDevices = await utnModel.findAll({
       limit: 100
     })
-  res.send(allDevices)
+    console.log(allDevices)
+    res.send(allDevices)
   } catch (error) {
     res.status(500).send(error)
   }

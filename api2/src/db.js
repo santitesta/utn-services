@@ -1,4 +1,4 @@
-const { Sequelize } = require('sequelize')
+const { Sequelize, DataTypes } = require('sequelize')
 
 const sequelize = new Sequelize('utn','postgres','153624San.',{
   host: 'localhost',
@@ -6,14 +6,25 @@ const sequelize = new Sequelize('utn','postgres','153624San.',{
   logging: false
 })
 
-const Models = []
+// const utnModel = sequelize.define('equipos', {
+//   "id": {type: Sequelize.INTEGER, primaryKey: true},
+//   "equipo": Sequelize.INTEGER
+//   },
+//   {timestamps: false}
+// )
 
-const utnModel = sequelize.define('equipos', {
-  "id": {type: Sequelize.INTEGER, primaryKey: true},
-  "equipo": Sequelize.INTEGER
+const utnModel = sequelize.define('devices', {
+  "id_inei": {type: DataTypes.INTEGER, primaryKey: true},
+  "instituto": DataTypes.INTEGER,
+  "departamento": DataTypes.STRING,
+  "servicio": DataTypes.STRING,
+  "equipo": DataTypes.STRING,
+  "e_tecnico": DataTypes.STRING,
+  "marca": DataTypes.STRING,
+  "modelo": DataTypes.STRING
   },
   {timestamps: false}
-)
+);
 
 sequelize.authenticate()
   .then(() => console.log('Conexion exitosa'))
@@ -23,16 +34,3 @@ module.exports = {
   utnModel, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
 };
-
-// const utnModel = sequelize.define('Devices', {
-//   "id_inei": {type: Sequelize.INTEGER, primaryKey: true},
-//   "Instituto": Sequelize.INTEGER,
-//   "Departamento": Sequelize.VARCHAR,
-//   "Servicio": Sequelize.VARCHAR,
-//   "equipo": Sequelize.VARCHAR,
-//   "e_tecnico": Sequelize.VARCHAR,
-//   "marca": Sequelize.VARCHAR,
-//   "modelo": Sequelize.VARCHAR
-//   },
-//   {timestamps: false}
-// );
