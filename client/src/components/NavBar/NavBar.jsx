@@ -2,6 +2,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const navigation = [
   { name: 'Landing', href: '/', current: false },
@@ -14,6 +15,8 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+  const { user, isAuthenticated } = useAuth0();
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -35,12 +38,12 @@ export default function NavBar() {
                 <div className="flex-shrink-0 flex items-center">
                   <img
                     className="block lg:hidden h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                    src="https://iconape.com/wp-content/png_logo_vector/universidad-nacional-tecnologica-utn-logo.png"
                     alt="Workflow"
                   />
                   <img
-                    className="hidden lg:block h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
+                    className="hidden lg:block h-8 w-auto bg-white"
+                    src="https://iconape.com/wp-content/png_logo_vector/universidad-nacional-tecnologica-utn-logo.png"
                     alt="Workflow"
                   />
                 </div>
@@ -77,8 +80,8 @@ export default function NavBar() {
                     <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        className="h-8 w-8 rounded-full bg-white"
+                        src={isAuthenticated?user.picture:'https://cdn-icons.flaticon.com/png/512/3106/premium/3106773.png?token=exp=1653663033~hmac=3ac51e58d884af3254c72b530ace5c67'}
                         alt=""
                       />
                     </Menu.Button>
