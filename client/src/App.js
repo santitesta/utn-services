@@ -8,6 +8,7 @@ import Home from './components/Home/Home.jsx'
 import Posts from './components/Posts/Posts';
 import NotFound from './components/NotFound/NotFound';
 import About from './components/About/About';
+import ProductList from './components/ProductList/ProductList';
 
 function App() {
   const {pathname} = useLocation()
@@ -20,6 +21,7 @@ function App() {
         <Route path='/home' element={<Home/>}/>
         <Route path='/posts' element={<Posts/>}/>
         <Route path='/about' element={<About/>}/>
+        <Route path='/ProductList' element={<ProductList/>}/>
         {/* <Route path='/admin' element={<AdminSite/>}/> */}
         <Route path='*' element={<NotFound/>}/>
       </Routes>

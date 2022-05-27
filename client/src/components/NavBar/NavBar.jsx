@@ -7,6 +7,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 const navigation = [
   { name: 'Landing', href: '/', current: false },
   { name: 'Home', href: '/home', current: true },
+  { name: 'ProductList', href: '/productlist', current: true },
   { name: 'About', href: '/about', current: false },
 ]
 
