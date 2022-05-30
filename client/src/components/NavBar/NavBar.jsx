@@ -7,7 +7,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 const navigation = [
   { name: 'Landing', href: '/', current: false },
   { name: 'Home', href: '/home', current: true },
-  { name: 'ProductList', href: '/productlist', current: true },
+  { name: 'ProductList', href: '/productlist', current: false },
   { name: 'About', href: '/about', current: false },
 ]
 
@@ -19,7 +19,7 @@ export default function NavBar() {
   const { user, isAuthenticated } = useAuth0();
 
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-slate-700">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -39,12 +39,12 @@ export default function NavBar() {
                 <div className="flex-shrink-0 flex items-center">
                   <img
                     className="block lg:hidden h-8 w-auto"
-                    src="https://iconape.com/wp-content/png_logo_vector/universidad-nacional-tecnologica-utn-logo.png"
+                    src={require('./Logos.png')}
                     alt="Workflow"
                   />
                   <img
-                    className="hidden lg:block h-8 w-auto bg-white"
-                    src="https://iconape.com/wp-content/png_logo_vector/universidad-nacional-tecnologica-utn-logo.png"
+                    className="hidden lg:block h-8 w-auto"
+                    src={require('./Logos.png')}
                     alt="Workflow"
                   />
                 </div>
