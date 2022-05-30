@@ -82,7 +82,7 @@ export default function NavBar() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full bg-white"
-                        src={isAuthenticated?user.picture:'https://cdn-icons.flaticon.com/png/512/3106/premium/3106773.png?token=exp=1653663033~hmac=3ac51e58d884af3254c72b530ace5c67'}
+                        src={isAuthenticated?user.picture:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfAgQG5WxLoxbBV9Fc4pgCKMo3su9kqnkHL6WFBijM5Bicjn-oEnILvi6M3Y2K0SH-HbE&usqp=CAU'}
                         alt=""
                       />
                     </Menu.Button>
