@@ -2,13 +2,13 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-  { name: 'Equipos', href: '#', current: false },
+  { name: 'Landing', href: '/', current: false },
+  { name: 'Home', href: '/home', current: true },
+  { name: 'ProductList', href: '/productlist', current: false },
+  { name: 'About', href: '/about', current: false },
 ]
 
 function classNames(...classes) {
@@ -16,8 +16,10 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+  const { user, isAuthenticated } = useAuth0();
+
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-slate-700">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -37,12 +39,12 @@ export default function NavBar() {
                 <div className="flex-shrink-0 flex items-center">
                   <img
                     className="block lg:hidden h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                    src={require('./Logos.png')}
                     alt="Workflow"
                   />
                   <img
                     className="hidden lg:block h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
+                    src={require('./Logos.png')}
                     alt="Workflow"
                   />
                 </div>
@@ -79,8 +81,8 @@ export default function NavBar() {
                     <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        className="h-8 w-8 rounded-full bg-white"
+                        src={isAuthenticated?user.picture:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfAgQG5WxLoxbBV9Fc4pgCKMo3su9kqnkHL6WFBijM5Bicjn-oEnILvi6M3Y2K0SH-HbE&usqp=CAU'}
                         alt=""
                       />
                     </Menu.Button>
