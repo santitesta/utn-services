@@ -1,7 +1,12 @@
-const { Sequelize, DataTypes } = require('sequelize')
+const { Sequelize, DataTypes } = require('sequelize');
+require('dotenv').config();
+const {
+  DB_NAME, DB_USER, DB_PASS, DB_HOST
+} = process.env;
 
-const sequelize = new Sequelize('postgres','postgres','153624San.',{
-  host: 'localhost',
+console.log('env variables: ',DB_NAME,DB_USER,DB_PASS)
+const sequelize = new Sequelize(DB_NAME,DB_USER,DB_PASS,{
+  host: DB_HOST,
   dialect: 'postgresql',
   logging: false
 })
