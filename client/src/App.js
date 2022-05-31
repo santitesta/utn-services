@@ -9,22 +9,24 @@ import Posts from './components/Posts/Posts';
 import NotFound from './components/NotFound/NotFound';
 import About from './components/About/About';
 import ProductList from './components/ProductList/ProductList';
+import UnderConst from './components/UnderConst/UnderConst';
 
 function App() {
   const {pathname} = useLocation()
 
   return (
     <div>
-      {pathname === '/'?null:<NavBar/>}
-      <Routes>
-        <Route path='/' element={<Landing/>}/>
-        <Route path='/home' element={<Home/>}/>
+      <UnderConst/>
+      {/* {pathname === '/'?null:<NavBar/>} */}
+      {/* <Routes> */}
+        {/* <Route path='/' element={<UnderConst/>}/> */}
+        {/* <Route path='/home' element={<Home/>}/>
         <Route path='/posts' element={<Posts/>}/>
-        <Route path='/about' element={<About/>}/>
-        <Route path='/ProductList' element={<ProductList/>}/>
+        <Route path='/about' element={<About/>}/> */}
+        {/* <Route path='/ProductList' element={<ProductList/>}/> */}
         {/* <Route path='/admin' element={<AdminSite/>}/> */}
-        <Route path='*' element={<NotFound/>}/>
-      </Routes>
+        {/* <Route path='*' element={<NotFound/>}/> */}
+      {/* </Routes> */}
     </div>
   );
 }
