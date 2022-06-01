@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
@@ -14,7 +14,8 @@ import ProductList from './components/ProductList/ProductList';
 function App() {
 
   const loggedUser = useSelector(state => state.loggedUser)
-  if(loggedUser.email) localStorage.setItem("user", loggedUser.email)
+  console.log('Hay logged user pa?: ',loggedUser)
+  if(loggedUser) localStorage.setItem("user", loggedUser)
   console.log('Local storage user: ',localStorage.getItem("user"))
 
   const {pathname} = useLocation()

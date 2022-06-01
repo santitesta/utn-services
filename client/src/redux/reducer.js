@@ -30,13 +30,13 @@ export function rootReducer(state = initialState, {type, payload}){
                 alert('Successfull login!')
                 return {...state, loggedUser: payload.email}
             }
-            if(payload.noUser) alert(payload.noUser)
+            if(!payload) alert('No account linked to that mail')
             else if(payload.wrongPass) alert(payload.wrongPass)
-            else alert('Something went wrong bro')
+            else alert('Ian was here bitches <3')
             return {...state}
 
         case LOGOUT:
-            return {...state, loggedUser: {}}
+            return {...state, loggedUser: null}
 
         default: return state;
     }

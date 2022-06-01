@@ -23,7 +23,7 @@ export default function Login() {
       return alert('Please fill the right way')
     }
     await dispatch(login(userLogin))
-    navigate('/home')
+    if(localStorage.user) navigate('/home')
     setUserLogin({email: '', password: ''})
   }
 
