@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../../../redux/actions';
 import { validate } from './validate';
+import { useNavigate } from "react-router-dom";
 
 
 export default function Login() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [userLogin, setUserLogin] = useState({email: '', password: ''})
   const [errors, setErrors] = useState('')
@@ -15,12 +17,13 @@ export default function Login() {
     setUserLogin({...userLogin, [e.target.name]: e.target.value})
   }
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault()
     if(Object.keys(errors).length) {
       return alert('Please fill the right way')
     }
-    dispatch(login(userLogin))
+    await dispatch(login(userLogin))
+    navigate('/home')
     setUserLogin({email: '', password: ''})
   }
 

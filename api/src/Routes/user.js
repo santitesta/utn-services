@@ -21,8 +21,9 @@ router.post("/login", async(req,res)=>{
         const user = await Users.findOne({
             where: {email: email}
         })
-        if(user.password === password) res.send(user)
-        else res.send({});
+        if(!user) res.status(204).send({noUser: 'No account linked to that email'})
+        else if(user.password === password) res.status(200).send({user})
+        else res.status(204).send({wrongPass: 'Wrong password'});
     } catch (error) {
         res.status(404).send(error)
     }
