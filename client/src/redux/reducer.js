@@ -26,9 +26,9 @@ export function rootReducer(state = initialState, {type, payload}){
 
         case LOGIN:
             console.log('Payload: ',payload)
-            if(payload.user) {
+            if(payload.email) {
                 alert('Successfull login!')
-                return {...state, loggedUser: payload.user}
+                return {...state, loggedUser: payload.email}
             }
             if(payload.noUser) alert(payload.noUser)
             else if(payload.wrongPass) alert(payload.wrongPass)
