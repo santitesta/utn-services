@@ -8,7 +8,7 @@ import {
 const initialState={
     equipos: [],
     equipoDet: {},
-    loggedUser: {}
+    loggedUser: undefined
 }
 
 export function rootReducer(state = initialState, {type, payload}){
