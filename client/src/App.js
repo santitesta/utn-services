@@ -1,6 +1,7 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 import NavBar from './components/NavBar/NavBar';
 import Landing from './components/Landing/Landing.jsx'
@@ -11,6 +12,12 @@ import About from './components/About/About';
 import ProductList from './components/ProductList/ProductList';
 
 function App() {
+
+  const loggedUser = useSelector(state => state.loggedUser)
+  console.log('Hay logged user en redux? ',loggedUser)
+  if(loggedUser) localStorage.setItem("user", loggedUser)
+  console.log('Local storage user? ',localStorage.getItem("user"))
+
   const {pathname} = useLocation()
 
   return (

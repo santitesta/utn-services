@@ -11,13 +11,6 @@ const sequelize = new Sequelize(DB_NAME,DB_USER,DB_PASS,{
   logging: false
 })
 
-// const utnModel = sequelize.define('equipos', {
-//   "id": {type: Sequelize.INTEGER, primaryKey: true},
-//   "equipo": Sequelize.INTEGER
-//   },
-//   {timestamps: false}
-// )
-
 const utnModel = sequelize.define('devices', {
   "id_inei": {type: DataTypes.INTEGER, primaryKey: true},
   "instituto": DataTypes.INTEGER,
@@ -31,11 +24,29 @@ const utnModel = sequelize.define('devices', {
   {timestamps: false}
 );
 
+const Users = sequelize.define('users', {
+  id: {
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV1,
+    primaryKey: true
+  },
+  email: {    //2
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true
+  },
+  password: {       //3
+    type: DataTypes.STRING,
+    allowNull: false,
+  }
+}, {timestamps: false});
+
 sequelize.authenticate()
   .then(() => console.log('Conexion exitosa'))
   .catch(error => console.log('Error rey',error))
 
 module.exports = {
-  utnModel, // para poder importar los modelos así: const { Product, User } = require('./db.js');
+  utnModel,
+  Users,
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
 };
