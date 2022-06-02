@@ -5,10 +5,20 @@ import styles from './Filters.module.css'
 import { useForm } from "react-hook-form";
 
 function Filters() {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
+  const { register, handleSubmit, reset, setError, formState: { errors } } = useForm();
+  const onSubmit = async data => {
+    console.log(data)
+    if (!data.instituto.length) {
+      // await setQuery(data.instituto)
+      dispatch(getDeviceById(data.id_inei))
+      // setQuery([])
+      reset()
+    } else {
+      console.log('No negri')
+      setError("id_inei", { type: "custom", message: 'Bra' })
+    }
+  };
 
-  console.log(watch("example")); // watch input value by passing the name of it
 
   const dispatch = useDispatch()
 
@@ -36,20 +46,16 @@ function Filters() {
         <input className={styles.idInput} type="text"
           placeholder='Ingrese el id...'
           value={query}
-          onChange={e => setQuery(e.target.value)} />
-        <button className={styles.idQuery} onClick={e => filterById(e)}>GO</button>
+          onChange={e => setQuery(e.target.value)}
+        />
+        <button id='queryId' className={styles.idQuery} onClick={e => filterById(e)}>GO</button>
       </div>
       {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
       <form onSubmit={handleSubmit(onSubmit)}>
-        {/* register your input into the hook by invoking the "register" function */}
-        <input defaultValue="test" {...register("example")} />
-
-        {/* include validation with required or other standard HTML validation rules */}
-        <input {...register("exampleRequired", { required: true })} />
-        {/* errors will return when field validation fails  */}
-        {errors.exampleRequired && <span>This field is required</span>}
-
-        <input type="submit" />
+        <input placeholder='ID...' {...register("id_inei")} className='m-1' />
+        <input placeholder='Instituto...' {...register("instituto")} className='m-1' />
+        <input type="submit" value='Buscar' />
+        {errors.id_inei && <p>{errors.id_inei.message}</p>}
       </form>
     </div>
   );
