@@ -1,6 +1,5 @@
-const { Router } = require('express');
+const router = require('express').Router();
 const { getEquipos, getDeviceById } = require('../Controllers/equiposController');
-const router = Router();
 
 router.get('/', getEquipos)
 
