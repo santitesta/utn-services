@@ -7,6 +7,7 @@ import {
 
 const initialState={
     equipos: [],
+    equipo: {},
     equipoDet: {},
     loggedUser: undefined
 }
@@ -15,14 +16,14 @@ export function rootReducer(state = initialState, {type, payload}){
     switch (type) {
 
         case GET_EQUIPOS:
-            return {...state, equipos: payload}
+            return {...state, equipos: payload, equipo: {}}
 
         case GET_DEVICE_BY_ID:
-            if(!payload.length) {
+            if(!payload.id_inei) {
                 alert('No encontrado')
                 return {...state}
             }
-            return {...state, equipos: payload}
+            return {...state, equipo: payload}
 
         case LOGIN:
             console.log('Payload: ',payload)
