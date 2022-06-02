@@ -1,45 +1,11 @@
-import styles from './ProductList.module.css'
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getDeviceById, getEquipos } from '../../redux/actions';
+import { useSelector } from 'react-redux';
 import Pagination from '../Pagination/Pagination';
-
-/*
-  This example requires Tailwind CSS v2.0+
-
-  This example requires some changes to your config:
-
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-*/
-
+import Filters from '../Filters/Filters';
 
 export default function ProductList() {
-
-  const dispatch = useDispatch()
   const devices = useSelector(state => state.equipos)
   const device = useSelector(state => state.equipo)
-
-  const [query, setQuery] = useState([])
-
-  function handleClick(e) {
-    e.preventDefault()
-    dispatch(getEquipos())
-  }
-
-  function filterById(e) {
-    e.preventDefault()
-    dispatch(getDeviceById(query))
-    setQuery([])
-  }
 
    //PAGINATION
    const [currentPage, setCurrentPage] = useState(1);
@@ -53,14 +19,7 @@ export default function ProductList() {
 
   return (
     <div className="flex">
-      <div className='w-1/5'>
-        <button className={styles.generalQuery} onClick={handleClick}>Buscar equipos</button>
-        <input className={styles.idInput} type="text"
-            placeholder='Ingrese el id...'
-            value={query}
-            onChange={e => setQuery(e.target.value)}/>
-          <button className={styles.idQuery} onClick={e => filterById(e)}>GO</button>
-      </div>
+      <Filters/>
       <div className='w-4/5 grid justify-items-center'>
         <div className="px-5 mt-6 grid grid-cols-1 gap-y-10 gap-x-20 xl:gap-x-3 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 ">
           {device.id_inei?
