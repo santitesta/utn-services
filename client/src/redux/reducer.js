@@ -28,9 +28,9 @@ export function rootReducer(state = initialState, {type, payload}){
 
         case GET_DEVICE_BY_INSTITUTE:
             if(payload.length) {
-                return {...state, equipos: payload}
+                return {...state, equipos: payload, equipo: {}}
             }
-            alert('No es un instituto valido')
+            alert('No tiene equipos cargados')
             return {...state}
 
         case LOGIN:
