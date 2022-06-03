@@ -1,0 +1,19 @@
+.generalQuery {
+  height: 40px;
+  width: 150px;
+  font-size: larger;
+  border: solid 1px blue;
+  border-radius: 15px;
+  margin-top: 30px;
+}
+
+.idInput {
+  border: solid 1px gray;
+  margin-right: 5px;
+}
+
+.idQuery {
+  width: 50px;
+  border: solid 1px blue;
+  border-radius: 15px;
+}
