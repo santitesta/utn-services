@@ -1,32 +1,22 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { getDeviceById, getDeviceByInstitute, getEquipos } from '../../redux/actions';
-import styles from './Filters.module.css'
+import { getDeviceById, getDeviceByInstitute } from '../../redux/actions';
 import { useForm } from "react-hook-form";
+import styles from './Filters.module.css'
 
 function Filters() {
   const dispatch = useDispatch()
   const { register, handleSubmit, watch, reset } = useForm();
 
-  const user = localStorage.user
-  console.log(user)
-
   const onSubmit = async data => {
-    console.log(data)
     if (data.id_inei.length) {
       dispatch(getDeviceById(data.id_inei))
       reset()
     } else if (data.instituto.length) {
       dispatch(getDeviceByInstitute(data.instituto))
       reset()
-    } else console.log('Fua');
+    } else alert('Something really broke');
   };
-  console.log(watch())
-
-  function handleClick(e) {
-    e.preventDefault()
-    dispatch(getEquipos())
-  }
 
   return (
     <div className='w-1/5 bg-emerald-400 grid justify-items-center content-start'>

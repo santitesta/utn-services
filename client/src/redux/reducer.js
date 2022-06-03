@@ -1,5 +1,4 @@
 import {
-    GET_EQUIPOS,
     GET_DEVICE_BY_ID,
     GET_DEVICE_BY_INSTITUTE,
     LOGIN,
@@ -16,9 +15,6 @@ const initialState={
 
 export function rootReducer(state = initialState, {type, payload}){
     switch (type) {
-
-        case GET_EQUIPOS:
-            return {...state, equipos: payload, equipo: {}}
 
         case GET_DEVICE_BY_ID:
             if(!payload.id_inei) {

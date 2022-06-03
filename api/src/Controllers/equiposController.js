@@ -32,9 +32,7 @@ async function getDeviceById(req,res){
 }
 
 async function getDeviceByInstitute(req,res){
-  console.log(req.params)
   const {ins} = req.params;
-  console.log('ACA no response el touch: ',typeof(ins), ins)
 
   try {
     let device = await Devices.findAll({
