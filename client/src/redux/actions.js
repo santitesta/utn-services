@@ -1,7 +1,7 @@
 import axios from "axios"
 
 let url = 'http://localhost:3001'
-if(process.env.STAGE !== "development") {
+if (process.env.STAGE !== "development") {
 	url = 'http://10.10.200.125:3001'
 }
 
@@ -12,58 +12,58 @@ export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 
 export const getEquipos = () => {
-	return function(dispatch){
+	return function (dispatch) {
 		return axios.get(`${url}/equipos`)
-			.then(resp => dispatch({type: GET_EQUIPOS, payload: resp.data}))
-			.catch(error => alert('Error in getRecipes: ',error))
+			.then(resp => dispatch({ type: GET_EQUIPOS, payload: resp.data }))
+			.catch(error => alert('Error in getRecipes: ', error))
 	}
 }
 
 export const getDeviceById = (id) => {
-	return function(dispatch){
+	return function (dispatch) {
 		return axios.get(`${url}/equipos/id/${id}`)
-			.then(resp => dispatch({type: GET_DEVICE_BY_ID, payload: resp.data}))
-			.catch(error => alert('Error in getRecipes: ',error))
+			.then(resp => dispatch({ type: GET_DEVICE_BY_ID, payload: resp.data }))
+			.catch(error => alert('Error in getRecipes: ', error))
 	}
 }
 
 export const getDeviceByInstitute = (ins) => {
-	console.log('El pana ins: ',typeof(ins),ins)
-	return function(dispatch){
+	console.log('El pana ins: ', typeof (ins), ins)
+	return function (dispatch) {
 		return axios.get(`${url}/equipos/ins/${ins}`)
 			.then(resp => {
-				console.log('La resp: ',resp)
-				dispatch({type: GET_DEVICE_BY_INSTITUTE, payload: resp.data})
-		})
-			.catch(error => alert('Error in getRecipes: ',error))
+				console.log('La resp: ', resp)
+				dispatch({ type: GET_DEVICE_BY_INSTITUTE, payload: resp.data })
+			})
+			.catch(error => alert('Error in getRecipes: ', error))
 	}
 }
 
 export function signUp(user) {
-	return function(){
+	return function () {
 		return axios.post(`${url}/user/signup`, user)
 			.then(resp => {
 				console.log(resp)
-					if(typeof(resp.data) === 'string') alert(resp.data)
-					else alert('Welcome to our platform')
-				})
-			.catch(error => console.log('El error en cuestion: ',error))
+				if (typeof (resp.data) === 'string') alert(resp.data)
+				else alert('Welcome to our platform')
+			})
+			.catch(error => console.log('El error en cuestion: ', error))
 	};
 };
 
 export function login(user) {
-	return function(dispatch){
+	return function (dispatch) {
 		return axios.post(`${url}/user/login`, user)
 			.then(resp => {
 				console.log(resp)
-				dispatch({type: LOGIN, payload: resp.data})
+				dispatch({ type: LOGIN, payload: resp.data })
 			})
-			.catch(error => console.log('El error en cuestion: ',error))
+			.catch(error => console.log('El error en cuestion: ', error))
 	};
 };
 
-	export function logout() {
-	return function(dispatch){
-		return dispatch({type: LOGOUT})
+export function logout() {
+	return function (dispatch) {
+		return dispatch({ type: LOGOUT })
 	}
 }

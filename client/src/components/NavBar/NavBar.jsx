@@ -2,8 +2,8 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import { useAuth0 } from '@auth0/auth0-react'
 import { logout } from '../../redux/actions'
+import { useDispatch, useSelector } from 'react-redux'
 
 const navigation = [
   { name: 'Landing', href: '/', current: false },
@@ -16,7 +16,12 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
-  const { user, isAuthenticated } = useAuth0();
+  const dispatch = useDispatch()
+
+  function handleLogout() {
+    dispatch(logout())
+    localStorage.removeItem("user")
+  }
 
   return (
     <Disclosure as="nav" className="bg-slate-700">
@@ -82,7 +87,7 @@ export default function NavBar() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full bg-white"
-                        src={isAuthenticated ? user.picture : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfAgQG5WxLoxbBV9Fc4pgCKMo3su9kqnkHL6WFBijM5Bicjn-oEnILvi6M3Y2K0SH-HbE&usqp=CAU'}
+                        src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfAgQG5WxLoxbBV9Fc4pgCKMo3su9kqnkHL6WFBijM5Bicjn-oEnILvi6M3Y2K0SH-HbE&usqp=CAU'}
                         alt=""
                       />
                     </Menu.Button>
@@ -117,12 +122,12 @@ export default function NavBar() {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
+                          <button
                             className={classNames(active ? 'bg-gray-100 cursor-pointer' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                            onClick={logout()}
+                            onClick={handleLogout}
                           >
                             Sign out
-                          </a>
+                          </button>
                         )}
                       </Menu.Item>
                     </Menu.Items>

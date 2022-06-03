@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getDeviceById, getDeviceByInstitute, getEquipos } from '../../redux/actions';
 import styles from './Filters.module.css'
 import { useForm } from "react-hook-form";
@@ -7,6 +7,10 @@ import { useForm } from "react-hook-form";
 function Filters() {
   const dispatch = useDispatch()
   const { register, handleSubmit, watch, reset } = useForm();
+
+  const user = localStorage.user
+  console.log(user)
+
   const onSubmit = async data => {
     console.log(data)
     if (data.id_inei.length) {
