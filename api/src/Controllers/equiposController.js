@@ -31,7 +31,28 @@ async function getDeviceById(req,res){
   }
 }
 
+async function getDeviceByInstitute(req,res){
+  console.log(req.params)
+  const {ins} = req.params;
+  console.log('ACA no response el touch: ',typeof(ins), ins)
+
+  try {
+    let device = await utnModel.findAll({
+      where: {
+        instituto: ins
+      },
+      limit: 100
+    })
+    if(device.length) res.json(device)
+    else res.status(204).send()
+
+  } catch (error) {
+    res.status(500).send(error)
+  }
+}
+
 module.exports = {
   getEquipos,
-  getDeviceById
+  getDeviceById,
+  getDeviceByInstitute
 }

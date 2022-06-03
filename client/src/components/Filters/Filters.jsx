@@ -30,10 +30,11 @@ function Filters() {
         <button className={styles.generalQuery} onClick={handleClick}>Buscar equipos</button>
       </div>
       {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="number" placeholder='ID...' {...register("id_inei")} className='m-1' disabled={watch("instituto")} />
-        <select {...register("instituto")} className='m-1' disabled={watch("id_inei")}>
-          <option value="" selected>Elija Instituto...</option>
+      <form onSubmit={handleSubmit(onSubmit)} className='mt-3 grid justify-items-center content-start'>
+        <input type="number" placeholder='ID...' {...register("id_inei")} className='m-1 w-40' disabled={watch("instituto")} />
+        <select {...register("instituto")} className='m-1 w-40' disabled={watch("id_inei")}
+          onChange={handleSubmit(onSubmit)}>
+          <option defaultValue value="">Elija Instituto...</option>
           <option value="I.N.E.I.">INEI</option>
           <option value="I.N.P.B.">INPB</option>
           <option value="C.N.C.C.B.">CNCCB</option>
@@ -45,7 +46,7 @@ function Filters() {
           <option value="UTN MDQ">UTN MDQ</option>
           <option value="CENDIE">CENDIE</option>
         </select>
-        <input type="submit" value='Buscar' />
+        <input type="submit" value='Buscar' className='m-1' />
       </form>
     </div>
   );
