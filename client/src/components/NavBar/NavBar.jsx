@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { logout } from '../../redux/actions'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 const navigation = [
   { name: 'Landing', href: '/', current: false },
@@ -21,6 +21,7 @@ export default function NavBar() {
   function handleLogout() {
     dispatch(logout())
     localStorage.removeItem("user")
+    localStorage.removeItem("institute")
   }
 
   return (

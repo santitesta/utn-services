@@ -1,8 +1,8 @@
-const { utnModel } = require("../db")
+const { Devices } = require("../db")
 
 async function getEquipos(req,res){
   try {
-    allDevices = await utnModel.findAll({
+    allDevices = await Devices.findAll({
       limit: 100,
       order: [
         ["id_inei", "ASC"],
@@ -18,7 +18,7 @@ async function getDeviceById(req,res){
   const {id} = req.params;
 
   try {
-    let device = await utnModel.findOne({
+    let device = await Devices.findOne({
       where: {
         id_inei: id
       }
@@ -37,7 +37,7 @@ async function getDeviceByInstitute(req,res){
   console.log('ACA no response el touch: ',typeof(ins), ins)
 
   try {
-    let device = await utnModel.findAll({
+    let device = await Devices.findAll({
       where: {
         instituto: ins
       },

@@ -10,7 +10,8 @@ const initialState={
     equipos: [],
     equipo: {},
     equipoDet: {},
-    loggedUser: undefined
+    loggedUser: undefined,
+    institute: undefined
 }
 
 export function rootReducer(state = initialState, {type, payload}){
@@ -34,10 +35,9 @@ export function rootReducer(state = initialState, {type, payload}){
             return {...state}
 
         case LOGIN:
-            console.log('Payload: ',payload)
             if(payload.email) {
                 alert('Successfull login!')
-                return {...state, loggedUser: payload.email}
+                return {...state, loggedUser: payload.email, institute: payload.institute}
             }
             if(!payload) alert('No account linked to that mail')
             else if(payload.wrongPass) alert(payload.wrongPass)
@@ -45,7 +45,7 @@ export function rootReducer(state = initialState, {type, payload}){
             return {...state}
 
         case LOGOUT:
-            return {...state, loggedUser: null}
+            return {...state, loggedUser: null, institute: null}
 
         default: return state;
     }

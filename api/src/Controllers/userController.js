@@ -1,11 +1,11 @@
 const { Users } = require('../db');
 
 async function signUp(req, res) {
-  const { email, password } = req.body;
+  const { email, password, institute } = req.body;
   try {
     const [user, created] = await Users.findOrCreate({
       where: { email },
-      defaults: { email, password }
+      defaults: { email, password, institute }
     })
     if (created) res.json(user)
     else res.send('Email already in use')
@@ -20,7 +20,6 @@ async function login(req, res) {
     const user = await Users.findOne({
       where: { email: email }
     })
-    console.log('User found: ', user)
     if (!user) {
       res.status(204).send()
     } else if (user.password === password) {
