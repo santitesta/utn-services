@@ -7,6 +7,7 @@ if(process.env.STAGE !== "development") {
 
 export const GET_EQUIPOS = "GET_EQUIPOS"
 export const GET_DEVICE_BY_ID = "GET_DEVICE_BY_ID"
+export const GET_DEVICE_BY_INSTITUTE = "GET_DEVICE_BY_INSTITUTE"
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 
@@ -20,8 +21,20 @@ export const getEquipos = () => {
 
 export const getDeviceById = (id) => {
 	return function(dispatch){
-		return axios.get(`${url}/equipos/${id}`)
+		return axios.get(`${url}/equipos/id/${id}`)
 			.then(resp => dispatch({type: GET_DEVICE_BY_ID, payload: resp.data}))
+			.catch(error => alert('Error in getRecipes: ',error))
+	}
+}
+
+export const getDeviceByInstitute = (ins) => {
+	console.log('El pana ins: ',typeof(ins),ins)
+	return function(dispatch){
+		return axios.get(`${url}/equipos/ins/${ins}`)
+			.then(resp => {
+				console.log('La resp: ',resp)
+				dispatch({type: GET_DEVICE_BY_INSTITUTE, payload: resp.data})
+		})
 			.catch(error => alert('Error in getRecipes: ',error))
 	}
 }

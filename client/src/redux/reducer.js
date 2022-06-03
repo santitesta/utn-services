@@ -1,6 +1,7 @@
 import {
     GET_EQUIPOS,
     GET_DEVICE_BY_ID,
+    GET_DEVICE_BY_INSTITUTE,
     LOGIN,
     LOGOUT
 } from "./actions"
@@ -25,6 +26,13 @@ export function rootReducer(state = initialState, {type, payload}){
             }
             return {...state, equipo: payload}
 
+        case GET_DEVICE_BY_INSTITUTE:
+            if(payload.length) {
+                return {...state, equipos: payload}
+            }
+            alert('No es un instituto valido')
+            return {...state}
+
         case LOGIN:
             console.log('Payload: ',payload)
             if(payload.email) {
@@ -33,7 +41,7 @@ export function rootReducer(state = initialState, {type, payload}){
             }
             if(!payload) alert('No account linked to that mail')
             else if(payload.wrongPass) alert(payload.wrongPass)
-            else alert('Ian was here bitches <3')
+            else alert('Something went wrong')
             return {...state}
 
         case LOGOUT:

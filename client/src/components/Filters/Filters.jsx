@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getDeviceById, getEquipos } from '../../redux/actions';
+import { getDeviceById, getDeviceByInstitute, getEquipos } from '../../redux/actions';
 import styles from './Filters.module.css'
 import { useForm } from "react-hook-form";
 
 function Filters() {
-  const { register, handleSubmit, reset, setError, formState: { errors } } = useForm();
+  const { register, handleSubmit, watch, reset } = useForm();
   const onSubmit = async data => {
     console.log(data)
-    if (!data.instituto.length) {
-      // await setQuery(data.instituto)
+    if(data.id_inei.length) {
       dispatch(getDeviceById(data.id_inei))
-      // setQuery([])
       reset()
-    } else {
-      console.log('No negri')
-      setError("id_inei", { type: "custom", message: 'Bra' })
-    }
+    } else if(data.instituto.length) {
+      dispatch(getDeviceByInstitute(data.instituto))
+      reset()
+    } else console.log('Fua');
   };
-
+  console.log(watch())
 
   const dispatch = useDispatch()
 
@@ -52,10 +50,9 @@ function Filters() {
       </div>
       {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input placeholder='ID...' {...register("id_inei")} className='m-1' />
-        <input placeholder='Instituto...' {...register("instituto")} className='m-1' />
+        <input type="number" placeholder='ID...' {...register("id_inei")} className='m-1' disabled={watch("instituto")}/>
+        <input placeholder='Instituto...' {...register("instituto")} className='m-1' disabled={watch("id_inei")}/>
         <input type="submit" value='Buscar' />
-        {errors.id_inei && <p>{errors.id_inei.message}</p>}
       </form>
     </div>
   );
