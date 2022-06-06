@@ -3,12 +3,23 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 
+console.log('Window acaaa: ',window.location.href)
+let url = window.location.href
+
 const navigation = [
   { name: 'Landing', href: '/', current: false },
   { name: 'Home', href: '/home', current: true },
   { name: 'ProductList', href: '/productlist', current: false },
   { name: 'About', href: '/about', current: false },
 ]
+
+navigation.map(page => {
+  if(url == `http://localhost${page.href}`) {
+    page.current = true
+  } else {
+    page.current = false
+  }
+})
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -52,6 +63,7 @@ export default function NavBar() {
                       <a
                         key={item.name}
                         href={item.href}
+                        // onClick={e => changeActive(e)}
                         className={classNames(
                           item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           'px-3 py-2 rounded-md text-sm font-medium'
@@ -134,7 +146,7 @@ export default function NavBar() {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
+              {/* {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
                   as="a"
@@ -147,7 +159,7 @@ export default function NavBar() {
                 >
                   {item.name}
                 </Disclosure.Button>
-              ))}
+              ))} */}
             </div>
           </Disclosure.Panel>
         </>
