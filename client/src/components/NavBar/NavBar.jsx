@@ -4,6 +4,9 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { NavLink } from 'react-router-dom'
 
+console.log('Window acaaa: ', window.location.href)
+let url = window.location.href
+
 const navigation = [
   { name: 'Landing', href: '/'},
   { name: 'Home', href: '/home'},
