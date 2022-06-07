@@ -1,9 +1,10 @@
-const { Router } = require('express');
-const { getEquipos, getDeviceById } = require('../Controllers/equiposController');
-const router = Router();
+const router = require('express').Router();
+const { getEquipos, getDeviceById, getDeviceByInstitute } = require('../Controllers/equiposController');
 
 router.get('/', getEquipos)
 
-router.get('/:id', getDeviceById)
+router.get('/id/:id', getDeviceById)
+
+router.get('/ins/:ins', getDeviceByInstitute)
 
 module.exports = router;

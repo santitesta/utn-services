@@ -15,18 +15,36 @@ async function getEquipos(req,res){
 }
 
 async function getDeviceById(req,res){
-  console.log('entra aca?')
   const {id} = req.params;
-  console.log('sigue aca?', id)
 
   try {
-    let device = await utnModel.findAll({
+    let device = await utnModel.findOne({
       where: {
         id_inei: id
       }
     })
-    console.log(device)
-    res.json(device)
+    if(device) res.json(device)
+    else res.status(204).send()
+
+  } catch (error) {
+    res.status(500).send(error)
+  }
+}
+
+async function getDeviceByInstitute(req,res){
+  console.log(req.params)
+  const {ins} = req.params;
+  console.log('ACA no response el touch: ',typeof(ins), ins)
+
+  try {
+    let device = await utnModel.findAll({
+      where: {
+        instituto: ins
+      },
+      limit: 100
+    })
+    if(device.length) res.json(device)
+    else res.status(204).send()
 
   } catch (error) {
     res.status(500).send(error)
@@ -35,5 +53,6 @@ async function getDeviceById(req,res){
 
 module.exports = {
   getEquipos,
-  getDeviceById
+  getDeviceById,
+  getDeviceByInstitute
 }
