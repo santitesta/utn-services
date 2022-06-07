@@ -10,7 +10,6 @@ let url = window.location.href
 const navigation = [
   { name: 'Landing', href: '/'},
   { name: 'Home', href: '/home'},
-  { name: 'ProductList', href: '/productlist'},
   { name: 'About', href: '/about'},
 ]
 
@@ -127,7 +126,7 @@ export default function NavBar() {
                         {({ active }) => (
                           <button
                             className={classNames(active ? 'bg-gray-100 cursor-pointer' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                            onClick={handleLogout}
+                            // onClick={handleLogout}
                           >
                             Sign out
                           </button>
@@ -142,7 +141,7 @@ export default function NavBar() {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {/* {navigation.map((item) => (
+              {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
                   as="a"
@@ -155,7 +154,7 @@ export default function NavBar() {
                 >
                   {item.name}
                 </Disclosure.Button>
-              ))} */}
+              ))}
             </div>
           </Disclosure.Panel>
         </>
