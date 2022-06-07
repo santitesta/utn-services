@@ -12,10 +12,7 @@ import NotFound from './components/NotFound/NotFound';
 function App() {
 
   const loggedUser = useSelector(state => state.loggedUser)
-  console.log('Hay logged user en redux? ',loggedUser)
   if(loggedUser) localStorage.setItem("user", loggedUser)
-  console.log('Local storage user? ',localStorage.getItem("user"))
-
   const {pathname} = useLocation()
 
   return (

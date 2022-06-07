@@ -2,26 +2,31 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import { logout } from '../../redux/actions'
-import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
+
+console.log('Window acaaa: ', window.location.href)
+let url = window.location.href
 
 const navigation = [
-  { name: 'Landing', href: '/', current: false },
-  { name: 'Home', href: '/home', current: true },
-  { name: 'About', href: '/about', current: false },
+  { name: 'Landing', href: '/'},
+  { name: 'Home', href: '/home'},
+  { name: 'ProductList', href: '/productlist'},
+  { name: 'About', href: '/about'},
 ]
+
+navigation.map(page => {
+  if (url == `http://localhost${page.href}`) {
+    page.current = true
+  } else {
+    page.current = false
+  }
+})
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function NavBar() {
-  const dispatch = useDispatch()
-
-  function handleLogout() {
-    dispatch(logout())
-    localStorage.removeItem("user")
-  }
 
   return (
     <Disclosure as="nav" className="bg-slate-700">
@@ -56,17 +61,15 @@ export default function NavBar() {
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <NavLink
                         key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'px-3 py-2 rounded-md text-sm font-medium'
-                        )}
-                        aria-current={item.current ? 'page' : undefined}
+                        to={item.href}
+                        className={({ isActive }) => (isActive
+                          ? 'nav-link bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium'
+                          : 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium')}
                       >
                         {item.name}
-                      </a>
+                      </NavLink>
                     ))}
                   </div>
                 </div>
@@ -139,7 +142,7 @@ export default function NavBar() {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
+              {/* {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
                   as="a"
@@ -152,7 +155,7 @@ export default function NavBar() {
                 >
                   {item.name}
                 </Disclosure.Button>
-              ))}
+              ))} */}
             </div>
           </Disclosure.Panel>
         </>
