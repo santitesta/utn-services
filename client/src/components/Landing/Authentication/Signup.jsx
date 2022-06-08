@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { signUp } from '../../../redux/actions';
+import { login, signUp } from '../../../redux/actions';
 import { validate } from './validate';
+import { useNavigate } from 'react-router-dom'
 
 
 export default function Signup() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [userSignup, setUserSignup] = useState({ email: '', password: '', institute: '' })
   const [errors, setErrors] = useState('')
@@ -15,12 +17,16 @@ export default function Signup() {
     setUserSignup({ ...userSignup, [e.target.name]: e.target.value })
   }
 
-  function handleSignUp(e) {
+  async function handleSignUp(e) {
     e.preventDefault()
     if (Object.keys(errors).length) {
       return alert('Please fill the right way')
     }
-    dispatch(signUp(userSignup))
+    await dispatch(signUp(userSignup))
+    await dispatch(login(userSignup))
+    if (localStorage.user) {
+      navigate('/home')
+    }
     setUserSignup({ email: '', password: '', institute: '' })
   }
 

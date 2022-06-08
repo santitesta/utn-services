@@ -43,9 +43,7 @@ export function signUp(user) {
 export function login(user) {
 	return function (dispatch) {
 		return axios.post(`${url}/user/login`, user)
-			.then(resp => {
-				dispatch({ type: LOGIN, payload: resp.data })
-			})
+			.then(resp => dispatch({ type: LOGIN, payload: resp.data }))
 			.catch(error => console.log('Action Error in login: ', error))
 	};
 };

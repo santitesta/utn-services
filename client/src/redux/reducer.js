@@ -5,7 +5,7 @@ import {
     LOGOUT
 } from "./actions"
 
-const initialState={
+const initialState = {
     equipos: [],
     equipo: {},
     equipoDet: {},
@@ -13,35 +13,32 @@ const initialState={
     institute: undefined
 }
 
-export function rootReducer(state = initialState, {type, payload}){
+export function rootReducer(state = initialState, { type, payload }) {
     switch (type) {
 
         case GET_DEVICE_BY_ID:
-            if(!payload.id_inei) {
+            if (!payload.id_inei) {
                 alert('No encontrado')
-                return {...state}
+                return { ...state }
             }
-            return {...state, equipo: payload}
+            return { ...state, equipo: payload }
 
         case GET_DEVICE_BY_INSTITUTE:
-            if(payload.length) {
-                return {...state, equipos: payload, equipo: {}}
+            if (payload.length) {
+                return { ...state, equipos: payload, equipo: {} }
             }
             alert('No tiene equipos cargados')
-            return {...state}
+            return { ...state }
 
         case LOGIN:
-            if(payload.email) {
-                alert('Successfull login!')
-                return {...state, loggedUser: payload.email, institute: payload.institute}
-            }
-            if(!payload) alert('No account linked to that mail')
-            else if(payload.wrongPass) alert(payload.wrongPass)
-            else alert('Something went wrong')
-            return {...state}
+            if (Object.keys(payload).length) alert('Successfull login!')
+            if (!Object.keys(payload).length) alert('Wrong password')
+            localStorage.setItem("user", payload.mail)
+            return { ...state, loggedUser: payload.mail }
 
         case LOGOUT:
-            return {...state, loggedUser: null, institute: null}
+            localStorage.removeItem("user")
+            return { ...state, loggedUser: '', institute: null }
 
         default: return state;
     }
