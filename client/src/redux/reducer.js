@@ -34,10 +34,12 @@ export function rootReducer(state = initialState, { type, payload }) {
             if (Object.keys(payload).length) alert('Successfull login!')
             if (!Object.keys(payload).length) alert('Wrong password')
             localStorage.setItem("user", payload.mail)
-            return { ...state, loggedUser: payload.mail }
+            localStorage.setItem("institute", payload.institute)
+            return { ...state, loggedUser: payload.mail, institute: payload.institute }
 
         case LOGOUT:
             localStorage.removeItem("user")
+            localStorage.removeItem("institute")
             return { ...state, loggedUser: '', institute: null }
 
         default: return state;

@@ -9,6 +9,7 @@ function Filters() {
   const { register, handleSubmit, watch, reset } = useForm();
 
   const onSubmit = async data => {
+    console.log(data)
     if (data.id_inei.length) {
       dispatch(getDeviceById(data.id_inei))
       reset()
