@@ -6,11 +6,15 @@ import {NavLink} from 'react-router-dom'
 import { logout } from '../../redux/actions'
 import { useDispatch } from 'react-redux'
 
-let navigation = [
-  { name: 'Landing', href: '/' },
-  { name: 'Home', href: '/home' },
-  { name: 'About', href: '/about' },
-]
+// let navigation = [
+//   { name: 'Landing', href: '/' },
+//   { name: 'Home', href: '/home' },
+//   { name: 'About', href: '/about' },
+// ]
+
+// if(localStorage.institute === 'admin') {
+//   navigation.push({ name: 'Admin', href: '/admin' })
+// }
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -18,6 +22,16 @@ function classNames(...classes) {
 
 export default function NavBarBro() {
   const dispatch = useDispatch();
+
+  let navigation = [
+    { name: 'Landing', href: '/' },
+    { name: 'Home', href: '/home' },
+    { name: 'About', href: '/about' },
+  ]
+
+  if(localStorage.institute === 'admin') {
+    navigation.push({ name: 'Admin', href: '/admin' })
+  }
 
   return (
     <Disclosure as="nav" className="bg-primary h-20 mb-2 bg-cyan-800">
