@@ -35,7 +35,7 @@ export function rootReducer(state = initialState, { type, payload }) {
             else if (payload.wrongPass) alert('Wrong password')
             else if (payload.email) {
                 alert('Successfull login!')
-                localStorage.setItem("user", payload.mail)
+                localStorage.setItem("user", payload.email)
                 localStorage.setItem("institute", payload.institute)
                 return { ...state, loggedUser: payload.mail, institute: payload.institute }
             } else return {...state, loggedUser: '', institute: ''}
