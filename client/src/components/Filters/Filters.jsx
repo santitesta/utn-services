@@ -42,6 +42,7 @@ function Filters() {
         : localStorage.institute?
         <form onSubmit={handleSubmit(onSubmit)} className='mt-3 grid justify-items-center content-start'>
           <input type="number" placeholder='ID...' {...register("id_inei")} className='m-1 w-40' disabled={watch("instituto")} />
+          <input type="number" placeholder='ID...' {...register("instituto")} className='m-1 w-40' disabled={watch("id_inei")} />
           <p>{localStorage.institute}</p>
           <input type="submit" value='Buscar' className='m-1' />
         </form>

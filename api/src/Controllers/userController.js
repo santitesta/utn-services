@@ -20,6 +20,7 @@ async function login(req, res) {
     const user = await Users.findOne({
       where: { email: email }
     })
+    console.log('User found: ',user)
     if (!user) {
       res.status(204).send()
     } else if (user.password === password) {

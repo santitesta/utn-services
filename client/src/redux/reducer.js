@@ -31,11 +31,14 @@ export function rootReducer(state = initialState, { type, payload }) {
             return { ...state }
 
         case LOGIN:
-            if (Object.keys(payload).length) alert('Successfull login!')
-            if (!Object.keys(payload).length) alert('Wrong password')
-            localStorage.setItem("user", payload.mail)
-            localStorage.setItem("institute", payload.institute)
-            return { ...state, loggedUser: payload.mail, institute: payload.institute }
+            if(!Object.keys(payload).length) alert('No account linked to that mail')
+            else if (payload.wrongPass) alert('Wrong password')
+            else if (payload.email) {
+                alert('Successfull login!')
+                localStorage.setItem("user", payload.mail)
+                localStorage.setItem("institute", payload.institute)
+                return { ...state, loggedUser: payload.mail, institute: payload.institute }
+            } else return {...state, loggedUser: '', institute: ''}
 
         case LOGOUT:
             localStorage.removeItem("user")
