@@ -53,3 +53,11 @@ export function logout() {
 		return dispatch({ type: LOGOUT })
 	}
 }
+
+export function changePermission(user) {
+  return function () {
+    return axios.put("http://localhost:3001/user/permission", user)
+      .then(console.log('Admin permissions changed'))
+      .catch(error => console.log('Action error in changePermission: ', error))
+  };
+};

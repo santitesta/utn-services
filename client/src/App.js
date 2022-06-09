@@ -7,6 +7,7 @@ import NavBar from './components/NavBar/NavBar';
 import Landing from './components/Landing/Landing.jsx'
 import Home from './components/Home/Home.jsx'
 import About from './components/About/About';
+import AdminSite from './components/AdminSite/AdminSite';
 import NotFound from './components/NotFound/NotFound';
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
         <Route path='/' element={<Landing/>}/>
         <Route path='/home' element={<Home/>}/>
         <Route path='/about' element={<About/>}/>
-        {/* <Route path='/admin' element={<AdminSite/>}/> */}
+        <Route path='/admin' element={<AdminSite/>}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>
     </div>
