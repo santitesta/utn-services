@@ -1,6 +1,6 @@
 const { Devices } = require("../db")
 
-async function getEquipos(req,res){
+async function getEquipos(req, res) {
   try {
     allDevices = await Devices.findAll({
       limit: 100,
@@ -14,8 +14,8 @@ async function getEquipos(req,res){
   }
 }
 
-async function getDeviceById(req,res){
-  const {id} = req.params;
+async function getDeviceById(req, res) {
+  const { id } = req.params;
 
   try {
     let device = await Devices.findOne({
@@ -23,7 +23,7 @@ async function getDeviceById(req,res){
         id_inei: id
       }
     })
-    if(device) res.json(device)
+    if (device) res.json(device)
     else res.status(204).send()
 
   } catch (error) {
@@ -31,8 +31,8 @@ async function getDeviceById(req,res){
   }
 }
 
-async function getDeviceByInstitute(req,res){
-  const {ins} = req.params;
+async function getDeviceByInstitute(req, res) {
+  const { ins } = req.params;
 
   try {
     let device = await Devices.findAll({
@@ -41,7 +41,7 @@ async function getDeviceByInstitute(req,res){
       },
       limit: 100
     })
-    if(device.length) res.json(device)
+    if (device.length) res.json(device)
     else res.status(204).send()
 
   } catch (error) {

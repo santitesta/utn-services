@@ -9,7 +9,8 @@ function Filters() {
   const { register, handleSubmit, watch, reset } = useForm();
 
   const onSubmit = async data => {
-    if(localStorage.institute != 'admin') data.instituto = localStorage.institute
+    if(localStorage.institute != 'Admin') data.instituto = localStorage.institute
+    console.log(data)
     if (data.id_inei.length) {
       dispatch(getDeviceById(data.id_inei))
       reset()
@@ -21,7 +22,7 @@ function Filters() {
 
   return (
     <div className='w-1/5 bg-emerald-400 grid justify-items-center content-start'>
-      {localStorage.institute === 'admin' ?
+      {localStorage.institute === 'Admin' ?
         <form onSubmit={handleSubmit(onSubmit)} className='mt-3 grid justify-items-center content-start'>
           <input type="number" placeholder='ID...' {...register("id_inei")} className='m-1 w-40' disabled={watch("instituto")} />
           <select {...register("instituto")} className='m-1 w-40' disabled={watch("id_inei")}>

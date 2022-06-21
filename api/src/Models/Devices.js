@@ -4,7 +4,7 @@ module.exports = (sequelize) => {
 
   sequelize.define('devices', {
     "id_inei": { type: DataTypes.INTEGER, primaryKey: true },
-    "instituto": DataTypes.INTEGER,
+    "instituto": DataTypes.STRING,
     "departamento": DataTypes.STRING,
     "servicio": DataTypes.STRING,
     "equipo": DataTypes.STRING,
