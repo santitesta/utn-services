@@ -48,7 +48,7 @@ export function rootReducer(state = initialState, { type, payload }) {
         case LOGOUT:
             localStorage.removeItem("user")
             localStorage.removeItem("institute")
-            return { ...state, loggedUser: '', institute: null }
+            return { ...state, loggedUser: '', institute: null, equipos: [], equipo: {} }
 
         default: return state;
     }

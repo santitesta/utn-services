@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Pagination from '../Pagination/Pagination';
 import Filters from '../Filters/Filters';
