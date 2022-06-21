@@ -58,9 +58,27 @@ async function changePermission(req, res) {
   }
 }
 
+async function changeVerification(req, res) {
+  const { email, verified } = req.body;
+  console.log('en vivo y en directo: ',email, verified)
+  try {
+    const rowsUpdated = await Users.update({
+      verified: verified
+    },
+      {
+        where: { email: email }
+      })
+    if (!rowsUpdated.length) { res.status(200).send() }
+    else { res.status(304).send() }
+  } catch (error) {
+    res.status(404).send(error)
+  }
+}
+
 module.exports = {
   getUsers,
   signUp,
   login,
-  changePermission
+  changePermission,
+  changeVerification
 }

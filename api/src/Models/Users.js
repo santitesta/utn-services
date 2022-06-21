@@ -8,16 +8,21 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV1,
       primaryKey: true
     },
-    email: {    //2
+    email: {
       type: DataTypes.STRING,
       primaryKey: true,
     },
-    password: {       //3
+    password: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     institute: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    verified: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
-  }, {timestamps: false});
+  }, { timestamps: false });
 }

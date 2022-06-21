@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changePermission, getUsers } from '../../redux/actions';
+import { getUsers, changePermission, changeVerification } from '../../redux/actions';
 
 export default function Users() {
   const dispatch = useDispatch()
@@ -10,7 +10,7 @@ export default function Users() {
 
   useEffect(() => {
     dispatch(getUsers())
-  },[dispatch])
+  }, [dispatch])
 
   async function handlePermission(e) {
     e.preventDefault()
@@ -19,6 +19,17 @@ export default function Users() {
       dispatch(getUsers())
     } else {
       await dispatch(changePermission({ email: e.target.id, institute: 'Admin' }))
+      dispatch(getUsers())
+    }
+  }
+
+  async function handleVerification(e) {
+    e.preventDefault()
+    if (e.target.innerText == 'false') {
+      await dispatch(changeVerification({ email: e.target.id, verified: true }))
+      dispatch(getUsers())
+    } else {
+      await dispatch(changeVerification({ email: e.target.id, verified: false }))
       dispatch(getUsers())
     }
   }
@@ -32,43 +43,42 @@ export default function Users() {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Permissions</th>
               <th>User type</th>
+              <th>Permissions</th>
+              <th>Verified</th>
             </tr>
           </thead>
           <tbody>
             {users.length ?
               users.map(u => {
                 return <tr>
-                  <td>
-                    <div className="flex items-center space-x-3">
-                      {/* <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                          <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                        </div>
-                      </div> */}
-                      <div>
-                        <div className="font-bold">{u.email}</div>
-                      </div>
-                    </div>
-                  </td>
+                  <th className='font-thin'>
+                    {u.email}
+                  </th>
+                  <th className='font-thin'>
+                    {u.institute}
+                  </th>
                   <th>
                     <button id={u.email} name={u.institute} onClick={e => handlePermission(e)}>Change to {u.institute === 'Admin' ? 'User' : 'Admin'}</button>
                   </th>
-                  <td>
-                    {u.institute}
-                  </td>
+                  <th>
+                    <label>
+                      {/* <input type="checkbox" class="checkbox" value={u.verified}/> */}
+                      <button id={u.email} onClick={handleVerification}>{u.verified.toString()}</button>
+                    </label>
+                  </th>
                 </tr>
               })
-              : <p>wuachin</p>
+              : null
             }
           </tbody>
           {/* <!-- foot --> */}
           <tfoot>
             <tr>
               <th>Name</th>
-              <th>Permissions</th>
               <th>User type</th>
+              <th>Permissions</th>
+              <th>Verified</th>
             </tr>
           </tfoot>
 
