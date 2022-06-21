@@ -1,2 +1,0 @@
-national = 'NATIONAL'
-international = 'INTERNATIONAL'

@@ -1,8 +1,0 @@
-# class Tariff:
-#   REGULAR_TARIFF = 0.5;
-#   LATE_NIGHT = 0.2;
-#   WEEKEND = 0.1;
-
-REGULAR_TARIFF = 0.5;
-LATE_NIGHT = 0.2;
-WEEKEND = 0.1;
