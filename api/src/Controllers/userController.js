@@ -1,11 +1,16 @@
 const { Users } = require('../db');
 
+async function getUsers(req, res) {
+  const users = await Users.findAll();
+  users.length ? res.json(users) : res.send("Users not found");
+}
+
 async function signUp(req, res) {
-  const { email, password } = req.body;
+  const { email, password, institute } = req.body;
   try {
     const [user, created] = await Users.findOrCreate({
       where: { email },
-      defaults: { email, password }
+      defaults: { email, password, institute }
     })
     if (created) res.json(user)
     else res.send('Email already in use')
@@ -33,7 +38,25 @@ async function login(req, res) {
   }
 }
 
+async function changePermission(req, res) {
+  const { email, institute } = req.body;
+  try {
+      const rowsUpdated = await Users.update({
+        institute: institute
+      },
+          {
+              where: { email: email }
+          })
+      if (!rowsUpdated.length) { res.status(200).send() }
+      else { res.status(304).send() }
+  } catch (error) {
+      res.status(404).send(error)
+  }
+}
+
 module.exports = {
+  getUsers,
   signUp,
-  login
+  login,
+  changePermission
 }
