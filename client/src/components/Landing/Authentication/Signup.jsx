@@ -11,7 +11,7 @@ export default function Signup() {
     "C.N.C.C.B.",
     "C.N.G.M.",
     "Dr. C. G. Malbrán",
-    "I.N.E",
+    "I.N.E.",
     "I.N.E.I.",
     "I.N.P.",
     "I.N.P.B.",
