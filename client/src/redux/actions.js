@@ -5,6 +5,7 @@ if (process.env.STAGE !== "development") {
 	url = 'http://10.10.200.125:3001'
 }
 
+export const GET_USERS = "GET_USERS"
 export const GET_DEVICE_BY_ID = "GET_DEVICE_BY_ID"
 export const GET_DEVICE_BY_INSTITUTE = "GET_DEVICE_BY_INSTITUTE"
 export const LOGIN = "LOGIN";
@@ -26,6 +27,14 @@ export const getDeviceByInstitute = (ins) => {
 				dispatch({ type: GET_DEVICE_BY_INSTITUTE, payload: resp.data })
 			})
 			.catch(error => alert('Action Error in getDeviceByInstitute: ', error))
+	}
+}
+
+export function getUsers() {
+	return function (dispatch) {
+		return axios.get(`${url}/user`)
+			.then(resp => dispatch({ type: GET_USERS, payload: resp.data }))
+			.catch(error => console.log('Action error in getUsers: ', error))
 	}
 }
 
@@ -55,7 +64,7 @@ export function logout() {
 }
 
 export function changePermission(user) {
-  return function () {
+  return function (dispatch) {
     return axios.put("http://localhost:3001/user/permission", user)
       .then(console.log('Admin permissions changed'))
       .catch(error => console.log('Action error in changePermission: ', error))

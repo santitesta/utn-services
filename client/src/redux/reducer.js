@@ -1,6 +1,7 @@
 import {
     GET_DEVICE_BY_ID,
     GET_DEVICE_BY_INSTITUTE,
+    GET_USERS,
     LOGIN,
     LOGOUT
 } from "./actions"
@@ -31,7 +32,7 @@ export function rootReducer(state = initialState, { type, payload }) {
             alert('No tiene equipos cargados')
             return { ...state }
 
-        case 'GET_USERS':
+        case GET_USERS:
             return { ...state, users: payload }
 
         case LOGIN:

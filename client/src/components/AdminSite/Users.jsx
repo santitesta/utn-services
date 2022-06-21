@@ -1,28 +1,26 @@
 import axios from 'axios';
 import React from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changePermission } from '../../redux/actions';
+import { changePermission, getUsers } from '../../redux/actions';
 
 export default function Users() {
   const dispatch = useDispatch()
 
   const users = useSelector(state => state.users)
 
-  const getUsers = () => {
-    return function (dispatch) {
-      return axios.get(`http://localhost:3001/user`)
-        .then(resp => dispatch({ type: 'GET_USERS', payload: resp.data }))
-        .catch(error => console.log('Action error in getProducts: ', error))
-    }
-  }
-  console.log(users)
+  useEffect(() => {
+    dispatch(getUsers())
+  },[dispatch])
 
-  function handlePermission(e) {
+  async function handlePermission(e) {
     e.preventDefault()
     if (e.target.name === 'Admin') {
-      dispatch(changePermission({ email: e.target.id, institute: 'User' }))
+      await dispatch(changePermission({ email: e.target.id, institute: 'User' }))
+      dispatch(getUsers())
     } else {
-      dispatch(changePermission({ email: e.target.id, institute: 'Admin' }))
+      await dispatch(changePermission({ email: e.target.id, institute: 'Admin' }))
+      dispatch(getUsers())
     }
   }
 

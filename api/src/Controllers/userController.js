@@ -1,7 +1,11 @@
 const { Users } = require('../db');
 
 async function getUsers(req, res) {
-  const users = await Users.findAll();
+  const users = await Users.findAll({
+    order: [
+      ['email', 'ASC'],
+    ]
+  });
   users.length ? res.json(users) : res.send("Users not found");
 }
 
@@ -41,16 +45,16 @@ async function login(req, res) {
 async function changePermission(req, res) {
   const { email, institute } = req.body;
   try {
-      const rowsUpdated = await Users.update({
-        institute: institute
-      },
-          {
-              where: { email: email }
-          })
-      if (!rowsUpdated.length) { res.status(200).send() }
-      else { res.status(304).send() }
+    const rowsUpdated = await Users.update({
+      institute: institute
+    },
+      {
+        where: { email: email }
+      })
+    if (!rowsUpdated.length) { res.status(200).send() }
+    else { res.status(304).send() }
   } catch (error) {
-      res.status(404).send(error)
+    res.status(404).send(error)
   }
 }
 
