@@ -6,15 +6,13 @@ import {NavLink} from 'react-router-dom'
 import { logout } from '../../redux/actions'
 import { useDispatch } from 'react-redux'
 
-// let navigation = [
-//   { name: 'Landing', href: '/' },
-//   { name: 'Home', href: '/home' },
-//   { name: 'About', href: '/about' },
-// ]
-
-// if(localStorage.institute === 'admin') {
-//   navigation.push({ name: 'Admin', href: '/admin' })
-// }
+navigation.map(page => {
+  if (url == `http://localhost${page.href}`) {
+    page.current = true
+  } else {
+    page.current = false
+  }
+})
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')

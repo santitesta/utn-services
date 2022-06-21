@@ -16,7 +16,7 @@ function App() {
   const institute = useSelector(state => state.institute)
   if(loggedUser) localStorage.setItem("user", loggedUser)
   if(institute) localStorage.setItem("institute", institute)
-
+  
   const {pathname} = useLocation()
 
   return (
