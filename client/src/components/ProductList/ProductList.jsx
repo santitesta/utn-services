@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Pagination from '../Pagination/Pagination';
-import Filters from '../Filters/Filters';
 
 export default function ProductList() {
   const devices = useSelector(state => state.equipos)
@@ -19,7 +18,6 @@ export default function ProductList() {
 
   return (
     <div className="flex">
-      <Filters />
       <div className='w-4/5 grid justify-items-center'>
         <div className="px-5 mt-6 grid grid-cols-1 gap-y-10 gap-x-20 xl:gap-x-3 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 ">
           {device.id_inei ?

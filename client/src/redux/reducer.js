@@ -12,6 +12,7 @@ const initialState = {
     equipoDet: {},
     loggedUser: undefined,
     institute: undefined,
+    verified: undefined,
     users: {}
 }
 
@@ -46,13 +47,15 @@ export function rootReducer(state = initialState, { type, payload }) {
                 alert('Successfull login!')
                 localStorage.setItem("user", payload.email)
                 localStorage.setItem("institute", payload.institute)
-                return { ...state, loggedUser: payload.mail, institute: payload.institute }
+                localStorage.setItem("verified", payload.verified)
+                return { ...state, loggedUser: payload.mail, institute: payload.institute, verified: payload.verified }
             } else return { ...state, loggedUser: '', institute: '' }
 
         case LOGOUT:
             localStorage.removeItem("user")
             localStorage.removeItem("institute")
-            return { ...state, loggedUser: '', institute: null, equipos: [], equipo: {} }
+            localStorage.removeItem("verified")
+            return { ...state, loggedUser: '', institute: null, verified: null, equipos: [], equipo: {} }
 
         default: return state;
     }
