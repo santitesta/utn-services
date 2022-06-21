@@ -19,7 +19,7 @@ export default function NavBarBro() {
     { name: 'About', href: '/about' },
   ]
 
-  if(localStorage.institute === 'admin') {
+  if(localStorage.institute === 'Admin') {
     navigation.push({ name: 'Admin', href: '/admin' })
   }
 
