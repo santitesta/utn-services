@@ -7,16 +7,16 @@ import { useNavigate } from 'react-router-dom'
 export default function Signup() {
 
   const institutes = [
-    "I.N.E.I.",
-    "I.N.P.B.",
+    "CENDIE",
     "C.N.C.C.B.",
-    "U.O.C.C.B.",
-    "Dr. C. G. Malbrán",
-    "I.N.P.",
     "C.N.G.M.",
+    "Dr. C. G. Malbrán",
     "I.N.E",
-    "UTN MDQ",
-    "CENDIE"
+    "I.N.E.I.",
+    "I.N.P.",
+    "I.N.P.B.",
+    "U.O.C.C.B.",
+    "UTN MDQ"
   ]
 
   const dispatch = useDispatch();
@@ -44,9 +44,7 @@ export default function Signup() {
   }
 
   return (
-    <div className='border-solid border-2 border-sky-500 p-2'>
-
-      {Object.keys(errors).length ? <p>{errors}</p> : null}
+    <div className='border-solid border-2 border-sky-500 p-2 grid place-items-center'>
 
       <input className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400focus:outline-none
           focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
@@ -64,6 +62,8 @@ export default function Signup() {
           <br />
         </div>
       })}
+
+      {Object.keys(errors).length ? <p>{errors}</p> : null}
 
       <button className="box-border w-40 bg-amber-700 text-white p-2 rounded-xl" onClick={handleSignUp}>
         Sign up
