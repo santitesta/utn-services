@@ -11,9 +11,9 @@ export const GET_DEVICE_BY_INSTITUTE = "GET_DEVICE_BY_INSTITUTE"
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 
-export const getDeviceById = (id) => {
+export const getDeviceById = (device) => {
 	return function (dispatch) {
-		return axios.get(`${url}/equipos/id/${id}`)
+		return axios.post(`${url}/equipos/id`, device)
 			.then(resp => dispatch({ type: GET_DEVICE_BY_ID, payload: resp.data }))
 			.catch(error => alert('Action Error in getDeviceById: ', error))
 	}
@@ -64,17 +64,17 @@ export function logout() {
 }
 
 export function changePermission(user) {
-  return function () {
-    return axios.put("http://localhost:3001/user/permission", user)
-      .then(console.log('Admin permissions changed'))
-      .catch(error => console.log('Action error in changePermission: ', error))
-  };
+	return function () {
+		return axios.put("http://localhost:3001/user/permission", user)
+			.then(console.log('Admin permissions changed'))
+			.catch(error => console.log('Action error in changePermission: ', error))
+	};
 };
 
 export function changeVerification(user) {
-  return function () {
-    return axios.put("http://localhost:3001/user/verification", user)
-      .then(console.log('User verification changed'))
-      .catch(error => console.log('Action error in changeVerification: ', error))
-  };
+	return function () {
+		return axios.put("http://localhost:3001/user/verification", user)
+			.then(console.log('User verification changed'))
+			.catch(error => console.log('Action error in changeVerification: ', error))
+	};
 };

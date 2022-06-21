@@ -19,6 +19,10 @@ export function rootReducer(state = initialState, { type, payload }) {
     switch (type) {
 
         case GET_DEVICE_BY_ID:
+            if (payload.denied) {
+                alert(payload.denied)
+                return { ...state }
+            }
             if (!payload.id_inei) {
                 alert('No encontrado')
                 return { ...state }

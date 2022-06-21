@@ -15,16 +15,16 @@ async function getEquipos(req, res) {
 }
 
 async function getDeviceById(req, res) {
-  const { id } = req.params;
-
+  const { id, institute } = req.body;
   try {
     let device = await Devices.findOne({
       where: {
         id_inei: id
       }
     })
-    if (device) res.json(device)
-    else res.status(204).send()
+    if (!device) res.status(204).send()
+    else if (institute !== device?.instituto) res.status(200).send({ denied: 'You do not have permissions to see this device' })
+    else res.json(device)
 
   } catch (error) {
     res.status(500).send(error)

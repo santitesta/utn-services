@@ -3,7 +3,7 @@ const { getEquipos, getDeviceById, getDeviceByInstitute } = require('../Controll
 
 router.get('/', getEquipos)
 
-router.get('/id/:id', getDeviceById)
+router.post('/id', getDeviceById)
 
 router.get('/ins/:ins', getDeviceByInstitute)
 
