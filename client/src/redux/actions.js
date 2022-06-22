@@ -10,6 +10,7 @@ export const GET_DEVICE_BY_ID = "GET_DEVICE_BY_ID"
 export const GET_DEVICE_BY_INSTITUTE = "GET_DEVICE_BY_INSTITUTE"
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
+export const GET_ORDERS = "GET_ORDERS";
 
 export const getDeviceById = (device) => {
 	return function (dispatch) {
@@ -64,7 +65,7 @@ export function logout() {
 
 export function changePermission(user) {
 	return function () {
-		return axios.put("http://localhost:3001/user/permission", user)
+		return axios.put(`${url}/user/permission`, user)
 			.then(console.log('Admin permissions changed'))
 			.catch(error => console.log('Action error in changePermission: ', error))
 	};
@@ -72,8 +73,24 @@ export function changePermission(user) {
 
 export function changeVerification(user) {
 	return function () {
-		return axios.put("http://localhost:3001/user/verification", user)
+		return axios.put(`${url}/user/verification`, user)
 			.then(console.log('User verification changed'))
 			.catch(error => console.log('Action error in changeVerification: ', error))
+	};
+};
+
+export function createOrder(order) {
+	return function () {
+		return axios.post(`${url}/orders`, order)
+			.then(console.log('Order created successfully!'))
+			.catch(error => console.log('Action error in createOrder: ', error))
+	};
+};
+
+export function getOrders() {
+	return function (dispatch) {
+		return axios.get(`${url}/orders`)
+			.then(resp => dispatch({ type: GET_ORDERS, payload: resp.data }))
+			.catch(error => console.log('Action error in getOrders: ', error))
 	};
 };

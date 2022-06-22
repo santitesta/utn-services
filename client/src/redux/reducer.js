@@ -3,7 +3,8 @@ import {
     GET_DEVICE_BY_INSTITUTE,
     GET_USERS,
     LOGIN,
-    LOGOUT
+    LOGOUT,
+    GET_ORDERS
 } from "./actions"
 
 const initialState = {
@@ -13,7 +14,8 @@ const initialState = {
     loggedUser: undefined,
     institute: undefined,
     verified: undefined,
-    users: {}
+    users: {},
+    orders: undefined
 }
 
 export function rootReducer(state = initialState, { type, payload }) {
@@ -56,6 +58,9 @@ export function rootReducer(state = initialState, { type, payload }) {
             localStorage.removeItem("institute")
             localStorage.removeItem("verified")
             return { ...state, loggedUser: '', institute: null, verified: null, equipos: [], equipo: {} }
+
+        case GET_ORDERS:
+            return {...state, orders: payload}
 
         default: return state;
     }

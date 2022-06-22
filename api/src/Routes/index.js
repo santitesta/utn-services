@@ -1,7 +1,8 @@
 const { Router } = require('express');
 // Importar todos los routers;
 const Equipos = require('./Equipos')
-const User = require('./user.js');
+const User = require('./user');
+const Orders = require('./orders');
 
 const router = Router();
 
@@ -9,5 +10,7 @@ const router = Router();
 router.use('/equipos', Equipos)
 
 router.use('/user', User);
+
+router.use('/orders', Orders);
 
 module.exports = router;
