@@ -10,7 +10,14 @@ function Home() {
 
   if (verified === 'false') {
     return (
-      <div>The team will allow you to enter soon!</div>
+      <>
+        <h1>
+          The team will allow you to enter soon!
+        </h1>
+        <h3>
+          When they let you in, please logout and sign in again to use the application
+        </h3>
+      </>
     )
   }
 
