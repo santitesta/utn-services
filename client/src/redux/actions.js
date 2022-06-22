@@ -20,7 +20,6 @@ export const getDeviceById = (device) => {
 }
 
 export const getDeviceByInstitute = (ins) => {
-	console.log('El pana ins: ', typeof (ins), ins)
 	return function (dispatch) {
 		return axios.get(`${url}/equipos/ins/${ins}`)
 			.then(resp => {

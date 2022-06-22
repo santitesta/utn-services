@@ -20,7 +20,7 @@ export default function ProductList() {
     <div className='w-4/5 grid justify-items-center'>
       <div className="px-5 mt-6 grid grid-cols-1 gap-y-10 gap-x-20 xl:gap-x-3 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 ">
         {device.id_inei ?
-          <div className="w-full min-h-80 bg-slate-300 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:w-40 lg:h-80 lg:aspect-auto">
+          <div key={device.id_inei} className="w-full min-h-80 bg-slate-300 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:w-40 lg:h-80 lg:aspect-auto">
             {/* <img
                 src={device.imageSrc}
                 alt='Not found'
