@@ -39,7 +39,10 @@ async function getDeviceByInstitute(req, res) {
       where: {
         instituto: ins
       },
-      limit: 100
+      limit: 100,
+      order: [
+        ["id_inei", "ASC"],
+      ]
     })
     if (device.length) res.json(device)
     else res.status(204).send()
