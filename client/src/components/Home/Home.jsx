@@ -23,10 +23,10 @@ function Home() {
 
   if (verified === 'true') {
     return (
-      <>
+      <div className='flex'>
         <Filters />
         <ProductList />
-      </>
+      </div>
     );
   }
 
