@@ -6,7 +6,7 @@ async function getUsers(req, res) {
       ['email', 'ASC'],
     ]
   });
-  users.length ? res.json(users) : res.send("Users not found");
+  users.length ? res.json(users) : res.status(204).send();
 }
 
 async function signUp(req, res) {

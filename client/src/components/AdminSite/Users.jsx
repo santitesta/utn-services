@@ -72,15 +72,6 @@ export default function Users() {
               : null
             }
           </tbody>
-          {/* <!-- foot --> */}
-          <tfoot>
-            <tr>
-              <th>Name</th>
-              <th>User type</th>
-              <th>Permissions</th>
-              <th>Verified</th>
-            </tr>
-          </tfoot>
         </table>
       </div>
     </div>
