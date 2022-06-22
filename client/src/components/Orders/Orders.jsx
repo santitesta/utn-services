@@ -24,17 +24,16 @@ const Orders = () => {
   };
 
   return (
-    <div>
-      <h1>Orders site</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className='mt-3 grid justify-items-center content-start'>
-        <input type="number" placeholder='Id del equipo...' {...register("id_inei")} />
-        <input type="text" placeholder='Motivo...' {...register("motive")} />
-        <input type="text" placeholder='Comentario...' {...register("commentary")} />
+    <div className='flex flex-col items-center'>
+      <form onSubmit={handleSubmit(onSubmit)} className='mt-5 p-3 bg-emerald-700 w-64 grid justify-items-center content-start'>
+        <input type="number" className='border-2 border-black' placeholder='Id del equipo...' {...register("id_inei")} />
+        <input type="text" className='border-2 border-black' placeholder='Motivo...' {...register("motive")} />
+        <input type="text" className='border-2 border-black' placeholder='Comentario...' {...register("commentary")} />
         <input type="submit" value='Crear orden' className='m-1' />
       </form>
 
       {orders?.length ?
-        <div className="overflow-x-auto w-full z-50">
+        <div className="mt-5 overflow-x-auto w-11/12 z-50 bg-blue-500">
           <table className="table w-full">
             {/* <!-- head --> */}
             <thead>
