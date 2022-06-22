@@ -3,11 +3,10 @@ import styles from './ReactLogo.module.css'
 
 function ReactLogo() {
   return (
-    <div class={styles.container}>
-        <span class={styles.reactlogo}>
-          <span class={styles.nucleo}></span>
+    <div className={styles.container}>
+        <span className={styles.reactlogo}>
+          <span className={styles.nucleo}></span>
         </span>
-      
     </div>
   );
 };

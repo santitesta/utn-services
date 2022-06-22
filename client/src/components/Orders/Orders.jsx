@@ -47,7 +47,7 @@ const Orders = () => {
             </thead>
             <tbody>
               {orders.map(o => {
-                return <tr>
+                return <tr key={o.id_ot}>
                   <th className='font-thin'>
                     {o.id_ot}
                   </th>

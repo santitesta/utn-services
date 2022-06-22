@@ -32,7 +32,7 @@ export default function ProductList() {
             <p className="ml-2 mt-1 text-sm text-slate-600">{device.equipo}</p>
           </div>
           : currentProducts.map((product) => (
-            <div key={product.id} className="group relative">
+            <div key={product.id_inei} className="group relative">
               <div className="w-full min-h-50 bg-slate-300 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:w-40 lg:h-40 lg:aspect-auto">
                 {/* <img
                     src={product.imageSrc}

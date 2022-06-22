@@ -50,7 +50,7 @@ export default function Users() {
             </thead>
             <tbody>
               {users.map(u => {
-                return <tr>
+                return <tr key={u.email}>
                 <th className='font-thin'>
                   {u.email}
                 </th>

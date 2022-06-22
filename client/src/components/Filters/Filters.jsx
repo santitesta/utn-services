@@ -9,7 +9,7 @@ function Filters() {
   const { register, handleSubmit, watch, reset } = useForm();
 
   const onSubmit = async data => {
-    if (localStorage.institute !== 'Admin') data.instituto = localStorage.institute
+    data.instituto = localStorage.institute
     if (data.id_inei.length) {
       dispatch(getDeviceById({ id: data.id_inei, institute: data.instituto }))
       reset()
