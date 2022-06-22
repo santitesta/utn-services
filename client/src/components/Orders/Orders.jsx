@@ -7,10 +7,9 @@ import { useEffect } from 'react';
 const Orders = () => {
   const dispatch = useDispatch()
   const { register, handleSubmit, reset } = useForm();
-  let orders = useSelector(state => state.orders)
-  console.log('las ordenes tigre: ', orders)
+  const orders = useSelector(state => state.orders)
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getOrders())
   }, [])
 
@@ -33,13 +32,45 @@ const Orders = () => {
         <input type="text" placeholder='Comentario...' {...register("commentary")} />
         <input type="submit" value='Crear orden' className='m-1' />
       </form>
-      {orders ?
-        orders.map(o => {
-          return <div className='bg-slate-500'>
-            <h1>{o.commentary}</h1>
-          </div>
-        })
-        : <h1>No existen ordenes cargadas</h1>}
+
+      {orders?.length ?
+        <div className="overflow-x-auto w-full z-50">
+          <table className="table w-full">
+            {/* <!-- head --> */}
+            <thead>
+              <tr>
+                <th>Orden de trabajo</th>
+                <th>Equipo</th>
+                <th>Estado</th>
+                <th>Motivo</th>
+                <th>Comentarios</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map(o => {
+                return <tr>
+                  <th className='font-thin'>
+                    {o.id_ot}
+                  </th>
+                  <th className='font-thin'>
+                    {o.id_inei}
+                  </th>
+                  <th className='font-thin'>
+                    {o.state}
+                  </th>
+                  <th className='font-thin'>
+                    {o.motive}
+                  </th>
+                  <th className='font-thin'>
+                    {o.commentary}
+                  </th>
+                </tr>
+              })}
+            </tbody>
+          </table>
+        </div >
+        : <h1>No existen ordenes cargadas</h1>
+      }
     </div>
   )
 }

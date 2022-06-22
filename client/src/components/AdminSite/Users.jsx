@@ -81,7 +81,6 @@ export default function Users() {
               <th>Verified</th>
             </tr>
           </tfoot>
-
         </table>
       </div>
     </div>
