@@ -21,7 +21,6 @@ export default function NavBarBro() {
 
   if(localStorage.institute === 'Admin') {
     navigation.push({ name: 'Admin', href: '/admin' })
-    navigation.push({ name: 'Orders', href: '/orders' })
   }
 
   return (

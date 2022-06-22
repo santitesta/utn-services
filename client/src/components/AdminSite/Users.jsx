@@ -36,44 +36,42 @@ export default function Users() {
 
   return (
     <div>
-      <button onClick={() => dispatch(getUsers())}>Refresh users</button>
-      <div className="overflow-x-auto w-full z-50">
-        <table className="table w-full">
-          {/* <!-- head --> */}
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>User type</th>
-              <th>Permissions</th>
-              <th>Verified</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.length ?
-              users.map(u => {
+      {users.length ?
+        <div className="overflow-x-auto w-full z-50">
+          <table className="table w-full">
+            {/* <!-- head --> */}
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>User type</th>
+                <th>Permissions</th>
+                <th>Verified</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map(u => {
                 return <tr>
-                  <th className='font-thin'>
-                    {u.email}
-                  </th>
-                  <th className='font-thin'>
-                    {u.institute}
-                  </th>
-                  <th>
-                    <button id={u.email} name={u.institute} onClick={e => handlePermission(e)}>Change to {u.institute === 'Admin' ? 'User' : 'Admin'}</button>
-                  </th>
-                  <th>
-                    <label>
-                      {/* <input type="checkbox" class="checkbox" value={u.verified}/> */}
-                      <button id={u.email} onClick={handleVerification}>{u.verified.toString()}</button>
-                    </label>
-                  </th>
-                </tr>
-              })
-              : null
-            }
-          </tbody>
-        </table>
-      </div>
+                <th className='font-thin'>
+                  {u.email}
+                </th>
+                <th className='font-thin'>
+                  {u.institute}
+                </th>
+                <th>
+                  <button id={u.email} name={u.institute} onClick={e => handlePermission(e)}>Change to {u.institute === 'Admin' ? 'User' : 'Admin'}</button>
+                </th>
+                <th>
+                  <label>
+                    <button id={u.email} onClick={handleVerification}>{u.verified.toString()}</button>
+                  </label>
+                </th>
+              </tr>
+              })}
+            </tbody>
+          </table>
+        </div>
+        : <h1>No existen usuarios cargados</h1>
+      }
     </div>
   );
 };
