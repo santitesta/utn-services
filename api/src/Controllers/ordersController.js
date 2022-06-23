@@ -43,8 +43,25 @@ async function getOrdersByUser(req, res) {
   }
 }
 
+async function addCommentary(req, res) {
+  const { id_ot, commentary } = req.body
+  try {
+    const order = await Order.findOne({
+      where: { id_ot }
+    })
+    const newCommentary = order.commentary + commentary
+    console.log('El nuevo comm: ', newCommentary)
+    await order.update({ commentary: newCommentary })
+    if (order) res.send(order)
+    else res.status(400).send()
+  } catch (error) {
+    res.status(500).send(error)
+  }
+}
+
 module.exports = {
   createOrder,
   getOrders,
-  getOrdersByUser
+  getOrdersByUser,
+  addCommentary
 }

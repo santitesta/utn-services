@@ -102,3 +102,11 @@ export function getOrdersByUser(email) {
 			.catch(error => console.log('Action error in getOrders: ', error))
 	};
 };
+
+export function addCommentary(commentary) {
+	return function () {
+		return axios.put(`${url}/orders`, commentary)
+			.then(console.log('Commentary updated!'))
+			.catch(error => console.log('Action error in getOrders: ', error))
+	};
+};

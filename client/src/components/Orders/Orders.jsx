@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { createOrder, getOrders, getOrdersByUser } from '../../redux/actions';
+import { addCommentary, createOrder, getOrders, getOrdersByUser } from '../../redux/actions';
 import { useEffect } from 'react';
 
 const Orders = () => {
@@ -10,7 +10,7 @@ const Orders = () => {
   const orders = useSelector(state => state.orders)
 
   useEffect(() => {
-    if(localStorage.institute === 'Admin') {
+    if (localStorage.institute === 'Admin') {
       dispatch(getOrders())
     } else {
       dispatch(getOrdersByUser(localStorage.user))
@@ -25,7 +25,24 @@ const Orders = () => {
       commentary: data.commentary
     }))
     reset()
-    dispatch(getOrders())
+    if (localStorage.institute === 'Admin') {
+      dispatch(getOrders())
+    } else {
+      dispatch(getOrdersByUser(localStorage.user))
+    }
+  };
+
+  const onSubmitBro = async data => {
+    await dispatch(addCommentary({
+      id_ot: data.id_ot,
+      commentary: data.commentary
+    }))
+    reset()
+    if (localStorage.institute === 'Admin') {
+      dispatch(getOrders())
+    } else {
+      dispatch(getOrdersByUser(localStorage.user))
+    }
   };
 
   return (
@@ -35,6 +52,12 @@ const Orders = () => {
         <input type="text" className='border-2 border-black' placeholder='Motivo...' {...register("motive")} />
         <input type="text" className='border-2 border-black' placeholder='Comentario...' {...register("commentary")} />
         <input type="submit" value='Crear orden' className='m-1' />
+      </form>
+
+      <form onSubmit={handleSubmit(onSubmitBro)} className='mt-5 p-3 bg-emerald-700 w-64 grid justify-items-center content-start'>
+        <input type="number" className='border-2 border-black' placeholder='Id de la orden...' {...register("id_ot")} />
+        <input type="text" className='border-2 border-black' placeholder='Comentario...' {...register("commentary")} />
+        <input type="submit" value='Agregar comentario' className='m-1' />
       </form>
 
       {/* {orders?.length && localStorage.institute === 'Admin' ? */}
