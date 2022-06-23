@@ -105,8 +105,16 @@ export function getOrdersByUser(email) {
 
 export function addCommentary(commentary) {
 	return function () {
-		return axios.put(`${url}/orders`, commentary)
+		return axios.put(`${url}/orders/commentary`, commentary)
 			.then(console.log('Commentary updated!'))
+			.catch(error => console.log('Action error in getOrders: ', error))
+	};
+};
+
+export function changeState(state) {
+	return function () {
+		return axios.put(`${url}/orders/state`, state)
+			.then(console.log('State updated!'))
 			.catch(error => console.log('Action error in getOrders: ', error))
 	};
 };

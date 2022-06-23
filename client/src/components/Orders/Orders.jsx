@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { addCommentary, createOrder, getOrders, getOrdersByUser } from '../../redux/actions';
 import { useEffect } from 'react';
+import Estado from './Estado'
 
 const Orders = () => {
   const dispatch = useDispatch()
@@ -86,7 +87,7 @@ const Orders = () => {
                     {o.deviceIdInei}
                   </th>
                   <th className='font-thin'>
-                    {o.state}
+                    <Estado props={{id_ot: o.id_ot, state: o.state}} />
                   </th>
                   <th className='font-thin'>
                     {o.motive}
