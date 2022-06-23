@@ -21,6 +21,8 @@ export default function NavBarBro() {
 
   if(localStorage.institute === 'Admin') {
     navigation.push({ name: 'Admin', href: '/admin' })
+  } else if(localStorage.institute) {
+    navigation.push({ name: 'Crear orden', href: '/order' })
   }
 
   return (
@@ -42,7 +44,7 @@ export default function NavBarBro() {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center">
-                  <p className="font-bold text-white">CODECAMP</p>
+                  <p className="font-bold text-white">UTN</p>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">

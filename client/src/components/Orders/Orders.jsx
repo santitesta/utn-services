@@ -32,6 +32,7 @@ const Orders = () => {
         <input type="submit" value='Crear orden' className='m-1' />
       </form>
 
+      {/* {orders?.length && localStorage.institute === 'Admin' ? */}
       {orders?.length ?
         <div className="mt-5 overflow-x-auto w-11/12 z-50 bg-blue-500">
           <table className="table w-full">
@@ -69,6 +70,7 @@ const Orders = () => {
           </table>
         </div >
         : <h1>No existen ordenes cargadas</h1>
+        // : localStorage.institute === 'Admin' && <h1>No existen ordenes cargadas</h1>
       }
     </div>
   )

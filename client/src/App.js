@@ -8,6 +8,7 @@ import Landing from './components/Landing/Landing.jsx'
 import Home from './components/Home/Home.jsx'
 import About from './components/About/About';
 import AdminSite from './components/AdminSite/AdminSite';
+import Orders from './components/Orders/Orders';
 import NotFound from './components/NotFound/NotFound';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path='/home' element={<Home/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/admin' element={<AdminSite/>}/>
+        <Route path='/order' element={<Orders/>}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>
     </div>
