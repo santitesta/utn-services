@@ -1,8 +1,8 @@
-const { Devices } = require("../db")
+const { Device } = require("../db")
 
 async function getEquipos(req, res) {
   try {
-    allDevices = await Devices.findAll({
+    allDevices = await Device.findAll({
       limit: 100,
       order: [
         ["id_inei", "ASC"],
@@ -17,7 +17,7 @@ async function getEquipos(req, res) {
 async function getDeviceById(req, res) {
   const { id, institute } = req.body;
   try {
-    let device = await Devices.findOne({
+    let device = await Device.findOne({
       where: {
         id_inei: id
       }
@@ -34,7 +34,7 @@ async function getDeviceByInstitute(req, res) {
   const { ins } = req.params;
 
   try {
-    let device = await Devices.findAll({
+    let device = await Device.findAll({
       where: {
         instituto: ins
       },

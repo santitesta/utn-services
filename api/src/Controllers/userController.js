@@ -1,7 +1,7 @@
-const { Users } = require('../db');
+const { User } = require('../db');
 
 async function getUsers(req, res) {
-  const users = await Users.findAll({
+  const users = await User.findAll({
     order: [
       ['email', 'ASC'],
     ]
@@ -12,7 +12,7 @@ async function getUsers(req, res) {
 async function signUp(req, res) {
   const { email, password, institute } = req.body;
   try {
-    const [user, created] = await Users.findOrCreate({
+    const [user, created] = await User.findOrCreate({
       where: { email },
       defaults: { email, password, institute }
     })
@@ -26,10 +26,9 @@ async function signUp(req, res) {
 async function login(req, res) {
   const { email, password } = req.body;
   try {
-    const user = await Users.findOne({
+    const user = await User.findOne({
       where: { email: email }
     })
-    console.log('User found: ', user)
     if (!user) {
       res.status(204).send()
     } else if (user.password === password) {
@@ -45,7 +44,7 @@ async function login(req, res) {
 async function changePermission(req, res) {
   const { email, institute } = req.body;
   try {
-    const rowsUpdated = await Users.update({
+    const rowsUpdated = await User.update({
       institute: institute
     },
       {
@@ -61,7 +60,7 @@ async function changePermission(req, res) {
 async function changeVerification(req, res) {
   const { email, verified } = req.body;
   try {
-    const rowsUpdated = await Users.update({
+    const rowsUpdated = await User.update({
       verified: verified
     },
       {

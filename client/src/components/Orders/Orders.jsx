@@ -16,6 +16,7 @@ const Orders = () => {
   const onSubmit = async data => {
     await dispatch(createOrder({
       id_inei: data.id_inei,
+      email: localStorage.user,
       motive: data.motive,
       commentary: data.commentary
     }))
@@ -53,7 +54,7 @@ const Orders = () => {
                     {o.id_ot}
                   </th>
                   <th className='font-thin'>
-                    {o.id_inei}
+                    {o.deviceIdInei}
                   </th>
                   <th className='font-thin'>
                     {o.state}

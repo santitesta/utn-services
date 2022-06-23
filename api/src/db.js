@@ -38,7 +38,13 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-// const { utnModel, Users } = sequelize.models;
+const { Device, User, Order } = sequelize.models;
+
+Order.belongsTo(Device)
+Device.hasMany(Order)
+
+Order.belongsTo(User)
+User.hasMany(Order)
 
 sequelize.authenticate()
   .then(() => console.log('Conexion exitosa'))
