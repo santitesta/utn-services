@@ -30,7 +30,21 @@ async function getOrders(req, res) {
   }
 }
 
+async function getOrdersByUser(req, res) {
+  const { email } = req.params
+  try {
+    const orders = await Order.findAll({
+      where: { userEmail: email }
+    })
+    if (orders) res.send(orders)
+    else res.status(400).send()
+  } catch (error) {
+    res.status(500).send(error)
+  }
+}
+
 module.exports = {
   createOrder,
-  getOrders
+  getOrders,
+  getOrdersByUser
 }

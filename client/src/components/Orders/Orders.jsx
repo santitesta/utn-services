@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { createOrder, getOrders } from '../../redux/actions';
+import { createOrder, getOrders, getOrdersByUser } from '../../redux/actions';
 import { useEffect } from 'react';
 
 const Orders = () => {
@@ -10,7 +10,11 @@ const Orders = () => {
   const orders = useSelector(state => state.orders)
 
   useEffect(() => {
-    dispatch(getOrders())
+    if(localStorage.institute === 'Admin') {
+      dispatch(getOrders())
+    } else {
+      dispatch(getOrdersByUser(localStorage.user))
+    }
   }, [])
 
   const onSubmit = async data => {

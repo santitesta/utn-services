@@ -94,3 +94,11 @@ export function getOrders() {
 			.catch(error => console.log('Action error in getOrders: ', error))
 	};
 };
+
+export function getOrdersByUser(email) {
+	return function (dispatch) {
+		return axios.get(`${url}/orders/${email}`)
+			.then(resp => dispatch({ type: GET_ORDERS, payload: resp.data }))
+			.catch(error => console.log('Action error in getOrders: ', error))
+	};
+};
