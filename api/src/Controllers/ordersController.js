@@ -7,7 +7,7 @@ async function createOrder(req, res) {
   try {
     const order = await Order.create({
       motive,
-      commentary
+      commentary: [commentary]
     })
     if (order) {
       await order.setUser(user)
@@ -22,7 +22,11 @@ async function createOrder(req, res) {
 
 async function getOrders(req, res) {
   try {
-    const orders = await Order.findAll()
+    const orders = await Order.findAll({
+      order: [
+        ['id_ot', 'ASC'],
+      ]
+    })
     if (orders) res.send(orders)
     else res.status(400).send()
   } catch (error) {
@@ -34,7 +38,10 @@ async function getOrdersByUser(req, res) {
   const { email } = req.params
   try {
     const orders = await Order.findAll({
-      where: { userEmail: email }
+      where: { userEmail: email },
+      order: [
+        ['id_ot', 'ASC'],
+      ]
     })
     if (orders) res.send(orders)
     else res.status(400).send()
@@ -49,9 +56,7 @@ async function addCommentary(req, res) {
     const order = await Order.findOne({
       where: { id_ot }
     })
-    const newCommentary = order.commentary + commentary
-    console.log('El nuevo comm: ', newCommentary)
-    await order.update({ commentary: newCommentary })
+    await order.update({ commentary: [...order.commentary, commentary] })
     if (order) res.send(order)
     else res.status(400).send()
   } catch (error) {

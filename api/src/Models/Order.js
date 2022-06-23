@@ -25,7 +25,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     commentary: {
-      type: DataTypes.STRING
+      type: DataTypes.ARRAY(DataTypes.STRING)
     },
   }, { timestamps: false });
 }

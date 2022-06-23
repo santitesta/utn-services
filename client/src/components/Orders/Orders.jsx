@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 const Orders = () => {
   const dispatch = useDispatch()
   const { register, handleSubmit, reset } = useForm();
+  const { register: register2, handleSubmit: handleSubmit2, reset: reset2 } = useForm();
   const orders = useSelector(state => state.orders)
 
   useEffect(() => {
@@ -18,6 +19,7 @@ const Orders = () => {
   }, [])
 
   const onSubmit = async data => {
+    console.log(data)
     await dispatch(createOrder({
       id_inei: data.id_inei,
       email: localStorage.user,
@@ -35,9 +37,9 @@ const Orders = () => {
   const onSubmitBro = async data => {
     await dispatch(addCommentary({
       id_ot: data.id_ot,
-      commentary: data.commentary
+      commentary: data.commentaryUpdate
     }))
-    reset()
+    reset2()
     if (localStorage.institute === 'Admin') {
       dispatch(getOrders())
     } else {
@@ -46,7 +48,7 @@ const Orders = () => {
   };
 
   return (
-    <div className='flex flex-col items-center'>
+    <div className='flex flex-col items-center mb-10'>
       <form onSubmit={handleSubmit(onSubmit)} className='mt-5 p-3 bg-emerald-700 w-64 grid justify-items-center content-start'>
         <input type="number" className='border-2 border-black' placeholder='Id del equipo...' {...register("id_inei")} />
         <input type="text" className='border-2 border-black' placeholder='Motivo...' {...register("motive")} />
@@ -54,9 +56,9 @@ const Orders = () => {
         <input type="submit" value='Crear orden' className='m-1' />
       </form>
 
-      <form onSubmit={handleSubmit(onSubmitBro)} className='mt-5 p-3 bg-emerald-700 w-64 grid justify-items-center content-start'>
-        <input type="number" className='border-2 border-black' placeholder='Id de la orden...' {...register("id_ot")} />
-        <input type="text" className='border-2 border-black' placeholder='Comentario...' {...register("commentary")} />
+      <form onSubmit={handleSubmit2(onSubmitBro)} className='mt-5 p-3 bg-emerald-700 w-64 grid justify-items-center content-start'>
+        <input type="number" className='border-2 border-black' placeholder='Id de la orden...' {...register2("id_ot")} />
+        <input type="text" className='border-2 border-black' placeholder='Comentario...' {...register2("commentaryUpdate")} />
         <input type="submit" value='Agregar comentario' className='m-1' />
       </form>
 
@@ -90,7 +92,7 @@ const Orders = () => {
                     {o.motive}
                   </th>
                   <th className='font-thin'>
-                    {o.commentary}
+                    {o.commentary.map(c => <p>{c}</p>)}
                   </th>
                 </tr>
               })}
