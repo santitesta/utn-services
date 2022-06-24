@@ -82,7 +82,11 @@ export function changeVerification(user) {
 export function createOrder(order) {
 	return function () {
 		return axios.post(`${url}/orders`, order)
-			.then(console.log('Order created successfully!'))
+			.then(resp => {
+				if(resp.data.denied) alert(resp.data.denied)
+				else console.log('Order created successfully!')
+			}
+			)
 			.catch(error => console.log('Action error in createOrder: ', error))
 	};
 };
