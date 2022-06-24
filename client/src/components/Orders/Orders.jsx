@@ -86,7 +86,10 @@ const Orders = () => {
                     {o.deviceIdInei}
                   </th>
                   <th className='font-thin'>
-                    <Estado props={{ id_ot: o.id_ot, state: o.state }} />
+                    {localStorage.institute === 'Admin' ?
+                      <Estado props={{ id_ot: o.id_ot, state: o.state }} />
+                      : o.state
+                    }
                   </th>
                   <th className='font-thin'>
                     {o.motive}

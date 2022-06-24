@@ -43,7 +43,6 @@ export default function Estado(props) {
               {({ active }) => (
                 <button
                   onClick={handleState}
-                  // onClick={e => props.props.handleState({ id_ot: props.props.id_ot, state: e.target.name })}
                   name='Pendiente'
                   className={classNames(
                     active ? 'w-full text-left bg-gray-100 text-gray-900' : 'text-gray-700',
@@ -58,7 +57,6 @@ export default function Estado(props) {
               {({ active }) => (
                 <button
                   onClick={handleState}
-                  // onClick={e => props.props.handleState({ id_ot: props.props.id_ot, state: e.target.name })}
                   name='Resuelto'
                   className={classNames(
                     active ? 'w-full text-left bg-gray-100 text-gray-900' : 'text-gray-700',
