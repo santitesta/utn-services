@@ -18,8 +18,8 @@ export default function ProductList() {
   const currentProducts = devices.slice(indexOfFirstProduct, indexOfLastProduct);
 
   return (
-    <div className='w-4/5 grid justify-items-center'>
-      <div className="px-5 mt-6 grid grid-cols-1 gap-y-10 gap-x-20 xl:gap-x-3 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 ">
+    <div className='w-4/5 h- grid justify-items-center'>
+      <div className="px-5 mt-6 mb-10 w-full grid grid-cols-1 gap-y-10 gap-x-20 xl:gap-x-3 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5">
         {device.id_inei ?
           <div class="card w-96 bg-base-100 shadow-xl">
             <div class="card-body">
@@ -31,16 +31,11 @@ export default function ProductList() {
             </div>
           </div>
           : currentProducts.map((product) => (
-            <div key={product.id_inei} className="group relative">
-              <div className="w-full min-h-50 bg-slate-300 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:w-40 lg:h-40 lg:aspect-auto">
-                <p className="ml-2 mt-1 text-sm text-slate-800">{product.id_inei}</p>
-                <p className="ml-2 mt-1 text-sm text-slate-800">{product.instituto}</p>
-                <p className="ml-2 mt-1 text-sm text-slate-600">{product.departamento}</p>
-                <p className="ml-2 mt-1 text-sm text-slate-800">{product.servicio}</p>
-                <p className="ml-2 mt-1 text-sm text-slate-600">{product.equipo}</p>
-                <a href={product.href}>
-                  <span aria-hidden="true" className="absolute inset-0" />
-                </a>
+            <div class="card w-40 h-40 bg-base-100 shadow-xl">
+              <div class="card-body p-4 ">
+                <h2 class="card-title text-base">{product.id_inei}</h2>
+                <h2 class="card-title text-base h-1/3">{product.equipo}</h2>
+                <p className='h-1/3'>{product.instituto}{product.departamento === '-' ? null : ` - ${product.departamento}`}</p>
               </div>
             </div>
           ))}
