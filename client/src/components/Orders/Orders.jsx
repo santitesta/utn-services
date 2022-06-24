@@ -49,20 +49,25 @@ const Orders = () => {
 
   return (
     <div className='flex flex-col items-center mb-10'>
-      <form onSubmit={handleSubmit(onSubmit)} className='mt-5 p-3 bg-emerald-700 w-64 grid justify-items-center content-start'>
-        <input type="number" className='border-2 border-black' placeholder='Id del equipo...' {...register("id_inei")} />
-        <input type="text" className='border-2 border-black' placeholder='Motivo...' {...register("motive")} />
-        <input type="text" className='border-2 border-black' placeholder='Comentario...' {...register("commentary")} />
-        <input type="submit" value='Crear orden' className='m-1' />
-      </form>
+      <div className='flex w-4/5 justify-between'>
+        <form onSubmit={handleSubmit(onSubmit)} className='mt-5 p-3 w-2/5 gap-2 flex flex-col'>
+          <div className='flex gap-2'>
+            <input type="number" className='input input-bordered input-primary w-1/5 p-2' placeholder='Equipo' {...register("id_inei")} />
+            <input type="text" className='input input-bordered input-primary w-4/5 max-w-xs' placeholder='Motivo...' {...register("motive")} />
+          </div>
+          <input type="text" className='input input-bordered input-primary w-full' placeholder='Comentario...' {...register("commentary")} />
+          <input type="submit" value='Crear orden' className='btn btn-primary m-1 cursor-pointer' />
+        </form>
+        <div class="divider divider-horizontal"></div>
+        <form onSubmit={handleSubmit2(onSubmitBro)} className='mt-5 p-3 w-2/5 gap-2 flex flex-col'>
+          <div className='flex gap-2'>
+            <input type="number" className='input input-bordered input-primary w-1/5 max-w-xs p-2' placeholder='OT' {...register2("id_ot")} />
+            <input type="text" className='input input-bordered input-primary w-4/5 max-w-xs' placeholder='Comentario...' {...register2("commentaryUpdate")} />
+          </div>
+          <input type="submit" value='Agregar comentario' className='btn btn-primary m-1 cursor-pointer' />
+        </form>
+      </div>
 
-      <form onSubmit={handleSubmit2(onSubmitBro)} className='mt-5 p-3 bg-emerald-700 w-64 grid justify-items-center content-start'>
-        <input type="number" className='border-2 border-black' placeholder='Id de la orden...' {...register2("id_ot")} />
-        <input type="text" className='border-2 border-black' placeholder='Comentario...' {...register2("commentaryUpdate")} />
-        <input type="submit" value='Agregar comentario' className='m-1' />
-      </form>
-
-      {/* {orders?.length && localStorage.institute === 'Admin' ? */}
       {orders?.length ?
         <div className="mt-5 overflow-x-auto w-11/12 z-50 bg-blue-500">
           <table className="table w-full">
@@ -95,7 +100,7 @@ const Orders = () => {
                     {o.motive}
                   </th>
                   <th className='font-thin'>
-                    {o.commentary.map(c => <p>{c}</p>)}
+                    {o.commentary.map((c, i) => <p key={i}>{c}</p>)}
                   </th>
                 </tr>
               })}
