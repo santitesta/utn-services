@@ -1,8 +1,8 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { MenuIcon, XIcon, ShoppingCartIcon } from '@heroicons/react/outline'
-import {NavLink} from 'react-router-dom'
+import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import { NavLink } from 'react-router-dom'
 import { logout } from '../../redux/actions'
 import { useDispatch } from 'react-redux'
 
@@ -19,9 +19,9 @@ export default function NavBarBro() {
     { name: 'About', href: '/about' },
   ]
 
-  if(localStorage.institute === 'Admin') {
+  if (localStorage.institute === 'Admin') {
     navigation.push({ name: 'Admin', href: '/admin' })
-  } else if(localStorage.institute) {
+  } else if (localStorage.institute) {
     navigation.push({ name: 'Crear orden', href: '/order' })
   }
 

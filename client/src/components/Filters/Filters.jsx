@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { getDeviceById, getDeviceByInstitute } from '../../redux/actions';
 import { useForm } from "react-hook-form";
-import styles from './Filters.module.css'
+// import styles from './Filters.module.css'
 
 function Filters() {
   const dispatch = useDispatch()

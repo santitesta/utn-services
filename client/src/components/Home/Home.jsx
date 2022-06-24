@@ -2,7 +2,7 @@ import React from 'react';
 
 import Filters from '../Filters/Filters';
 import ProductList from '../ProductList/ProductList';
-import styles from './Home.module.css'
+// import styles from './Home.module.css'
 
 function Home() {
 

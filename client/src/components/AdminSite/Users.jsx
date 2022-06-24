@@ -25,7 +25,7 @@ export default function Users() {
 
   async function handleVerification(e) {
     e.preventDefault()
-    if (e.target.innerText == 'false') {
+    if (e.target.innerText === 'false') {
       await dispatch(changeVerification({ email: e.target.id, verified: true }))
       dispatch(getUsers())
     } else {
