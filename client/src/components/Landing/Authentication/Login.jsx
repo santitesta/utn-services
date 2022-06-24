@@ -43,7 +43,7 @@ export default function Login() {
 
       <br />
 
-      <button className="box-border w-40 bg-amber-500 text-white p-2 rounded-xl" onClick={handleLogin}>
+      <button className="btn btn-primary w-3/5" onClick={handleLogin}>
         Login
       </button>
 

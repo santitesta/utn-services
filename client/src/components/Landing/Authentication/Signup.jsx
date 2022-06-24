@@ -55,10 +55,10 @@ export default function Signup() {
         type="password" placeholder='Password'
         onChange={signUpChange} name='password' value={userSignup.password} />
 
-      <div className='w-56 grid grid-cols-1 gap-1'>
+      <div className='w-56 mt-3 grid grid-cols-1 gap-1'>
         {institutes.map(i => {
           return <div key={i}>
-            <input type='radio' id={i} name='institute' value={i} onChange={signUpChange} />
+            <input type='radio' id={i} name='institute' className='radio-sm radio-primary' value={i} onChange={signUpChange} />
             <label htmlFor={i}>{i}</label>
             <br />
           </div>
@@ -67,7 +67,7 @@ export default function Signup() {
 
       {Object.keys(errors).length ? <p>{errors}</p> : null}
 
-      <button className="box-border w-40 bg-amber-700 text-white p-2 rounded-xl" onClick={handleSignUp}>
+      <button className="btn btn-primary w-3/5" onClick={handleSignUp}>
         Sign up
       </button>
     </div >

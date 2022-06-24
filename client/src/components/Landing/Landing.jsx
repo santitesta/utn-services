@@ -33,12 +33,14 @@ function Landing() {
           <div className={styles.auth}>
             <div className='flex justify-center gap-10'>
               {!localStorage.getItem("user") ?
-                <button onClick={showLogin} className='box-border w-40 bg-amber-700 text-white p-2 rounded-xl'>Login</button>
-                : <button className="box-border w-40 bg-amber-500 text-white p-2 rounded-xl" onClick={handleLogout}>
+                <>
+                  <button onClick={showLogin} className='btn btn-primary w-44'>Login</button>
+                  <button onClick={showSignup} className='btn btn-secondary w-44'>Sign Up</button>
+                </>
+                : <button className="btn btn-primary" onClick={handleLogout}>
                   Logout
                 </button>
               }
-              <button onClick={showSignup} className='box-border w-40 bg-amber-700 text-white p-2 rounded-xl'>Sign Up</button>
             </div>
           </div>
         </div>
@@ -46,13 +48,13 @@ function Landing() {
       {sign === 'login' &&
         <div className={styles.box}>
           <Login />
-          <button onClick={() => setSign('')} className='box-border w-20 h-10 bg-amber-600 text-xs text-white rounded-xl'>Volver</button>
+          <button onClick={() => setSign('')} className='btn btn-secondary'>Volver</button>
         </div>
       }
       {sign === 'signup' &&
         <div className={styles.box}>
           <Signup />
-          <button onClick={() => setSign('')} className='box-border w-20 h-10 bg-amber-600 text-xs text-white rounded-xl'>Volver</button>
+          <button onClick={() => setSign('')} className='btn btn-secondary'>Volver</button>
         </div>
       }
     </>
