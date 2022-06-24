@@ -38,7 +38,7 @@ function Filters() {
             <option value="UTN MDQ">UTN MDQ</option>
             <option value="CENDIE">CENDIE</option>
           </select>
-          <input type="submit" value='Buscar' className='m-1' />
+          <input type="submit" value='Buscar' className='btn btn-secondary m-1' />
         </form>
         : localStorage.institute ?
           <div className='mt-3 grid justify-items-center content-start'>

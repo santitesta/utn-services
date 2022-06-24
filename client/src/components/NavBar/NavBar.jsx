@@ -26,7 +26,7 @@ export default function NavBarBro() {
   }
 
   return (
-    <Disclosure as="nav" className="bg-primary h-20 mb-2 bg-cyan-800">
+    <Disclosure as="nav" className="bg-sky-700 h-20 mb-2">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -43,8 +43,8 @@ export default function NavBarBro() {
                 </Disclosure.Button>
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex-shrink-0 flex items-center">
-                  <p className="font-bold text-white">UTN</p>
+                <div className="flex-shrink-0 flex items-center w-48">
+                  <img src={require("./Logos.png")} alt="No esta el amigo logo" />
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
