@@ -13,8 +13,8 @@ import NotFound from './components/NotFound/NotFound';
 
 function App() {
 
-  const loggedUser = useSelector(state => state.loggedUser)
-  const institute = useSelector(state => state.institute)
+  const loggedUser = useSelector(state => state?.loggedUser)
+  const institute = useSelector(state => state?.institute)
   if(loggedUser) localStorage.setItem("user", loggedUser)
   if(institute) localStorage.setItem("institute", institute)
 
