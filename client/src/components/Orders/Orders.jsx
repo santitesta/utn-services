@@ -17,10 +17,9 @@ const Orders = () => {
     } else {
       dispatch(getOrdersByUser(localStorage.user))
     }
-  }, [])
+  }, [dispatch])
 
   const onSubmit = async data => {
-    console.log(data)
     await dispatch(createOrder({
       id_inei: data.id_inei,
       email: localStorage.user,
@@ -87,7 +86,7 @@ const Orders = () => {
                     {o.deviceIdInei}
                   </th>
                   <th className='font-thin'>
-                    <Estado props={{id_ot: o.id_ot, state: o.state}} />
+                    <Estado props={{ id_ot: o.id_ot, state: o.state }} />
                   </th>
                   <th className='font-thin'>
                     {o.motive}

@@ -4,7 +4,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { changeState } from '../../redux/actions';
+import { changeState } from '../../redux/actions'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -13,11 +13,10 @@ function classNames(...classes) {
 export default function Estado(props) {
   const dispatch = useDispatch()
   const [actualState, setActualState] = useState(props.props.state)
-  console.log('Props: ', props)
-  console.log('Props real: ', props.props)
 
   function handleState(e) {
     dispatch(changeState({ id_ot: props.props.id_ot, state: e.target.name }))
+    setActualState(e.target.name)
   }
 
   return (
@@ -44,6 +43,7 @@ export default function Estado(props) {
               {({ active }) => (
                 <button
                   onClick={handleState}
+                  // onClick={e => props.props.handleState({ id_ot: props.props.id_ot, state: e.target.name })}
                   name='Pendiente'
                   className={classNames(
                     active ? 'w-full text-left bg-gray-100 text-gray-900' : 'text-gray-700',
@@ -58,6 +58,7 @@ export default function Estado(props) {
               {({ active }) => (
                 <button
                   onClick={handleState}
+                  // onClick={e => props.props.handleState({ id_ot: props.props.id_ot, state: e.target.name })}
                   name='Resuelto'
                   className={classNames(
                     active ? 'w-full text-left bg-gray-100 text-gray-900' : 'text-gray-700',
