@@ -15,8 +15,7 @@ export default function NavBarBro() {
 
   let navigation = [
     { name: 'Ingresar', href: '/' },
-    { name: 'Inicio', href: '/home' },
-    { name: 'Sobre nosotros', href: '/about' },
+    { name: 'Inicio', href: '/home' }
   ]
 
   if (localStorage.institute === 'Admin') {
@@ -26,6 +25,8 @@ export default function NavBarBro() {
     navigation.shift()
     navigation.push({ name: 'Crear orden', href: '/order' })
   }
+
+  navigation.push({ name: 'Sobre nosotros', href: '/about' })
 
   return (
     <Disclosure as="nav" className="bg-sky-700 h-20 mb-2 flex items-center justify-between">
