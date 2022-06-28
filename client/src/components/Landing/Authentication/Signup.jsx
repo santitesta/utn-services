@@ -66,8 +66,8 @@ export default function Signup() {
         })}
       </div>
 
-      <button className="btn btn-primary w-3/5" onClick={handleSignUp}>
-        Sign up
+      <button className="btn btn-primary w-4/5" onClick={handleSignUp}>
+        Crear cuenta
       </button>
 
       {Object.keys(errors).length ?

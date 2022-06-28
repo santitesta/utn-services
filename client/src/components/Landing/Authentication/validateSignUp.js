@@ -1,10 +1,10 @@
 export const validateSignUp = (input) => {
   let errors = '';
 
-  if(!input.email || !input.password || !input.institute) errors = 'Must provide e-mail, password and institute'
+  if(!input.email || !input.password || !input.institute) errors = 'Debe proveer email, contraseña e instituto'
 
   let pattern = /\S+@\S+\.\S+/
-  if(!pattern.test(input.email)) errors = 'Must be a valid e-mail'
+  if(!pattern.test(input.email)) errors = 'Debe proveer un email válido'
 
   return errors
 }

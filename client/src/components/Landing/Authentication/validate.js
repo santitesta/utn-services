@@ -1,10 +1,10 @@
 export const validate = (input) => {
   let errors = '';
 
-  if(!input.email || !input.password) errors = 'Must provide e-mail and password'
+  if(!input.email || !input.password) errors = 'Debe proveer email y contraseña'
 
   let pattern = /\S+@\S+\.\S+/
-  if(!pattern.test(input.email)) errors = 'Must be a valid e-mail'
+  if(!pattern.test(input.email)) errors = 'Debe proveer un email válido'
 
   return errors
 }

@@ -35,7 +35,7 @@ function Landing() {
               {!localStorage.getItem("user") ?
                 <>
                   <button onClick={showLogin} className='btn btn-primary w-44'>Login</button>
-                  <button onClick={showSignup} className='btn btn-secondary w-44'>Sign Up</button>
+                  <button onClick={showSignup} className='btn btn-secondary w-44'>Crear cuenta</button>
                 </>
                 : <button className="btn btn-primary" onClick={handleLogout}>
                   Logout

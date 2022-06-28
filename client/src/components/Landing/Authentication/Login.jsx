@@ -34,11 +34,11 @@ export default function Login() {
 
       <input className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400focus:outline-none
           focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
-        type="text" placeholder='User'
+        type="text" placeholder='Email'
         onChange={loginChange} name='email' value={userLogin.email} />
       <input className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
           focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none justify-center"
-        type="password" placeholder='Password'
+        type="password" placeholder='Contraseña'
         onChange={loginChange} name='password' value={userLogin.password} />
 
       <br />
