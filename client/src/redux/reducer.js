@@ -43,8 +43,8 @@ export function rootReducer(state = initialState, { type, payload }) {
             return { ...state, users: payload }
 
         case LOGIN:
-            if (!Object.keys(payload).length) return alert('No account linked to that mail')
-            else if (payload.wrongPass) return alert('Wrong password')
+            if (!Object.keys(payload).length) return alert('Hay una cuenta asociada a ese email')
+            else if (payload.wrongPass) return alert('Contraseña incorrecta')
             else if (payload.email) {
                 alert(`Bienvenido ${payload.email.split('@')[0]}`)
                 localStorage.setItem("user", payload.email)
