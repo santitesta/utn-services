@@ -47,6 +47,29 @@ const Orders = () => {
     }
   };
 
+  const verified = localStorage.verified
+
+  if (verified === 'false') {
+    return (
+      <>
+        <h1>
+          El equipo de UTN lo dejará entrar pronto!
+        </h1>
+        <h3>
+          Cuando te habiliten, cierra sesión e ingresa nuevamente con esta cuenta para tener acceso completo
+        </h3>
+      </>
+    )
+  }
+
+  if (!verified) {
+    return (
+      <h1>
+        Ingrese con su cuenta para ver sus equipos y crear órdenes
+      </h1>
+    );
+  }
+
   return (
     <div className='flex flex-col w-screen items-center mb-10'>
 
