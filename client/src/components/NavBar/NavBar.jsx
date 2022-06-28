@@ -89,13 +89,20 @@ export default function NavBarBro() {
                   >
                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
-                        {({ active }) => (
-                          <button className={classNames(active ? 'bg-gray-100' : '', 'block w-full px-4 py-2 text-sm text-gray-700')}
-                            onClick={() => dispatch(logout())}
-                          >
-                            Sign out
-                          </button>
-                        )}
+                        {localStorage.user ?
+                          ({ active }) => (
+                            <button className={classNames(active ? 'bg-gray-100' : '', 'block w-full px-4 py-2 text-sm text-gray-700')}
+                              onClick={() => dispatch(logout())}
+                            >
+                              Cerrar sesión
+                            </button>
+                          )
+                          : ({ active }) => (
+                            <NavLink to='/' className={classNames(active ? 'bg-gray-100' : '', 'block w-full px-4 py-2 text-sm text-gray-700')}>
+                              Iniciar sesión
+                            </NavLink>
+                          )
+                        }
                       </Menu.Item>
                     </Menu.Items>
                   </Transition>
@@ -123,7 +130,8 @@ export default function NavBarBro() {
             </div>
           </Disclosure.Panel>
         </>
-      )}
-    </Disclosure>
+      )
+      }
+    </Disclosure >
   )
 }
