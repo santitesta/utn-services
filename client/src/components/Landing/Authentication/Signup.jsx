@@ -16,7 +16,8 @@ export default function Signup() {
     "I.N.P.",
     "I.N.P.B.",
     "U.O.C.C.B.",
-    "UTN MDQ"
+    "UTN MDQ",
+    "Admin"
   ]
 
   const dispatch = useDispatch();
@@ -57,8 +58,8 @@ export default function Signup() {
 
       <div className='w-56 mt-3 grid grid-cols-1 gap-1'>
         {institutes.map(i => {
-          return <div key={i}>
-            <input type='radio' id={i} name='institute' className='radio-sm radio-primary' value={i} onChange={signUpChange} />
+          return <div key={i} className='flex items-center'>
+            <input type='radio' id={i} name='institute' className='radio-sm radio-primary mr-2' value={i} onChange={signUpChange} />
             <label htmlFor={i}>{i}</label>
             <br />
           </div>
