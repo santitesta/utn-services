@@ -39,11 +39,14 @@ export function getUsers() {
 }
 
 export function signUp(user) {
-	return function () {
+	return function (dispatch) {
 		return axios.post(`${url}/user/signup`, user)
 			.then(resp => {
 				if (typeof (resp.data) === 'string') alert(resp.data)
-				else alert('Welcome to our platform')
+				else {
+					alert('Cuenta creada exitosamente')
+					dispatch({ type: LOGIN, payload: resp.data })
+				}
 			})
 			.catch(error => console.log('Action Error in signup: ', error))
 	};
@@ -112,7 +115,7 @@ export function addCommentary(commentary) {
 		return axios.put(`${url}/orders/commentary`, commentary)
 			.then(console.log('Commentary updated!'))
 			.catch(error => {
-				if(error.response.status === 400) alert('No existe esa orden de trabajo')
+				if (error.response.status === 400) alert('No existe esa orden de trabajo')
 				console.log('Action error in getOrders: ', error)
 			})
 	};

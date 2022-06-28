@@ -12,7 +12,7 @@ function Home() {
     return (
       <>
         <h1>
-          El equipo de UTN lo dejará entrar pronto!
+          El equipo de UTN te dejará entrar pronto!
         </h1>
         <h3>
           Cuando te habiliten, cierra sesión e ingresa nuevamente con esta cuenta para tener acceso completo

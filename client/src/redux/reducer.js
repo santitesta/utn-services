@@ -46,7 +46,7 @@ export function rootReducer(state = initialState, { type, payload }) {
             if (!Object.keys(payload).length) return alert('No account linked to that mail')
             else if (payload.wrongPass) return alert('Wrong password')
             else if (payload.email) {
-                alert('Successfull login!')
+                alert(`Bienvenido ${payload.email.split('@')[0]}`)
                 localStorage.setItem("user", payload.email)
                 localStorage.setItem("institute", payload.institute)
                 localStorage.setItem("verified", payload.verified)
