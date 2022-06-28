@@ -12,10 +12,10 @@ function Home() {
     return (
       <>
         <h1>
-          The team will allow you to enter soon!
+          El equipo de UTN lo dejará entrar pronto!
         </h1>
         <h3>
-          When they let you in, please logout and sign in again to use the application
+          Cuando te habiliten, cierra sesión e ingresa nuevamente con esta cuenta para tener acceso completo
         </h3>
       </>
     )
@@ -32,7 +32,7 @@ function Home() {
 
   return (
     <h1>
-      Please login to view your devices
+      Ingrese con su cuenta para ver sus equipos y crear órdenes
     </h1>
   )
 };
