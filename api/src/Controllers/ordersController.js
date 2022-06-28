@@ -5,16 +5,17 @@ async function createOrder(req, res) {
   const user = await User.findOne({ where: { email } })
   const device = await Device.findOne({ where: { id_inei } })
   try {
-    const order = await Order.create({
-      motive,
-      commentary: [commentary]
-    })
-    if (order) {
-      await order.setUser(user)
-      await order.setDevice(device)
-      res.status(201).json(order)
-    }
-    else res.status(400).send()
+    if(user.institute === device.instituto || user.institute === 'Admin') {
+      const order = await Order.create({
+        motive,
+        commentary: [commentary]
+      })
+      if (order) {
+        await order.setUser(user)
+        await order.setDevice(device)
+        res.status(201).json(order)
+      } else res.status(400).send()
+    } else res.status(200).send({denied: `No tiene permisos sobre el equipo ${id_inei}`})
   } catch (error) {
     res.status(500).send(error)
   }
@@ -56,8 +57,10 @@ async function addCommentary(req, res) {
     const order = await Order.findOne({
       where: { id_ot }
     })
-    await order.update({ commentary: [...order.commentary, commentary] })
-    if (order) res.send(order)
+    if (order) {
+      await order.update({ commentary: [...order.commentary, commentary] })
+      res.send(order)
+    }
     else res.status(400).send()
   } catch (error) {
     res.status(500).send(error)
