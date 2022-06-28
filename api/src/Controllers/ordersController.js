@@ -26,7 +26,8 @@ async function getOrders(req, res) {
     const orders = await Order.findAll({
       order: [
         ['id_ot', 'ASC'],
-      ]
+      ],
+      include: Device
     })
     if (orders) res.send(orders)
     else res.status(400).send()

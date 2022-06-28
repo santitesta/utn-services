@@ -48,7 +48,9 @@ const Orders = () => {
   };
 
   return (
-    <div className='flex flex-col items-center mb-10'>
+    <div className='flex flex-col w-screen items-center mb-10'>
+
+      {/* Crear ordenes y agregar comentarios */}
       <div className='flex w-4/5 justify-between'>
         <form onSubmit={handleSubmit(onSubmit)} className='mt-5 p-3 w-2/5 gap-2 flex flex-col'>
           <div className='flex gap-2'>
@@ -68,14 +70,16 @@ const Orders = () => {
         </form>
       </div>
 
+      {/* Tabla de estados de ordenes */}
       {orders?.length ?
-        <div className="mt-5 overflow-x-auto w-11/12 z-50 bg-blue-500">
+        <div className="mt-5 overflow-x-auto w-11/12 z-50">
           <table className="table w-full">
             {/* <!-- head --> */}
             <thead>
               <tr>
                 <th>Orden de trabajo</th>
                 <th>Equipo</th>
+                <th>Instituto</th>
                 <th>Estado</th>
                 <th>Motivo</th>
                 <th>Comentarios</th>
@@ -89,6 +93,9 @@ const Orders = () => {
                   </th>
                   <th className='font-thin'>
                     {o.deviceIdInei}
+                  </th>
+                  <th className='font-thin'>
+                    {o.device.instituto}
                   </th>
                   <th className='font-thin'>
                     {localStorage.institute === 'Admin' ?
