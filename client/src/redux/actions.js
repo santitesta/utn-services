@@ -87,7 +87,7 @@ export function createOrder(order) {
 		return axios.post(`${url}/orders`, order)
 			.then(resp => {
 				if (resp.data.denied) alert(resp.data.denied)
-				else console.log('Order created successfully!')
+				else alert('Órden creada exitosamente')
 			}
 			)
 			.catch(error => console.log('Action error in createOrder: ', error))
@@ -113,7 +113,7 @@ export function getOrdersByUser(email) {
 export function addCommentary(commentary) {
 	return function () {
 		return axios.put(`${url}/orders/commentary`, commentary)
-			.then(console.log('Commentary updated!'))
+			.then(alert('Comentario agregado exitosamente'))
 			.catch(error => {
 				if (error.response.status === 400) alert('No existe esa orden de trabajo')
 				console.log('Action error in getOrders: ', error)
