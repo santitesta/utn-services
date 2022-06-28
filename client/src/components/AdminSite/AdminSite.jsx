@@ -27,6 +27,12 @@ export default function AdminPage() {
     )
   }
 
+  if (!verified) {
+    return (<h1>
+      Ingrese como administrador para ver el Panel de Admin
+    </h1>)
+  }
+
   return (
     <div className="flex flex-col items-center">
       {/* //------------------------- menu lateral ------------------------------------- */}
