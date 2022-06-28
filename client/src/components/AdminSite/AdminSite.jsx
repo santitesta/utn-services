@@ -18,10 +18,10 @@ export default function AdminPage() {
     return (
       <>
         <h1>
-          The team will allow you to enter soon!
+          Pida al Admin General permisos para operar como Administrador
         </h1>
         <h3>
-          When they let you in, please logout and sign in again to use the application
+          Cuando te habiliten, cierra sesión e ingresa nuevamente con esta cuenta para tener acceso completo
         </h3>
       </>
     )
@@ -55,7 +55,7 @@ export default function AdminPage() {
                 clipRule="evenodd"
               ></path>
             </svg>
-            <span>Users</span>
+            <span>Usuarios</span>
           </button>
         </li>
         <li>
@@ -71,7 +71,7 @@ export default function AdminPage() {
             >
               <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
             </svg>
-            <span>Orders</span>
+            <span>Órdenes</span>
           </button>
         </li>
       </ul>

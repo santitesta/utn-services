@@ -14,6 +14,7 @@ export default function Users() {
 
   async function handlePermission(e) {
     e.preventDefault()
+    if(e.target.id === 'santi@mail.com') alert('No se puede quitar el permiso de Santi como usuario Root (Admin General)')
     if (localStorage.user === 'santi@mail.com') {
       if (e.target.name === 'Admin') {
         await dispatch(changePermission({ email: e.target.id, institute: 'User' }))
@@ -46,10 +47,10 @@ export default function Users() {
             {/* <!-- head --> */}
             <thead>
               <tr>
-                <th>Name</th>
-                <th>User type</th>
-                <th>Permissions</th>
-                <th>Verified</th>
+                <th>Nombre</th>
+                <th>Instituto</th>
+                <th>Permisos</th>
+                <th>Verificado</th>
               </tr>
             </thead>
             <tbody>
@@ -62,7 +63,7 @@ export default function Users() {
                     {u.institute}
                   </th>
                   <th>
-                    <button id={u.email} name={u.institute} onClick={e => handlePermission(e)}>Change to {u.institute === 'Admin' ? 'User' : 'Admin'}</button>
+                    <button id={u.email} name={u.institute} onClick={e => handlePermission(e)}>Cambiar {u.institute === 'Admin' ? 'User' : 'Admin'}</button>
                   </th>
                   <th>
                     <label>
