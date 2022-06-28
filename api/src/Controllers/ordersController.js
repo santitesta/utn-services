@@ -5,7 +5,7 @@ async function createOrder(req, res) {
   const user = await User.findOne({ where: { email } })
   const device = await Device.findOne({ where: { id_inei } })
   try {
-    if(user.institute === device.instituto || user.institute === 'Admin') {
+    if (user.institute === device.instituto || user.institute === 'Admin') {
       const order = await Order.create({
         motive,
         commentary: [commentary]
@@ -15,7 +15,7 @@ async function createOrder(req, res) {
         await order.setDevice(device)
         res.status(201).json(order)
       } else res.status(400).send()
-    } else res.status(200).send({denied: `No tiene permisos sobre el equipo ${id_inei}`})
+    } else res.status(200).send({ denied: `No tiene permisos sobre el equipo ${id_inei}` })
   } catch (error) {
     res.status(500).send(error)
   }
@@ -43,7 +43,8 @@ async function getOrdersByUser(req, res) {
       where: { userEmail: email },
       order: [
         ['id_ot', 'ASC'],
-      ]
+      ],
+      include: Device
     })
     if (orders) res.send(orders)
     else res.status(400).send()
