@@ -141,7 +141,6 @@ const Orders = () => {
           </table>
         </div >
         : <h1>No existen ordenes cargadas</h1>
-        // : localStorage.institute === 'Admin' && <h1>No existen ordenes cargadas</h1>
       }
     </div>
   )

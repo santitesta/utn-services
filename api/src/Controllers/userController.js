@@ -41,22 +41,6 @@ async function login(req, res) {
   }
 }
 
-async function changePermission(req, res) {
-  const { email, institute } = req.body;
-  try {
-    const rowsUpdated = await User.update({
-      institute: institute
-    },
-      {
-        where: { email: email }
-      })
-    if (!rowsUpdated.length) { res.status(200).send() }
-    else { res.status(304).send() }
-  } catch (error) {
-    res.status(404).send(error)
-  }
-}
-
 async function changeVerification(req, res) {
   const { email, verified } = req.body;
   try {
@@ -88,7 +72,6 @@ module.exports = {
   getUsers,
   signUp,
   login,
-  changePermission,
   changeVerification,
   deleteUser
 }

@@ -12,20 +12,6 @@ export default function Users() {
     dispatch(getUsers())
   }, [dispatch])
 
-  // async function handlePermission(e) {
-  //   e.preventDefault()
-  //   if(e.target.id === 'santi@mail.com') alert('No se puede quitar el permiso de Santi como usuario Root (Admin General)')
-  //   if (localStorage.user === 'santi@mail.com') {
-  //     if (e.target.name === 'Admin') {
-  //       await dispatch(changePermission({ email: e.target.id, institute: 'User' }))
-  //       dispatch(getUsers())
-  //     } else {
-  //       await dispatch(changePermission({ email: e.target.id, institute: 'Admin' }))
-  //       dispatch(getUsers())
-  //     }
-  //   } else alert('Solo santi puede cambiar permisos :)')
-  // }
-
   async function handleDeletion(e) {
     e.preventDefault()
     if (e.target.id === 'santi@mail.com') alert('No se puede borrar a Santi como usuario Root (Admin General)')
@@ -58,7 +44,6 @@ export default function Users() {
               <tr>
                 <th>Nombre</th>
                 <th>Instituto</th>
-                {/* <th>Permisos</th> */}
                 <th>Verificado</th>
                 <th>Borrar usuario</th>
               </tr>
@@ -72,9 +57,6 @@ export default function Users() {
                   <th className='font-thin'>
                     {u.institute}
                   </th>
-                  {/* <th>
-                    <button id={u.email} name={u.institute} onClick={e => handlePermission(e)}>Cambiar {u.institute === 'Admin' ? 'User' : 'Admin'}</button>
-                  </th> */}
                   <th>
                     <label>
                       <button id={u.email} onClick={handleVerification}>{u.verified.toString()}</button>

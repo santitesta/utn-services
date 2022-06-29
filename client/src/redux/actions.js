@@ -66,14 +66,6 @@ export function logout() {
 	}
 }
 
-export function changePermission(user) {
-	return function () {
-		return axios.put(`${url}/user/permission`, user)
-			.then(console.log('Admin permissions changed'))
-			.catch(error => console.log('Action error in changePermission: ', error))
-	};
-};
-
 export function changeVerification(user) {
 	return function () {
 		return axios.put(`${url}/user/verification`, user)
