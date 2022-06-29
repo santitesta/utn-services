@@ -10,7 +10,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function NavBarBro() {
+export default function NavBar() {
   const dispatch = useDispatch();
 
   let navigation = [
@@ -70,8 +70,8 @@ export default function NavBarBro() {
                   <div>
                     <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                       <span className="sr-only">Open user menu</span>
-                      <div class="avatar placeholder">
-                        <div class="bg-neutral-focus text-neutral-content rounded-full w-12">
+                      <div className="avatar placeholder">
+                        <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
                           <span>{localStorage.user ? localStorage.user.slice(0, 2).toUpperCase() : '-'}</span>
                         </div>
                       </div>

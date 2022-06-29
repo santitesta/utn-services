@@ -17,9 +17,9 @@ export default function AdminPage() {
   if (verified === 'false') {
     return (
       <>
-        <div class="alert shadow-lg w-2/5 ml-3 mt-3">
+        <div className="alert shadow-lg w-2/5 ml-3 mt-3">
           <div>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             <span>Pide al Admin General permisos para operar como Administrador. Cuando te habiliten, cierra sesión e ingresa nuevamente con esta cuenta para tener acceso completo</span>
           </div>
         </div>
@@ -28,9 +28,9 @@ export default function AdminPage() {
   }
 
   if (!verified) {
-    return (<div class="alert shadow-lg w-2/5 ml-3 mt-3">
+    return (<div className="alert shadow-lg w-2/5 ml-3 mt-3">
       <div>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
         <span>Ingrese como administrador para ver el Panel de Admin</span>
       </div>
     </div>)
@@ -40,7 +40,7 @@ export default function AdminPage() {
     <div className="flex flex-col items-center">
       {/* //------------------------- menu lateral ------------------------------------- */}
 
-      <ul class="menu menu-horizontal bg-base-100 p-1 rounded-box">
+      <ul className="menu menu-horizontal bg-base-100 p-1 rounded-box">
         <li>
           <button
             onClick={() => HandlePage('Users')}
