@@ -73,10 +73,22 @@ async function changeVerification(req, res) {
   }
 }
 
+async function deleteUser(req, res) {
+  const { email } = req.params;
+  try {
+    const user = await User.findOne({ where: { email } })
+    await user.destroy()
+    res.send({ success: `Usuario ${email} borrado` })
+  } catch (error) {
+    res.status(500).send()
+  }
+}
+
 module.exports = {
   getUsers,
   signUp,
   login,
   changePermission,
-  changeVerification
+  changeVerification,
+  deleteUser
 }

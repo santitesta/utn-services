@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsers, changePermission, changeVerification } from '../../redux/actions';
+import { getUsers, changePermission, changeVerification, deleteUser } from '../../redux/actions';
 
 export default function Users() {
   const dispatch = useDispatch()
@@ -12,18 +12,27 @@ export default function Users() {
     dispatch(getUsers())
   }, [dispatch])
 
-  async function handlePermission(e) {
+  // async function handlePermission(e) {
+  //   e.preventDefault()
+  //   if(e.target.id === 'santi@mail.com') alert('No se puede quitar el permiso de Santi como usuario Root (Admin General)')
+  //   if (localStorage.user === 'santi@mail.com') {
+  //     if (e.target.name === 'Admin') {
+  //       await dispatch(changePermission({ email: e.target.id, institute: 'User' }))
+  //       dispatch(getUsers())
+  //     } else {
+  //       await dispatch(changePermission({ email: e.target.id, institute: 'Admin' }))
+  //       dispatch(getUsers())
+  //     }
+  //   } else alert('Solo santi puede cambiar permisos :)')
+  // }
+
+  async function handleDeletion(e) {
     e.preventDefault()
-    if(e.target.id === 'santi@mail.com') alert('No se puede quitar el permiso de Santi como usuario Root (Admin General)')
+    if (e.target.id === 'santi@mail.com') alert('No se puede borrar a Santi como usuario Root (Admin General)')
     if (localStorage.user === 'santi@mail.com') {
-      if (e.target.name === 'Admin') {
-        await dispatch(changePermission({ email: e.target.id, institute: 'User' }))
-        dispatch(getUsers())
-      } else {
-        await dispatch(changePermission({ email: e.target.id, institute: 'Admin' }))
-        dispatch(getUsers())
-      }
-    } else alert('Solo santi puede cambiar permisos :)')
+      await dispatch(deleteUser(e.target.id))
+      dispatch(getUsers())
+    } else alert('Solo santi puede borrar usuarios :)')
   }
 
   async function handleVerification(e) {
@@ -49,8 +58,9 @@ export default function Users() {
               <tr>
                 <th>Nombre</th>
                 <th>Instituto</th>
-                <th>Permisos</th>
+                {/* <th>Permisos</th> */}
                 <th>Verificado</th>
+                <th>Borrar usuario</th>
               </tr>
             </thead>
             <tbody>
@@ -62,13 +72,16 @@ export default function Users() {
                   <th className='font-thin'>
                     {u.institute}
                   </th>
-                  <th>
+                  {/* <th>
                     <button id={u.email} name={u.institute} onClick={e => handlePermission(e)}>Cambiar {u.institute === 'Admin' ? 'User' : 'Admin'}</button>
-                  </th>
+                  </th> */}
                   <th>
                     <label>
                       <button id={u.email} onClick={handleVerification}>{u.verified.toString()}</button>
                     </label>
+                  </th>
+                  <th>
+                    <button id={u.email} name={u.institute} onClick={e => handleDeletion(e)}>Eliminar</button>
                   </th>
                 </tr>
               })}
