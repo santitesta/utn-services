@@ -49,7 +49,7 @@ export default function Users() {
   }
 
   return (
-    <div>
+    <div className='flex items-center w-full'>
       {users.length ?
         <div className="overflow-x-auto w-full z-50">
           <table className="table w-full">

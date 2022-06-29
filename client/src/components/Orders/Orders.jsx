@@ -74,7 +74,7 @@ const Orders = () => {
   }
 
   return (
-    <div className='flex flex-col w-screen items-center mb-10'>
+    <div className='flex flex-col w-full items-center mb-10'>
 
       {/* Crear ordenes y agregar comentarios */}
       <div className='flex w-4/5 justify-between'>

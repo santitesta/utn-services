@@ -80,16 +80,12 @@ export default function AdminPage() {
       </ul>
 
       {/* //---------------------------------------- tabla ---------------------------------- */}
-      <div className="flex-auto">
+      <div className="flex-auto w-full">
         {Page === 'Users' &&
-          <div>
-            <Users />
-          </div>
+          <Users />
         }
         {Page === 'Orders' &&
-          <div>
-            <Orders />
-          </div>
+          <Orders />
         }
       </div>
     </div>
