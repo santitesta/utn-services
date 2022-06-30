@@ -3,19 +3,31 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { addCommentary, createOrder } from '../../redux/actions';
 
+const motivos = [
+  'Revision',
+  'Instalación',
+  'Asesoramiento Técnico',
+  'Calibración/Validación',
+  'Solicitud de informe',
+  'Solicitud de presupuesto'
+]
+
 const CreateOrder = () => {
   const dispatch = useDispatch()
   const { register, handleSubmit, reset } = useForm();
   const { register: register2, handleSubmit: handleSubmit2, reset: reset2 } = useForm();
 
   const onSubmit = async data => {
-    await dispatch(createOrder({
-      id_inei: data.id_inei,
-      email: localStorage.user,
-      motive: data.motive,
-      commentary: data.commentary
-    }))
-    reset()
+    if (!data.motive.length) alert('Falta un motivo para esta órden')
+    else {
+      await dispatch(createOrder({
+        id_inei: data.id_inei,
+        email: localStorage.user,
+        motive: data.motive,
+        commentary: data.commentary
+      }))
+      reset()
+    }
   };
 
   const onSubmitBro = async data => {
@@ -60,7 +72,15 @@ const CreateOrder = () => {
         <form onSubmit={handleSubmit(onSubmit)} className='mt-5 p-3 w-2/5 gap-2 flex flex-col'>
           <div className='flex gap-2'>
             <input type="number" className='input input-bordered input-primary w-1/5 p-2' placeholder='Equipo' {...register("id_inei")} />
-            <input type="text" className='input input-bordered input-primary w-4/5 max-w-xs' placeholder='Motivo...' {...register("motive")} />
+            <select className='select select-bordered select-primary w-4/5' {...register('motive')}>
+              <option hidden value=''>Motivo de la orden</option>
+              <option value='Revision'>Revisión</option>
+              <option value='Instalación'>Instalación</option>
+              <option value='Asesoramiento Técnico'>Asesoramiento Técnico</option>
+              <option value='Calibración/Validación'>Calibración/Validación</option>
+              <option value='Solicitud de informe'>Solicitud de informe</option>
+              <option value='Solicitud de presupuesto'>Solicitud de presupuesto</option>
+            </select>
           </div>
           <input type="text" className='input input-bordered input-primary w-full' placeholder='Comentario...' {...register("commentary")} />
           <input type="submit" value='Crear orden' className='btn btn-primary m-1 cursor-pointer' />
