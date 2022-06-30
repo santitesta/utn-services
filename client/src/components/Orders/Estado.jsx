@@ -57,6 +57,48 @@ export default function Estado(props) {
               {({ active }) => (
                 <button
                   onClick={handleState}
+                  name='En reparación'
+                  className={classNames(
+                    active ? 'w-full text-left bg-gray-100 text-gray-900' : 'text-gray-700',
+                    'w-full text-left block px-4 py-2 text-sm'
+                  )}
+                >
+                  En reparación
+                </button>
+              )}
+            </Menu.Item>
+            <Menu.Item>
+              {({ active }) => (
+                <button
+                  onClick={handleState}
+                  name='Espera repuestos por UTN'
+                  className={classNames(
+                    active ? 'w-full text-left bg-gray-100 text-gray-900' : 'text-gray-700',
+                    'w-full text-left block px-4 py-2 text-sm'
+                  )}
+                >
+                  Espera repuestos por UTN
+                </button>
+              )}
+            </Menu.Item>
+            <Menu.Item>
+              {({ active }) => (
+                <button
+                  onClick={handleState}
+                  name='Espera repuestos por Servicio'
+                  className={classNames(
+                    active ? 'w-full text-left bg-gray-100 text-gray-900' : 'text-gray-700',
+                    'w-full text-left block px-4 py-2 text-sm'
+                  )}
+                >
+                  Espera repuestos por Servicio
+                </button>
+              )}
+            </Menu.Item>
+            <Menu.Item>
+              {({ active }) => (
+                <button
+                  onClick={handleState}
                   name='Resuelto'
                   className={classNames(
                     active ? 'w-full text-left bg-gray-100 text-gray-900' : 'text-gray-700',
