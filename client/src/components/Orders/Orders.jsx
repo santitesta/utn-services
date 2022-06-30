@@ -4,12 +4,15 @@ import { useForm } from 'react-hook-form';
 import { addCommentary, createOrder, getOrders, getOrdersByUser } from '../../redux/actions';
 import { useEffect } from 'react';
 import Estado from './Estado'
+import { institutes } from '../../utilities/institutes';
+import { useState } from 'react';
 
 const Orders = () => {
   const dispatch = useDispatch()
   const { register, handleSubmit, reset } = useForm();
   const { register: register2, handleSubmit: handleSubmit2, reset: reset2 } = useForm();
   const orders = useSelector(state => state.orders)
+  let [ordersFiltered, setOrdersFiltered] = useState([]);
 
   useEffect(() => {
     if (localStorage.institute === 'Admin') {
@@ -46,6 +49,14 @@ const Orders = () => {
       dispatch(getOrdersByUser(localStorage.user))
     }
   };
+
+  const filterInstitute = ins => {
+    if (ins !== 'all') {
+      setOrdersFiltered(orders.filter(o => o.device.instituto === ins))
+    } else {
+      setOrdersFiltered([])
+    }
+  }
 
   const verified = localStorage.verified
 
@@ -106,10 +117,18 @@ const Orders = () => {
                 <th>Orden de trabajo</th>
                 <th>Equipo</th>
                 <th>Instituto
-                  <select className='btn btn-primary' onChange={e => console.log(e.target.value)}>
-                    <option defaultValue>All</option>
-                    <option value='I.N.E.I.'>INEI</option>
-                    <option value='2'>INPB</option>
+                  <select className='btn btn-primary' onChange={e => filterInstitute(e.target.value)}>
+                    <option defaultValue value='all'>All</option>
+                    <option value={institutes.CENDIE}>CENDIE</option>
+                    <option value={institutes.CNCCB}>CNCCB</option>
+                    <option value={institutes.CNGM}>CNGM</option>
+                    <option value={institutes.MALBRAN}>MALBRAN</option>
+                    <option value={institutes.INE}>INE</option>
+                    <option value={institutes.INEI}>INEI</option>
+                    <option value={institutes.INP}>INP</option>
+                    <option value={institutes.INPB}>INPB</option>
+                    <option value={institutes.UOCCB}>UOCCB</option>
+                    <option value={institutes.UTNMDQ}>MDQ</option>
                   </select>
                 </th>
                 <th>Estado</th>
@@ -118,7 +137,7 @@ const Orders = () => {
               </tr>
             </thead>
             <tbody>
-              {orders.map(o => {
+              {ordersFiltered.length ? ordersFiltered.map(o => {
                 return <tr key={o.id_ot}>
                   <th className='font-thin'>
                     {o.id_ot}
@@ -142,7 +161,32 @@ const Orders = () => {
                     {o.commentary.map((c, i) => <p key={i}>{c}</p>)}
                   </th>
                 </tr>
-              })}
+              })
+                : orders.map(o => {
+                  return <tr key={o.id_ot}>
+                    <th className='font-thin'>
+                      {o.id_ot}
+                    </th>
+                    <th className='font-thin'>
+                      {o.deviceIdInei}
+                    </th>
+                    <th className='font-thin'>
+                      {o.device.instituto}
+                    </th>
+                    <th className='font-thin'>
+                      {localStorage.institute === 'Admin' ?
+                        <Estado props={{ id_ot: o.id_ot, state: o.state }} />
+                        : o.state
+                      }
+                    </th>
+                    <th className='font-thin'>
+                      {o.motive}
+                    </th>
+                    <th className='font-thin'>
+                      {o.commentary.map((c, i) => <p key={i}>{c}</p>)}
+                    </th>
+                  </tr>
+                })}
             </tbody>
           </table>
         </div >
