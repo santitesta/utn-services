@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import Estado from './Estado'
 import { institutes } from '../../utilities/institutes';
 import { useState } from 'react';
+import { motivos } from '../../utilities/motives'
 
 const Orders = () => {
   const dispatch = useDispatch()
@@ -22,6 +23,22 @@ const Orders = () => {
   const filterInstitute = ins => {
     if (ins !== 'all') {
       setOrdersFiltered(orders.filter(o => o.device.instituto === ins))
+    } else {
+      setOrdersFiltered([])
+    }
+  }
+
+  const filterState = state => {
+    if (state !== 'all') {
+      setOrdersFiltered(orders.filter(o => o.state === state))
+    } else {
+      setOrdersFiltered([])
+    }
+  }
+
+  const filterMotive = motive => {
+    if (motive !== 'all') {
+      setOrdersFiltered(orders.filter(o => o.motive === motive))
     } else {
       setOrdersFiltered([])
     }
@@ -81,8 +98,28 @@ const Orders = () => {
                     </select>
                     : null}
                 </th>
-                <th>Estado</th>
-                <th>Motivo</th>
+                <th>Estado
+                {localStorage.institute === 'Admin' ?
+                    <select className='select select-xs h-3' onChange={e => filterState(e.target.value)}>
+                      <option defaultValue value='all'>Todos</option>
+                      <option value='Pendiente'>Pendiente</option>
+                      <option value='En reparacion'>En reparacion</option>
+                      <option value='Espera repuestos por UTN'>Espera repuestos por UTN</option>
+                      <option value='Espera repuestos por Servicio'>Espera repuestos por Servicio</option>
+                      <option value='Resuelto'>Resuelto</option>
+                    </select>
+                    : null}
+                </th>
+                <th>Motivo
+                  {localStorage.institute === 'Admin' ?
+                    <select className='select select-xs h-3' onChange={e => filterMotive(e.target.value)}>
+                      <option defaultValue value='all'>Todos</option>
+                      {motivos.map(m => {
+                        return <option value={m}>{m}</option>
+                      })}
+                    </select>
+                    : null}
+                </th>
                 <th>Comentarios</th>
               </tr>
             </thead>
