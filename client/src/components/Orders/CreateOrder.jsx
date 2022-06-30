@@ -2,15 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { addCommentary, createOrder } from '../../redux/actions';
-
-const motivos = [
-  'Revision',
-  'Instalación',
-  'Asesoramiento Técnico',
-  'Calibración/Validación',
-  'Solicitud de informe',
-  'Solicitud de presupuesto'
-]
+import { motivos } from '../../utilities/motives'
 
 const CreateOrder = () => {
   const dispatch = useDispatch()
@@ -74,12 +66,9 @@ const CreateOrder = () => {
             <input type="number" className='input input-bordered input-primary w-1/5 p-2' placeholder='Equipo' {...register("id_inei")} />
             <select className='select select-bordered select-primary w-4/5' {...register('motive')}>
               <option hidden value=''>Motivo de la orden</option>
-              <option value='Revision'>Revisión</option>
-              <option value='Instalación'>Instalación</option>
-              <option value='Asesoramiento Técnico'>Asesoramiento Técnico</option>
-              <option value='Calibración/Validación'>Calibración/Validación</option>
-              <option value='Solicitud de informe'>Solicitud de informe</option>
-              <option value='Solicitud de presupuesto'>Solicitud de presupuesto</option>
+              {motivos.map(m => {
+                return <option value={m}>{m}</option>
+              })}
             </select>
           </div>
           <input type="text" className='input input-bordered input-primary w-full' placeholder='Comentario...' {...register("commentary")} />
