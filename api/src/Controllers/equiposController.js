@@ -23,7 +23,7 @@ async function getDeviceById(req, res) {
       }
     })
     if (!device) res.status(204).send()
-    else if (institute !== 'Admin' && institute !== device?.instituto) res.status(200).send({ denied: 'You do not have permissions to see this device' })
+    else if (institute !== 'Admin' && institute !== device?.instituto) res.status(200).send({ denied: `No tiene permisos sobre el equipo ${id}` })
     else res.json(device)
   } catch (error) {
     res.status(500).send(error)
