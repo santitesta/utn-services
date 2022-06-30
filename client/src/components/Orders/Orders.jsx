@@ -88,7 +88,7 @@ const Orders = () => {
             </thead>
             <tbody>
               {ordersFiltered.length ? ordersFiltered.map(o => {
-                return <tr key={o.id_ot}>
+                return <tr key={o.id_ot} className='hover'>
                   <th className='font-thin'>
                     {o.id_ot}
                   </th>
@@ -113,7 +113,7 @@ const Orders = () => {
                 </tr>
               })
                 : orders.map(o => {
-                  return <tr key={o.id_ot}>
+                  return <tr key={o.id_ot} className='hover'>
                     <th className='font-thin'>
                       {o.id_ot}
                     </th>
