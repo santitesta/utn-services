@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import CreateOrder from "../Orders/CreateOrder";
 import Orders from "../Orders/Orders";
 import Users from "./Users";
 
@@ -9,7 +10,8 @@ export default function AdminPage() {
 
   function HandlePage(e) {
     if (e === 'Users') setPage('Users')
-    if (e === 'Orders') setPage('Orders')
+    if (e === 'viewOrders') setPage('viewOrders')
+    if (e === 'createOrder') setPage('createOrder')
   }
 
   const verified = localStorage.verified
@@ -63,7 +65,7 @@ export default function AdminPage() {
         </li>
         <li>
           <button
-            onClick={() => HandlePage('Orders')}
+            onClick={() => HandlePage('viewOrders')}
             className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-grey hover:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
           >
             <svg
@@ -74,7 +76,23 @@ export default function AdminPage() {
             >
               <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
             </svg>
-            <span>Órdenes</span>
+            <span>Ver órdenes</span>
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => HandlePage('createOrder')}
+            className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-grey hover:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
+          >
+            <svg
+              className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+            </svg>
+            <span>Crear orden</span>
           </button>
         </li>
       </ul>
@@ -84,8 +102,11 @@ export default function AdminPage() {
         {Page === 'Users' &&
           <Users />
         }
-        {Page === 'Orders' &&
+        {Page === 'viewOrders' &&
           <Orders />
+        }
+        {Page === 'createOrder' &&
+          <CreateOrder />
         }
       </div>
     </div>

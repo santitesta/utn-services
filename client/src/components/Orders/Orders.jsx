@@ -1,7 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useForm } from 'react-hook-form';
-import { addCommentary, createOrder, getOrders, getOrdersByUser } from '../../redux/actions';
+import { getOrders, getOrdersByUser } from '../../redux/actions';
 import { useEffect } from 'react';
 import Estado from './Estado'
 import { institutes } from '../../utilities/institutes';
@@ -9,8 +8,6 @@ import { useState } from 'react';
 
 const Orders = () => {
   const dispatch = useDispatch()
-  const { register, handleSubmit, reset } = useForm();
-  const { register: register2, handleSubmit: handleSubmit2, reset: reset2 } = useForm();
   const orders = useSelector(state => state.orders)
   let [ordersFiltered, setOrdersFiltered] = useState([]);
 
@@ -21,34 +18,6 @@ const Orders = () => {
       dispatch(getOrdersByUser(localStorage.user))
     }
   }, [dispatch])
-
-  const onSubmit = async data => {
-    await dispatch(createOrder({
-      id_inei: data.id_inei,
-      email: localStorage.user,
-      motive: data.motive,
-      commentary: data.commentary
-    }))
-    reset()
-    if (localStorage.institute === 'Admin') {
-      dispatch(getOrders())
-    } else {
-      dispatch(getOrdersByUser(localStorage.user))
-    }
-  };
-
-  const onSubmitBro = async data => {
-    await dispatch(addCommentary({
-      id_ot: data.id_ot,
-      commentary: data.commentaryUpdate
-    }))
-    reset2()
-    if (localStorage.institute === 'Admin') {
-      dispatch(getOrders())
-    } else {
-      dispatch(getOrdersByUser(localStorage.user))
-    }
-  };
 
   const filterInstitute = ins => {
     if (ins !== 'all') {
@@ -86,27 +55,6 @@ const Orders = () => {
 
   return (
     <div className='flex flex-col w-full items-center mb-10'>
-
-      {/* Crear ordenes y agregar comentarios */}
-      <div className='flex w-4/5 justify-between'>
-        <form onSubmit={handleSubmit(onSubmit)} className='mt-5 p-3 w-2/5 gap-2 flex flex-col'>
-          <div className='flex gap-2'>
-            <input type="number" className='input input-bordered input-primary w-1/5 p-2' placeholder='Equipo' {...register("id_inei")} />
-            <input type="text" className='input input-bordered input-primary w-4/5 max-w-xs' placeholder='Motivo...' {...register("motive")} />
-          </div>
-          <input type="text" className='input input-bordered input-primary w-full' placeholder='Comentario...' {...register("commentary")} />
-          <input type="submit" value='Crear orden' className='btn btn-primary m-1 cursor-pointer' />
-        </form>
-        <div className="divider divider-horizontal"></div>
-        <form onSubmit={handleSubmit2(onSubmitBro)} className='mt-5 p-3 w-2/5 gap-2 flex flex-col'>
-          <div className='flex gap-2'>
-            <input type="number" className='input input-bordered input-primary w-1/5 max-w-xs p-2' placeholder='OT' {...register2("id_ot")} />
-            <input type="text" className='input input-bordered input-primary w-4/5 max-w-xs' placeholder='Comentario...' {...register2("commentaryUpdate")} />
-          </div>
-          <input type="submit" value='Agregar comentario' className='btn btn-primary m-1 cursor-pointer' />
-        </form>
-      </div>
-
       {/* Tabla de estados de ordenes */}
       {orders?.length ?
         <div className="mt-5 overflow-x-auto w-11/12 z-50">
@@ -117,19 +65,21 @@ const Orders = () => {
                 <th>Orden de trabajo</th>
                 <th>Equipo</th>
                 <th>Instituto
-                  <select className='btn btn-primary' onChange={e => filterInstitute(e.target.value)}>
-                    <option defaultValue value='all'>All</option>
-                    <option value={institutes.CENDIE}>CENDIE</option>
-                    <option value={institutes.CNCCB}>CNCCB</option>
-                    <option value={institutes.CNGM}>CNGM</option>
-                    <option value={institutes.MALBRAN}>MALBRAN</option>
-                    <option value={institutes.INE}>INE</option>
-                    <option value={institutes.INEI}>INEI</option>
-                    <option value={institutes.INP}>INP</option>
-                    <option value={institutes.INPB}>INPB</option>
-                    <option value={institutes.UOCCB}>UOCCB</option>
-                    <option value={institutes.UTNMDQ}>MDQ</option>
-                  </select>
+                  {localStorage.institute === 'Admin' ?
+                    <select className='btn btn-primary' onChange={e => filterInstitute(e.target.value)}>
+                      <option defaultValue value='all'>All</option>
+                      <option value={institutes.CENDIE}>CENDIE</option>
+                      <option value={institutes.CNCCB}>CNCCB</option>
+                      <option value={institutes.CNGM}>CNGM</option>
+                      <option value={institutes.MALBRAN}>MALBRAN</option>
+                      <option value={institutes.INE}>INE</option>
+                      <option value={institutes.INEI}>INEI</option>
+                      <option value={institutes.INP}>INP</option>
+                      <option value={institutes.INPB}>INPB</option>
+                      <option value={institutes.UOCCB}>UOCCB</option>
+                      <option value={institutes.UTNMDQ}>MDQ</option>
+                    </select>
+                    : null}
                 </th>
                 <th>Estado</th>
                 <th>Motivo</th>
