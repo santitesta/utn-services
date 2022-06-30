@@ -64,10 +64,10 @@ const Orders = () => {
               <tr>
                 <th>Orden de trabajo</th>
                 <th>Equipo</th>
-                <th>Instituto
+                <th className='flex flex-col items-center'>Instituto
                   {localStorage.institute === 'Admin' ?
-                    <select className='btn btn-primary' onChange={e => filterInstitute(e.target.value)}>
-                      <option defaultValue value='all'>All</option>
+                    <select className='select select-xs h-3' onChange={e => filterInstitute(e.target.value)}>
+                      <option defaultValue value='all'>Todos</option>
                       <option value={institutes.CENDIE}>CENDIE</option>
                       <option value={institutes.CNCCB}>CNCCB</option>
                       <option value={institutes.CNGM}>CNGM</option>
