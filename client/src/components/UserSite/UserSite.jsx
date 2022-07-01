@@ -3,7 +3,7 @@ import Orders from '../Orders/Orders'
 import CreateOrder from '../Orders/CreateOrder'
 
 const UserSite = () => {
-  const [Page, setPage] = useState('Users');
+  const [Page, setPage] = useState('viewOrders');
 
   function HandlePage(e) {
     if (e === 'viewOrders') setPage('viewOrders')
