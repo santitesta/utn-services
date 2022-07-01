@@ -1,41 +1,13 @@
-import React from "react";
-import { useState } from "react";
-import CreateOrder from "../Orders/CreateOrder";
-import Orders from "../Orders/Orders";
-import Users from "./Users";
+import React, { useState } from 'react'
+import Orders from '../Orders/Orders'
+import CreateOrder from '../Orders/CreateOrder'
 
-
-export default function AdminPage() {
+const UserSite = () => {
   const [Page, setPage] = useState('Users');
 
   function HandlePage(e) {
-    if (e === 'Users') setPage('Users')
     if (e === 'viewOrders') setPage('viewOrders')
     if (e === 'createOrder') setPage('createOrder')
-  }
-
-  const verified = localStorage.verified
-
-  if (verified === 'false') {
-    return (
-      <>
-        <div className="alert shadow-lg w-2/5 ml-3 mt-3">
-          <div>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            <span>Pide al Admin General permisos para operar como Administrador. Cuando te habiliten, cierra sesión e ingresa nuevamente con esta cuenta para tener acceso completo</span>
-          </div>
-        </div>
-      </>
-    )
-  }
-
-  if (!verified) {
-    return (<div className="alert shadow-lg w-2/5 ml-3 mt-3">
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        <span>Ingrese como administrador para ver el Panel de Admin</span>
-      </div>
-    </div>)
   }
 
   return (
@@ -43,26 +15,6 @@ export default function AdminPage() {
       {/* //------------------------- menu superior ------------------------------------- */}
 
       <ul className="menu menu-horizontal bg-base-100 p-1 rounded-box">
-        <li>
-          <button
-            onClick={() => HandlePage('Users')}
-            className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-grey hover:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
-          >
-            <svg
-              className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-black-400 group-hover:text-gray-900 dark:group-hover:text-white"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
-            <span>Usuarios</span>
-          </button>
-        </li>
         <li>
           <button
             onClick={() => HandlePage('viewOrders')}
@@ -99,9 +51,6 @@ export default function AdminPage() {
 
       {/* //---------------------------------------- tabla ---------------------------------- */}
       <div className="flex-auto w-full">
-        {Page === 'Users' &&
-          <Users />
-        }
         {Page === 'viewOrders' &&
           <Orders />
         }
@@ -110,5 +59,7 @@ export default function AdminPage() {
         }
       </div>
     </div>
-  );
+  )
 }
+
+export default UserSite

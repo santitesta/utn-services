@@ -23,7 +23,7 @@ export default function NavBar() {
     navigation.push({ name: 'Panel de Admin', href: '/admin' })
   } else if (localStorage.institute) {
     navigation.shift()
-    navigation.push({ name: 'Crear orden', href: '/order' })
+    navigation.push({ name: 'Panel de usuario', href: '/user' })
   }
 
   navigation.push({ name: 'Sobre nosotros', href: '/about' })

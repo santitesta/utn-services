@@ -45,8 +45,9 @@ const Orders = () => {
   }
 
   const filterRefrigeration = refrigeration => {
+    let bool = refrigeration === 'true'
     if (refrigeration !== 'all') {
-      setOrdersFiltered(orders.filter(o => o.refrigeration === refrigeration))
+      setOrdersFiltered(orders.filter(o => o.refrigeration === bool))
     } else {
       setOrdersFiltered([])
     }
@@ -159,7 +160,9 @@ const Orders = () => {
                     {o.device.instituto}
                   </th>
                   <th className='font-thin'>
-                    <input id={o.id_ot} type="checkbox" checked={o.refrigeration} onChange={e => handleRefrigeration(e)} />
+                    {localStorage.institute === 'Admin' ?
+                      <input id={o.id_ot} type="checkbox" className='checkbox' checked={o.refrigeration} onChange={e => handleRefrigeration(e)} />
+                      : <input type="checkbox" className='checkbox' checked={o.refrigeration} disabled />}
                   </th>
                   <th className='font-thin'>
                     {localStorage.institute === 'Admin' ?
@@ -186,9 +189,9 @@ const Orders = () => {
                     <th className='font-thin'>
                       {o.device.instituto}
                     </th>
-                    <th className='font-thin'>
-                      <input id={o.id_ot} type="checkbox" checked={o.refrigeration} onChange={e => handleRefrigeration(e)} />
-                    </th>
+                    {localStorage.institute === 'Admin' ?
+                      <input id={o.id_ot} type="checkbox" className='checkbox' checked={o.refrigeration} onChange={e => handleRefrigeration(e)} />
+                      : <input type="checkbox" className='checkbox' checked={o.refrigeration} disabled />}
                     <th className='font-thin'>
                       {localStorage.institute === 'Admin' ?
                         <Estado props={{ id_ot: o.id_ot, state: o.state }} />
