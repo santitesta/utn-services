@@ -83,10 +83,25 @@ async function changeState(req, res) {
   }
 }
 
+async function changeRefrigeration(req, res) {
+  const { id_ot, refrigeration } = req.body
+  try {
+    const order = await Order.findOne({
+      where: { id_ot }
+    })
+    await order.update({ refrigeration })
+    if (order) res.send(order)
+    else res.status(400).send()
+  } catch (error) {
+    res.status(500).send(error)
+  }
+}
+
 module.exports = {
   createOrder,
   getOrders,
   getOrdersByUser,
   addCommentary,
-  changeState
+  changeState,
+  changeRefrigeration
 }

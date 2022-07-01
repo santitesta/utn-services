@@ -98,7 +98,7 @@ export function getOrdersByUser(email) {
 	return function (dispatch) {
 		return axios.get(`${url}/orders/${email}`)
 			.then(resp => dispatch({ type: GET_ORDERS, payload: resp.data }))
-			.catch(error => console.log('Action error in getOrders: ', error))
+			.catch(error => console.log('Action error in getOrdersByUser: ', error))
 	};
 };
 
@@ -108,7 +108,7 @@ export function addCommentary(commentary) {
 			.then(alert('Comentario agregado exitosamente'))
 			.catch(error => {
 				if (error.response.status === 400) alert('No existe esa orden de trabajo')
-				console.log('Action error in getOrders: ', error)
+				console.log('Action error in addCommentary: ', error)
 			})
 	};
 };
@@ -117,7 +117,15 @@ export function changeState(state) {
 	return function () {
 		return axios.put(`${url}/orders/state`, state)
 			.then(console.log('State updated!'))
-			.catch(error => console.log('Action error in getOrders: ', error))
+			.catch(error => console.log('Action error in changeState: ', error))
+	};
+};
+
+export function changeRefrigeration(refrigeration) {
+	return function () {
+		return axios.put(`${url}/orders/refrigeration`, refrigeration)
+			.then(console.log('Refrigeration updated!'))
+			.catch(error => console.log('Action error in changeRefrigeration: ', error))
 	};
 };
 
@@ -128,6 +136,6 @@ export function deleteUser(email) {
 				if(resp.data.success) alert(resp.data.success)
 				else alert('Action error in deleteUser')
 			})
-			.catch(error => console.log('Action error in getOrders: ', error))
+			.catch(error => console.log('Action error in deleteUser: ', error))
 	};
 };

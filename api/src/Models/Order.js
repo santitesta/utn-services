@@ -8,14 +8,10 @@ module.exports = (sequelize) => {
       autoIncrement: true,
       primaryKey: true
     },
-    // id_inei: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false
-    // },
-    // email: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false
-    // },
+    refrigeration: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
     state: {
       type: DataTypes.STRING,
       defaultValue: 'Pendiente',

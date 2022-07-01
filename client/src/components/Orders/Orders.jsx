@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getOrders, getOrdersByUser } from '../../redux/actions';
+import { changeRefrigeration, getOrders, getOrdersByUser } from '../../redux/actions';
 import { useEffect } from 'react';
 import Estado from './Estado'
 import { institutes } from '../../utilities/institutes';
@@ -41,6 +41,15 @@ const Orders = () => {
       setOrdersFiltered(orders.filter(o => o.motive === motive))
     } else {
       setOrdersFiltered([])
+    }
+  }
+
+  async function handleRefrigeration(e) {
+    await dispatch(changeRefrigeration({id_ot: e.target.id, refrigeration: e.target.checked}))
+    if (localStorage.institute === 'Admin') {
+      dispatch(getOrders())
+    } else {
+      dispatch(getOrdersByUser(localStorage.user))
     }
   }
 
@@ -98,8 +107,9 @@ const Orders = () => {
                     </select>
                     : null}
                 </th>
+                <th>Refrigeración</th>
                 <th>Estado
-                {localStorage.institute === 'Admin' ?
+                  {localStorage.institute === 'Admin' ?
                     <select className='select select-xs h-3' onChange={e => filterState(e.target.value)}>
                       <option defaultValue value='all'>Todos</option>
                       <option value='Pendiente'>Pendiente</option>
@@ -159,6 +169,9 @@ const Orders = () => {
                     </th>
                     <th className='font-thin'>
                       {o.device.instituto}
+                    </th>
+                    <th className='font-thin'>
+                      <input id={o.id_ot} type="checkbox" checked={o.refrigeration} onChange={e => handleRefrigeration(e)}/>
                     </th>
                     <th className='font-thin'>
                       {localStorage.institute === 'Admin' ?
