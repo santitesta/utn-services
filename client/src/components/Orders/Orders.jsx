@@ -44,13 +44,18 @@ const Orders = () => {
     }
   }
 
-  async function handleRefrigeration(e) {
-    await dispatch(changeRefrigeration({id_ot: e.target.id, refrigeration: e.target.checked}))
-    if (localStorage.institute === 'Admin') {
-      dispatch(getOrders())
+  const filterRefrigeration = refrigeration => {
+    if (refrigeration !== 'all') {
+      setOrdersFiltered(orders.filter(o => o.refrigeration === refrigeration))
     } else {
-      dispatch(getOrdersByUser(localStorage.user))
+      setOrdersFiltered([])
     }
+  }
+
+  async function handleRefrigeration(e) {
+    await dispatch(changeRefrigeration({ id_ot: e.target.id, refrigeration: e.target.checked }))
+    dispatch(getOrders())
+    setOrdersFiltered([])
   }
 
   const verified = localStorage.verified
@@ -107,13 +112,21 @@ const Orders = () => {
                     </select>
                     : null}
                 </th>
-                <th>Refrigeración</th>
+                <th>Refrigeración
+                  {localStorage.institute === 'Admin' ?
+                    <select className='select select-xs h-3' onChange={e => filterRefrigeration(e.target.value)}>
+                      <option defaultValue value='all'>Todos</option>
+                      <option value={true}>Sí</option>
+                      <option value={false}>No</option>
+                    </select>
+                    : null}
+                </th>
                 <th>Estado
                   {localStorage.institute === 'Admin' ?
                     <select className='select select-xs h-3' onChange={e => filterState(e.target.value)}>
                       <option defaultValue value='all'>Todos</option>
                       <option value='Pendiente'>Pendiente</option>
-                      <option value='En reparacion'>En reparacion</option>
+                      <option value='En reparación'>En reparación</option>
                       <option value='Espera repuestos por UTN'>Espera repuestos por UTN</option>
                       <option value='Espera repuestos por Servicio'>Espera repuestos por Servicio</option>
                       <option value='Resuelto'>Resuelto</option>
@@ -146,6 +159,9 @@ const Orders = () => {
                     {o.device.instituto}
                   </th>
                   <th className='font-thin'>
+                    <input id={o.id_ot} type="checkbox" checked={o.refrigeration} onChange={e => handleRefrigeration(e)} />
+                  </th>
+                  <th className='font-thin'>
                     {localStorage.institute === 'Admin' ?
                       <Estado props={{ id_ot: o.id_ot, state: o.state }} />
                       : o.state
@@ -171,7 +187,7 @@ const Orders = () => {
                       {o.device.instituto}
                     </th>
                     <th className='font-thin'>
-                      <input id={o.id_ot} type="checkbox" checked={o.refrigeration} onChange={e => handleRefrigeration(e)}/>
+                      <input id={o.id_ot} type="checkbox" checked={o.refrigeration} onChange={e => handleRefrigeration(e)} />
                     </th>
                     <th className='font-thin'>
                       {localStorage.institute === 'Admin' ?
