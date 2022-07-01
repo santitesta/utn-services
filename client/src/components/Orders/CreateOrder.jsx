@@ -58,10 +58,13 @@ const CreateOrder = () => {
 
   return (
     <div className='flex flex-col w-full items-center mb-10'>
-
       {/* Crear ordenes y agregar comentarios */}
       <div className='flex w-4/5 justify-between'>
         <form onSubmit={handleSubmit(onSubmit)} className='mt-5 p-3 w-2/5 gap-2 flex flex-col'>
+          {localStorage.institute && <h1 className="alert shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            La creación de órdenes idealmente es para usuarios. Usar con discreción.</h1>
+          }
           <div className='flex gap-2'>
             <input type="number" className='input input-bordered input-primary w-1/5 p-2' placeholder='Equipo' {...register("id_inei")} />
             <select className='select select-bordered select-primary w-4/5' {...register('motive')}>
