@@ -13,6 +13,7 @@ const CreateOrder = () => {
     const date = new Date()
     const [day, month, year] = [date.getDate(), date.getMonth(), date.getFullYear()]
     if (!data.motive.length) alert('Falta un motivo para esta órden')
+    else if (!data.id_inei) alert('Si no sabe el Nº UTN o no está inventariado aún, ingrese 0')
     else {
       await dispatch(createOrder({
         id_inei: data.id_inei,
@@ -22,11 +23,7 @@ const CreateOrder = () => {
       }))
       reset()
     }
-  };
-  console.log('MES', new Date().getMonth())
-  console.log('DIA', new Date().getDate())
-  console.log('HORA', new Date().getHours())
-  console.log('MINUTOS', new Date().getMinutes())
+  }
 
   const onSubmitBro = async data => {
     const date = new Date()
