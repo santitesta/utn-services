@@ -53,6 +53,28 @@ async function getOrdersByUser(req, res) {
   }
 }
 
+async function getOrdersByInstitute(req, res) {
+  const { ins } = req.params
+  console.log('ins: ',ins)
+  try {
+    const orders = await Order.findAll({
+      order: [
+        ['id_ot', 'ASC'],
+      ],
+      include: [{
+        model: Device,
+        where: {
+          instituto: ins
+        }
+      }]
+    })
+    if (orders) res.send(orders)
+    else res.status(400).send()
+  } catch (error) {
+    res.status(500).send(error)
+  }
+}
+
 async function addCommentary(req, res) {
   const { id_ot, commentary } = req.body
   try {
@@ -101,6 +123,7 @@ module.exports = {
   createOrder,
   getOrders,
   getOrdersByUser,
+  getOrdersByInstitute,
   addCommentary,
   changeState,
   changeRefrigeration

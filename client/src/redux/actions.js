@@ -102,6 +102,14 @@ export function getOrdersByUser(email) {
 	};
 };
 
+export function getOrdersByInstitute(ins) {
+	return function (dispatch) {
+		return axios.get(`${url}/orders/institute/${ins}`)
+			.then(resp => dispatch({ type: GET_ORDERS, payload: resp.data }))
+			.catch(error => console.log('Action error in getOrdersByInstitute: ', error))
+	};
+};
+
 export function addCommentary(commentary) {
 	return function () {
 		return axios.put(`${url}/orders/commentary`, commentary)

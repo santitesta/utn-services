@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { changeRefrigeration, getOrders, getOrdersByUser } from '../../redux/actions';
+import { changeRefrigeration, getOrders, getOrdersByInstitute, getOrdersByUser } from '../../redux/actions';
 import { useEffect } from 'react';
 import Estado from './Estado'
 import { institutes } from '../../utilities/institutes';
@@ -15,6 +15,8 @@ const Orders = () => {
   useEffect(() => {
     if (localStorage.institute === 'Admin') {
       dispatch(getOrders())
+    } else if (localStorage.institute === institutes.INPB) {
+      dispatch(getOrdersByInstitute(localStorage.institute))
     } else {
       dispatch(getOrdersByUser(localStorage.user))
     }
