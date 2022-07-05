@@ -113,15 +113,15 @@ const Orders = () => {
                     </select>
                     : null}
                 </th>
-                <th>Refrigeración
-                  {localStorage.institute === 'Admin' ?
+                {localStorage.institute === 'Admin' ?
+                  <th>Refrigeración
                     <select className='select select-xs h-3' onChange={e => filterRefrigeration(e.target.value)}>
                       <option defaultValue value='all'>Todos</option>
                       <option value={true}>Sí</option>
                       <option value={false}>No</option>
                     </select>
-                    : null}
-                </th>
+                  </th>
+                  : null}
                 <th>Estado
                   {localStorage.institute === 'Admin' ?
                     <select className='select select-xs h-3' onChange={e => filterState(e.target.value)}>
@@ -159,11 +159,11 @@ const Orders = () => {
                   <th className='font-thin'>
                     {o.device.instituto}
                   </th>
-                  <th className='font-thin'>
-                    {localStorage.institute === 'Admin' ?
+                  {localStorage.institute === 'Admin' ?
+                    <th className='font-thin'>
                       <input id={o.id_ot} type="checkbox" className='checkbox' checked={o.refrigeration} onChange={e => handleRefrigeration(e)} />
-                      : <input type="checkbox" className='checkbox' checked={o.refrigeration} disabled />}
-                  </th>
+                    </th>
+                    : null}
                   <th className='font-thin'>
                     {localStorage.institute === 'Admin' ?
                       <Estado props={{ id_ot: o.id_ot, state: o.state }} />
@@ -190,8 +190,10 @@ const Orders = () => {
                       {o.device.instituto}
                     </th>
                     {localStorage.institute === 'Admin' ?
-                      <input id={o.id_ot} type="checkbox" className='checkbox' checked={o.refrigeration} onChange={e => handleRefrigeration(e)} />
-                      : <input type="checkbox" className='checkbox' checked={o.refrigeration} disabled />}
+                      <th className='font-thin'>
+                        <input id={o.id_ot} type="checkbox" className='checkbox' checked={o.refrigeration} onChange={e => handleRefrigeration(e)} />
+                      </th>
+                      : null}
                     <th className='font-thin'>
                       {localStorage.institute === 'Admin' ?
                         <Estado props={{ id_ot: o.id_ot, state: o.state }} />
