@@ -50,8 +50,7 @@ async function changeVerification(req, res) {
       {
         where: { email: email }
       })
-    if (!rowsUpdated.length) { res.status(200).send() }
-    else { res.status(304).send() }
+    res.status(200).send()
   } catch (error) {
     res.status(404).send(error)
   }
