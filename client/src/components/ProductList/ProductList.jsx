@@ -25,9 +25,6 @@ export default function ProductList() {
             <div class="card-body">
               <h2 class="card-title">{device.id_inei} - {device.equipo}</h2>
               <p>{device.instituto} - {device.departamento}</p>
-              <div class="card-actions justify-end">
-                <NavLink className="btn btn-secondary" to='/order'>Solicitar orden</NavLink>
-              </div>
             </div>
           </div>
           : currentProducts.map((product) => (

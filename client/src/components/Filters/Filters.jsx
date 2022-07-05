@@ -24,8 +24,8 @@ function Filters() {
     <div className='w-1/5 grid justify-items-center content-start'>
       {localStorage.institute === 'Admin' ?
         <form onSubmit={handleSubmit(onSubmit)} className='mt-3 grid justify-items-center content-start'>
-          <input type="number" placeholder='Buscar por id...' {...register("id_inei")} className="input input-bordered input-accent m-1 w-40 max-w-xs" disabled={watch("instituto")} />
-          <select {...register("instituto")} className='select select-accent m-1 w-40 max-w-xs' disabled={watch("id_inei")}>
+          <input type="number" placeholder='Buscar por Nº UTN...' {...register("id_inei")} className="input input-bordered input-accent m-1 w-44 max-w-xs" disabled={watch("instituto")} />
+          <select {...register("instituto")} className='select select-accent m-1 w-44 max-w-xs' disabled={watch("id_inei")}>
             <option defaultValue value="">Elija Instituto...</option>
             <option value="I.N.E.I.">INEI</option>
             <option value="I.N.P.B.">INPB</option>
@@ -44,8 +44,8 @@ function Filters() {
           <div className='mt-3 grid justify-items-center content-start'>
             <div className='badge badge-primary p-6 text-4xl'>{localStorage.institute}</div>
             <form onSubmit={handleSubmit(onSubmit)} className='mt-3 grid justify-items-center content-start'>
-              <input type="number" placeholder='ID...' {...register("id_inei")} className='input input-bordered input-accent m-1 w-40 max-w-xs' disabled={watch("instituto")} />
-              <input type="submit" value='Buscar todos' className='m-1 btn btn-secondary text-sm' />
+              <input type="number" placeholder='Nº UTN...' {...register("id_inei")} className='input input-bordered input-accent m-1 w-44 max-w-xs' disabled={watch("instituto")} />
+              <input type="submit" value='Buscar por id o todos' className='m-1 btn btn-secondary text-sm' />
             </form>
           </div>
           : <h1>Debe estar logeado para ver equipos</h1>
