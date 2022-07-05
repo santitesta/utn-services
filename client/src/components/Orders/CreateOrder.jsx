@@ -10,22 +10,30 @@ const CreateOrder = () => {
   const { register: register2, handleSubmit: handleSubmit2, reset: reset2 } = useForm();
 
   const onSubmit = async data => {
+    const date = new Date()
+    const [day, month, year] = [date.getDate(), date.getMonth(), date.getFullYear()]
     if (!data.motive.length) alert('Falta un motivo para esta órden')
     else {
       await dispatch(createOrder({
         id_inei: data.id_inei,
         email: localStorage.user,
         motive: data.motive,
-        commentary: `${localStorage.user}: ${data.commentary}`
+        commentary: `${day}/${month + 1} ${year} ${localStorage.user}: ${data.commentary}`
       }))
       reset()
     }
   };
+  console.log('MES', new Date().getMonth())
+  console.log('DIA', new Date().getDate())
+  console.log('HORA', new Date().getHours())
+  console.log('MINUTOS', new Date().getMinutes())
 
   const onSubmitBro = async data => {
+    const date = new Date()
+    const [day, month, year] = [date.getDate(), date.getMonth(), date.getFullYear()]
     await dispatch(addCommentary({
       id_ot: data.id_ot,
-      commentary: `${localStorage.user}: ${data.commentaryUpdate}`
+      commentary: `${day}/${month + 1} ${year} ${localStorage.user}: ${data.commentaryUpdate}`
     }))
     reset2()
   };
