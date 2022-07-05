@@ -28,8 +28,9 @@ function Landing() {
     <>
       {sign === '' &&
         <div className={styles.container}>
-          <h1 className={styles.title}>UTN SERVICES</h1>
-          <NavLink className={styles.linkHome} to='/home'>Home</NavLink>
+          <img src={require('./logo512.png')} alt="" className='w-40 h-40'/>
+          <h1 className={styles.title}>Seguimiento UTN</h1>
+          <NavLink className={styles.linkHome} to='/home'>Ingresar</NavLink>
           <div className={styles.auth}>
             <div className='flex justify-center gap-10'>
               {!localStorage.getItem("user") ?
