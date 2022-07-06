@@ -6,7 +6,7 @@ import Users from "./Users";
 
 
 export default function AdminPage() {
-  const [Page, setPage] = useState('Users');
+  const [Page, setPage] = useState('viewOrders');
 
   function HandlePage(e) {
     if (e === 'Users') setPage('Users')
@@ -46,7 +46,10 @@ export default function AdminPage() {
         <li>
           <button
             onClick={() => HandlePage('Users')}
-            className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-grey hover:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
+            className={Page === 'Users'
+              ? "bg-zinc-300 flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-grey hover:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
+              : "flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-grey hover:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
+            }
           >
             <svg
               className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-black-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -66,7 +69,10 @@ export default function AdminPage() {
         <li>
           <button
             onClick={() => HandlePage('viewOrders')}
-            className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-grey hover:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
+            className={Page === 'viewOrders'
+              ? "bg-zinc-300 flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-grey hover:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
+              : "flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-grey hover:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
+            }
           >
             <svg
               className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -82,7 +88,10 @@ export default function AdminPage() {
         <li>
           <button
             onClick={() => HandlePage('createOrder')}
-            className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-grey hover:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
+            className={Page === 'createOrder'
+              ? "bg-zinc-300 flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-grey hover:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
+              : "flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-grey hover:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
+            }
           >
             <svg
               className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -109,6 +118,6 @@ export default function AdminPage() {
           <CreateOrder />
         }
       </div>
-    </div>
+    </div >
   );
 }
