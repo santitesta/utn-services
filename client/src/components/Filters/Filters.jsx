@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { getDeviceById, getDeviceByInstitute } from '../../redux/actions';
 import { useForm } from "react-hook-form";
+import { institutes } from '../../utilities/institutes';
+import { services } from '../../utilities/services';
 // import styles from './Filters.module.css'
 
 function Filters() {
@@ -19,6 +21,7 @@ function Filters() {
       reset()
     } else alert('Antes elija algún filtro');
   };
+  console.log('Esto: ',watch("instituto") === institutes.INEI)
 
   return (
     <div className='w-1/5 grid justify-items-center content-start'>
@@ -27,17 +30,11 @@ function Filters() {
           <input type="number" placeholder='Buscar por Nº UTN...' {...register("id_inei")} className="input input-bordered input-accent m-1 w-44 max-w-xs" disabled={watch("instituto")} />
           <select {...register("instituto")} className='select select-accent m-1 w-44 max-w-xs' disabled={watch("id_inei")}>
             <option defaultValue value="">Elija Instituto...</option>
-            <option value="I.N.E.I.">INEI</option>
-            <option value="I.N.P.B.">INPB</option>
-            <option value="C.N.C.C.B.">CNCCB</option>
-            <option value="U.O.C.C.B.">UOCCB</option>
-            <option value="Dr. C. G. Malbrán">Dr Carlos Malbrán</option>
-            <option value="I.N.P.">INP</option>
-            <option value="C.N.G.M.">CNGM</option>
-            <option value="I.N.E.">INE</option>
-            <option value="UTN MDQ">UTN MDQ</option>
-            <option value="CENDIE">CENDIE</option>
+            {Object.keys(institutes).map(i => {
+              return <option value={institutes[i]}>{institutes[i]}</option>
+            })}
           </select>
+          <input type="number" placeholder={watch("instituto") === institutes.INEI ? 'Algo' : 'Algo más...'} {...register("id_inei")} className="input input-bordered input-accent m-1 w-44 max-w-xs" disabled={watch("instituto")} />
           <input type="submit" value='Buscar' className='btn btn-secondary m-1' />
         </form>
         : localStorage.institute ?
