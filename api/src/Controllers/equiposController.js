@@ -51,8 +51,30 @@ async function getDeviceByInstitute(req, res) {
   }
 }
 
+async function getDeviceByService(req, res) {
+  const { serv } = req.params;
+
+  try {
+    let device = await Device.findAll({
+      where: {
+        servicio: serv
+      },
+      limit: 100,
+      order: [
+        ["id_inei", "ASC"],
+      ]
+    })
+    if (device.length) res.json(device)
+    else res.status(204).send()
+
+  } catch (error) {
+    res.status(500).send(error)
+  }
+}
+
 module.exports = {
   getEquipos,
   getDeviceById,
-  getDeviceByInstitute
+  getDeviceByInstitute,
+  getDeviceByService
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { getDeviceById, getDeviceByInstitute } from '../../redux/actions';
+import { getDeviceById, getDeviceByInstitute, getDeviceByService } from '../../redux/actions';
 import { useForm } from "react-hook-form";
 import { institutes } from '../../utilities/institutes';
 import { services } from '../../utilities/services';
@@ -11,20 +11,20 @@ function Filters() {
   const { register, handleSubmit, watch, reset } = useForm();
 
   const onSubmit = async data => {
-    // if(data.servicio) {
-    //   dispatch(getDevicesByService)
-    // }
+    console.log('Data: ', data)
     if (localStorage.institute !== 'Admin') data.instituto = localStorage.institute
     if (data.id_inei.length) {
       if (localStorage.institute === 'Admin') data.instituto = localStorage.institute
       dispatch(getDeviceById({ id: data.id_inei, institute: data.instituto }))
+      reset()
+    } else if (data.servicio) {
+      dispatch(getDeviceByService(data.servicio))
       reset()
     } else if (data.instituto.length) {
       dispatch(getDeviceByInstitute(data.instituto))
       reset()
     } else alert('Antes elija algún filtro');
   };
-  console.log('Esto: ', watch("instituto") === institutes.INEI)
 
   return (
     <div className='w-1/5 grid justify-items-center content-start'>
@@ -44,7 +44,7 @@ function Filters() {
             {...register("instituto")}
             disabled={watch("id_inei")}>
 
-            <option defaultValue value="">Instituto...</option>
+            <option defaultValue="" value="">Instituto...</option>
             {Object.keys(institutes).map(i => {
               return <option key={i} value={institutes[i]}>{institutes[i]}</option>
             })}
@@ -55,7 +55,7 @@ function Filters() {
             {...register("servicio")}
             disabled={!watch("instituto") || !services[watch("instituto")].length}>
 
-            <option defaultValue value="">Servicio...</option>
+            <option defaultValue="" value="">Servicio...</option>
             {watch("instituto") && services[watch("instituto")].map(s => {
               return <option value={s}>{s}</option>
             })}
