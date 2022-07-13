@@ -1,4 +1,6 @@
 const { Device } = require("../db")
+const path = require('path')
+const fs = require('fs')
 
 async function getEquipos(req, res) {
   try {
@@ -42,6 +44,20 @@ async function getDeviceByInstitute(req, res) {
       order: [
         ["id_inei", "ASC"],
       ]
+    })
+    device.map(d => {
+      fs.stat(`./src/Controllers/fotos/${d.id_inei}.JPG`, (error, stats) => {
+        if (error) {
+          console.log(`${d.id_inei} - No existe`)
+        } else {
+          console.log(`${d.id_inei} - Existe!!!`)
+        }
+      })
+      // if (fs.existsSync(`./fotos/${d.id_inei}.JPG`)) {
+      //   console.log(`${d.id_inei} - Existe`)
+      // } else {
+      //   console.log(`${d.id_inei} - No existe`)
+      // }
     })
     if (device.length) res.json(device)
     else res.status(204).send()

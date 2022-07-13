@@ -28,9 +28,11 @@ export default function ProductList() {
             </div>
           </div>
           : currentProducts.map((product) => (
-            <div class="card w-40 h-40 bg-base-100 shadow-xl">
+            <div class="card w-40 h-80 bg-base-100 shadow-xl">
               <div class="card-body p-4 ">
                 <h2 class="card-title text-base">{product.id_inei}</h2>
+                {/* <img src={require(`./fotos/${product.id_inei}.JPG`)} alt="" /> */}
+                <img src={require(`./../../../../../UTNDB/data/fotos/${product.id_inei}.JPG`)} alt="" />
                 <h2 class="card-title text-base h-1/3">{product.equipo}</h2>
                 <p className='h-1/3'>{product.instituto}{product.departamento === '-' ? null : ` - ${product.departamento}`}</p>
               </div>
