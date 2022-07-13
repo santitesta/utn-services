@@ -8,6 +8,7 @@ if (process.env.STAGE !== "development") {
 export const GET_USERS = "GET_USERS"
 export const GET_DEVICE_BY_ID = "GET_DEVICE_BY_ID"
 export const GET_DEVICE_BY_INSTITUTE = "GET_DEVICE_BY_INSTITUTE"
+export const GET_DEVICE_BY_SERVICE = "GET_DEVICE_BY_SERVICE"
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const GET_ORDERS = "GET_ORDERS";
@@ -27,6 +28,16 @@ export const getDeviceByInstitute = (ins) => {
 				dispatch({ type: GET_DEVICE_BY_INSTITUTE, payload: resp.data })
 			})
 			.catch(error => alert('Action Error in getDeviceByInstitute: ', error))
+	}
+}
+
+export const getDeviceByService = (serv) => {
+	return function (dispatch) {
+		return axios.get(`${url}/equipos/serv/${serv}`)
+			.then(resp => {
+				dispatch({ type: GET_DEVICE_BY_SERVICE, payload: resp.data })
+			})
+			.catch(error => alert('Action Error in getDeviceByService: ', error))
 	}
 }
 

@@ -1,6 +1,7 @@
 import {
     GET_DEVICE_BY_ID,
     GET_DEVICE_BY_INSTITUTE,
+    GET_DEVICE_BY_SERVICE,
     GET_USERS,
     LOGIN,
     LOGOUT,
@@ -35,6 +36,13 @@ export function rootReducer(state = initialState, { type, payload }) {
         case GET_DEVICE_BY_INSTITUTE:
             if (payload.device.length) {
                 return { ...state, equipos: payload.device, equipo: {}, ph: payload.ph }
+            }
+            alert('No tiene equipos cargados')
+            return { ...state }
+
+        case GET_DEVICE_BY_SERVICE:
+            if (payload.length) {
+                return { ...state, equipos: payload, equipo: {} }
             }
             alert('No tiene equipos cargados')
             return { ...state }
