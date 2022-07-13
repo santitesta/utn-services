@@ -45,21 +45,17 @@ async function getDeviceByInstitute(req, res) {
         ["id_inei", "ASC"],
       ]
     })
-    device.map(d => {
-      fs.stat(`./src/Controllers/fotos/${d.id_inei}.JPG`, (error, stats) => {
-        if (error) {
-          console.log(`${d.id_inei} - No existe`)
-        } else {
-          console.log(`${d.id_inei} - Existe!!!`)
-        }
-      })
-      // if (fs.existsSync(`./fotos/${d.id_inei}.JPG`)) {
-      //   console.log(`${d.id_inei} - Existe`)
-      // } else {
-      //   console.log(`${d.id_inei} - No existe`)
-      // }
+    let ph = {}
+    let check;
+    device.forEach(d => {
+      try {
+        fs.statSync(`./../../UTNDB/data/fotos/${d.id_inei}.jpg`)
+        ph[d.id_inei] = 1
+      } catch (error) {
+        ph[d.id_inei] = 0
+      }
     })
-    if (device.length) res.json(device)
+    if (device.length) res.json({ device, ph })
     else res.status(204).send()
 
   } catch (error) {

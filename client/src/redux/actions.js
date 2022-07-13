@@ -141,7 +141,7 @@ export function deleteUser(email) {
 	return function () {
 		return axios.delete(`${url}/user/${email}`)
 			.then(resp => {
-				if(resp.data.success) alert(resp.data.success)
+				if (resp.data.success) alert(resp.data.success)
 				else alert('Action error in deleteUser')
 			})
 			.catch(error => console.log('Action error in deleteUser: ', error))

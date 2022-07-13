@@ -6,6 +6,7 @@ import Pagination from '../Pagination/Pagination';
 export default function ProductList() {
   const devices = useSelector(state => state.equipos)
   const device = useSelector(state => state.equipo)
+  const ph = useSelector(state => state.ph)
 
   //PAGINATION
   const [currentPage, setCurrentPage] = useState(1);
@@ -32,7 +33,10 @@ export default function ProductList() {
               <div class="card-body p-4 ">
                 <h2 class="card-title text-base">{product.id_inei}</h2>
                 {/* <img src={require(`./fotos/${product.id_inei}.JPG`)} alt="" /> */}
-                <img src={require(`./../../../../../UTNDB/data/fotos/${product.id_inei}.JPG`)} alt="" />
+                {ph[product.id_inei] === 1 ?
+                  <img src={require(`./../../../../../UTNDB/data/fotos/${product.id_inei}.jpg`)} alt="Nada rey" />
+                  : <img src={'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YmFua3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'} alt="" />
+                }
                 <h2 class="card-title text-base h-1/3">{product.equipo}</h2>
                 <p className='h-1/3'>{product.instituto}{product.departamento === '-' ? null : ` - ${product.departamento}`}</p>
               </div>

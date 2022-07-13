@@ -33,8 +33,8 @@ export function rootReducer(state = initialState, { type, payload }) {
             return { ...state, equipo: payload }
 
         case GET_DEVICE_BY_INSTITUTE:
-            if (payload.length) {
-                return { ...state, equipos: payload, equipo: {} }
+            if (payload.device.length) {
+                return { ...state, equipos: payload.device, equipo: {}, ph: payload.ph }
             }
             alert('No tiene equipos cargados')
             return { ...state }
@@ -60,7 +60,7 @@ export function rootReducer(state = initialState, { type, payload }) {
             return { ...state, loggedUser: '', institute: null, verified: null, equipos: [], equipo: {} }
 
         case GET_ORDERS:
-            return {...state, orders: payload}
+            return { ...state, orders: payload }
 
         default: return state;
     }
