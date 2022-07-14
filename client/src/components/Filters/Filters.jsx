@@ -57,7 +57,7 @@ function Filters() {
 
             <option defaultValue="" value="">Servicio...</option>
             {watch("instituto") && services[watch("instituto")].map(s => {
-              return <option value={s}>{s}</option>
+              return <option key={s} value={s}>{s}</option>
             })}
           </select>
 

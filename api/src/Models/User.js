@@ -15,6 +15,12 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    department: {
+      type: DataTypes.STRING,
+    },
+    service: {
+      type: DataTypes.STRING,
+    },
     verified: {
       type: DataTypes.BOOLEAN,
       defaultValue: false

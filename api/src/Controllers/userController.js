@@ -10,11 +10,11 @@ async function getUsers(req, res) {
 }
 
 async function signUp(req, res) {
-  const { email, password, institute } = req.body;
+  const { email, password, institute, department, service } = req.body;
   try {
     const [user, created] = await User.findOrCreate({
       where: { email },
-      defaults: { email, password, institute }
+      defaults: { email, password, institute, department, service }
     })
     if (created) res.json(user)
     else res.send('Email already in use')
