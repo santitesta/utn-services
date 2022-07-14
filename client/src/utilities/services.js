@@ -1,88 +1,98 @@
 import { institutes } from "./institutes"
+import { departments } from "./departments"
 
 export const services = {
-  [institutes.CENDIE]: [],
-  [institutes.CNCCB]: [],
-  [institutes.CNGM]: [
+  [departments[institutes.CENDIE][0]]: ['NA'],
+  [departments[institutes.CNCCB][0]]: [],
+  [departments[institutes.CNGM][0]]: [
     'Diagnóstico Genético 3ºP',
     'Genética Médica y Poblacional',
     'Genética experimental',
     'Diagnóstico Genético 4ºP'
   ],
-  [institutes.MALBRAN]: [
-    'Recepción de muestras',
-    'Seguridad e Higiene',
+  [departments[institutes.MALBRAN][0]]: [
+    'Administración',
     'Arquitectura',
     'Jardín',
-    'Residuos patogénicos'
+    'Laboratorio colecciones',
+    'Recepción de muestras',
+    'Residuos patogénicos',
+    'Seguridad e Higiene',
+    'Sistemas'
   ],
-  [institutes.INE]: [
-    'Virología',
-    'Inmunoserología',
-    'Bacteriología',
-    'Micobacterias'
-  ],
-  [institutes.INEI]: [
-    'Micología',
-    'Parasitología',
+  [departments[institutes.INE][0]]: departments[institutes.INE][0],
+  [departments[institutes.INE][1]]: departments[institutes.INE][1],
+  [departments[institutes.INE][2]]: departments[institutes.INE][2],
+  [departments[institutes.INE][3]]: departments[institutes.INE][3],
+  [departments[institutes.INEI][0]]: [
     'Antimicrobianos',
+    'Bacteriología',
+    'Brucelosis',
     'Clínica',
-    'Sanitaria',
-    'Especial',
     'Enterobacterias',
+    'Especial',
+    'ETS',
     'Fisiopatogenia',
     'Micobacterias',
-    'Brucelosis',
-    'ETS',
-    'HIV',
-    'Hantavirus',
-    'Neurovirosis',
-    'Hepatitis',
+    'Sanitaria'
+  ],
+  [departments[institutes.INEI][1]]: [
+    'Micología',
+  ],
+  [departments[institutes.INEI][2]]: [
+    'Parasitología',
+  ],
+  [departments[institutes.INEI][3]]: [
     'Congénitas, perinatales y de transmisión sexual',
     'Cultivo de tejidos',
+    'Gastroenteritis',
+    'Hantavirus',
+    'Hepatitis',
+    'HIV',
+    'Neurovirosis',
     'Oncogénicos',
     'Respiratorio',
-    'Bacteriología',
-    'Virología',
-    'Gastroenteritis'
+    'Virología'
   ],
-  [institutes.INP]: [
-    'Producción 7ºP',
-    'Investigación 3ºP',
+  [departments[institutes.INP][0]]: [
+    'Administración 6ºP',
     'Clínica 2ºP',
-    'Diagnóstico PB',
     'Clínica 3ºP',
+    'Diagnóstico PB',
+    'Investigación 3ºP',
     'Investigación 4ºP',
     'Investigación 5ºP',
-    'Administración 6ºP'
+    'Producción 7ºP',
   ],
-  [institutes.INPB]: [
-    'Laboratorio de control',
+  [departments[institutes.INPB][0]]: [
     'Antígenos y Antisueros',
     'Apoyo Técnico',
     'B.C.G.',
     'Bioterio Central',
     'Bioterio de Experimentación',
+    'Campo Marcos Paz',
+    'Depósito de materias primas',
+    'Dirección expedición',
+    'Dirección técnica',
     'Dpto. Bioterio y Act. Agropecuarias',
-    'Laboratorio Central de Liofilización',
     'Envases',
+    'Extensión Investigación y desarrollo',
+    'Gestión de la calidad',
     'Investigación y Desarrollo',
+    'Laboratorio Central de Liofilización',
+    'Laboratorio de control',
+    'Mantenimiento',
+    'Planta de agua',
     'Rabia',
     'Serpentario y Aracnario',
     'Sueros Terapéuticos',
     'Toxinas y Toxoides',
     'Vacunas Bacterianas',
-    'Campo Marcos Paz',
-    'Extensión Investigación y desarrollo',
-    'Depósito de materias primas',
-    'Direccion Tecnica',
-    'Dirección expedición',
-    'Mantenimiento',
     'Vacunas y Sueros',
-    'Gestión de la calidad',
-    'Planta de agua'
   ],
-  [institutes.UOCCB]: [],
-  [institutes.UTNMDQ]: [],
-  [institutes.ADMIN]: "Admin"
+  [departments[institutes.UTNMDQ][0]]: ['NA'],
+  [departments[institutes.UOCCB][0]]: [
+    'NA',
+    'Extensión UOCCB'
+  ],
 }
