@@ -14,7 +14,10 @@ export default function Signup() {
 
   const onSubmit = async data => {
     console.log('Data: ', data)
-    // dispatch(signUp(data))
+    await dispatch(signUp(data))
+    if(localStorage.user) {
+      navigate("/home")
+    }
     reset()
   };
 
