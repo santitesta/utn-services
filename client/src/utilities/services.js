@@ -3,7 +3,7 @@ import { departments } from "./departments"
 
 export const services = {
   [departments[institutes.CENDIE][0]]: ['NA'],
-  [departments[institutes.CNCCB][0]]: [],
+  [departments[institutes.CNCCB][0]]: ['NA'],
   [departments[institutes.CNGM][0]]: [
     'Diagnóstico Genético 3ºP',
     'Genética Médica y Poblacional',
