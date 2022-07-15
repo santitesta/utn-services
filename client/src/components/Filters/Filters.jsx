@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { getDeviceById, getDeviceByInstitute, getDeviceByService } from '../../redux/actions';
 import { useForm } from "react-hook-form";
 import { institutes } from '../../utilities/institutes';
-import { services } from '../../utilities/services';
+import { hierarchy } from '../../utilities/hierarchy';
 // import styles from './Filters.module.css'
 
 function Filters() {
@@ -20,6 +20,9 @@ function Filters() {
     } else if (data.servicio) {
       dispatch(getDeviceByService(data.servicio))
       reset()
+    // } else if (data.departamento) {
+    //   dispatch(getDeviceByDepartment(data.servicio))
+    //   reset()
     } else if (data.instituto.length) {
       dispatch(getDeviceByInstitute(data.instituto))
       reset()
@@ -52,11 +55,22 @@ function Filters() {
 
           <select
             className='select select-accent m-1 w-44 max-w-xs'
+            {...register("departamento")}
+            disabled={!watch("instituto") || watch("instituto") === 'Admin'}>
+
+            <option defaultValue="" value="">Departamento...</option>
+            {watch("instituto") && Object.keys(hierarchy[watch("instituto")]).map(d => {
+              return <option key={d} value={d}>{d}</option>
+            })}
+          </select>
+
+          <select
+            className='select select-accent m-1 w-44 max-w-xs'
             {...register("servicio")}
-            disabled={!watch("instituto") || !services[watch("instituto")].length}>
+            disabled={!watch("instituto") || watch("instituto") === 'Admin' || !watch("departamento")}>
 
             <option defaultValue="" value="">Servicio...</option>
-            {watch("instituto") && services[watch("instituto")].map(s => {
+            {watch("instituto") && watch("departamento") && hierarchy[watch("instituto")][watch("departamento")].map(s => {
               return <option key={s} value={s}>{s}</option>
             })}
           </select>
