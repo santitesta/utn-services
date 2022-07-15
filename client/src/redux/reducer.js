@@ -56,9 +56,10 @@ export function rootReducer(state = initialState, { type, payload }) {
             else if (payload.email) {
                 alert(`Bienvenido ${payload.email.split('@')[0]}`)
                 localStorage.setItem("user", payload.email)
+                localStorage.setItem("userFull", JSON.stringify(payload))
                 localStorage.setItem("institute", payload.institute)
                 localStorage.setItem("verified", payload.verified)
-                return { ...state, loggedUser: payload.mail, institute: payload.institute, verified: payload.verified }
+                return { ...state, loggedUser: payload.email, institute: payload.institute, verified: payload.verified }
             } else return { ...state, loggedUser: '', institute: '' }
 
         case LOGOUT:

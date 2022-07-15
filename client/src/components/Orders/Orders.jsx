@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { changeRefrigeration, getOrders, getOrdersByInstitute, getOrdersByUser } from '../../redux/actions';
+import { changeRefrigeration, getOrders, getOrdersByInstitute, getOrdersByPermission, getOrdersByUser } from '../../redux/actions';
 import { useEffect } from 'react';
 import Estado from './Estado'
 import { institutes } from '../../utilities/institutes';
@@ -18,7 +18,8 @@ const Orders = () => {
     } else if (localStorage.institute === institutes.INPB) {
       dispatch(getOrdersByInstitute(localStorage.institute))
     } else {
-      dispatch(getOrdersByUser(localStorage.user))
+      // dispatch(getOrdersByUser(localStorage.user))
+      dispatch(getOrdersByPermission(JSON.parse(localStorage.userFull)))
     }
   }, [dispatch])
 
@@ -98,6 +99,7 @@ const Orders = () => {
               <tr>
                 <th>Orden de trabajo</th>
                 <th>Equipo</th>
+
                 <th className='flex flex-col items-center'>Instituto
                   {localStorage.institute === 'Admin' ?
                     <select className='select select-xs h-3' onChange={e => filterInstitute(e.target.value)}>
@@ -115,6 +117,10 @@ const Orders = () => {
                     </select>
                     : null}
                 </th>
+
+                <th>Departamento</th>
+                <th>Servicio</th>
+
                 {localStorage.institute === 'Admin' ?
                   <th>Refrigeración
                     <select className='select select-xs h-3' onChange={e => filterRefrigeration(e.target.value)}>
@@ -124,6 +130,7 @@ const Orders = () => {
                     </select>
                   </th>
                   : null}
+
                 <th>Estado
                   {localStorage.institute === 'Admin' ?
                     <select className='select select-xs h-3' onChange={e => filterState(e.target.value)}>
@@ -136,6 +143,7 @@ const Orders = () => {
                     </select>
                     : null}
                 </th>
+
                 <th>Motivo
                   {localStorage.institute === 'Admin' ?
                     <select className='select select-xs h-3' onChange={e => filterMotive(e.target.value)}>
@@ -146,6 +154,7 @@ const Orders = () => {
                     </select>
                     : null}
                 </th>
+
                 <th>Comentarios</th>
               </tr>
             </thead>
@@ -160,6 +169,12 @@ const Orders = () => {
                   </th>
                   <th className='font-thin'>
                     {o.device.instituto}
+                  </th>
+                  <th className='font-thin'>
+                    {o.device.departamento}
+                  </th>
+                  <th className='font-thin'>
+                    {o.device.servicio}
                   </th>
                   {localStorage.institute === 'Admin' ?
                     <th className='font-thin'>
@@ -190,6 +205,12 @@ const Orders = () => {
                     </th>
                     <th className='font-thin'>
                       {o.device.instituto}
+                    </th>
+                    <th className='font-thin'>
+                      {o.device.departamento}
+                    </th>
+                    <th className='font-thin'>
+                      {o.device.servicio}
                     </th>
                     {localStorage.institute === 'Admin' ?
                       <th className='font-thin'>

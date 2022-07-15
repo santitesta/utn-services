@@ -53,9 +53,35 @@ async function getOrdersByUser(req, res) {
   }
 }
 
+async function getOrdersByPermission(req, res) {
+  const { instituto, departamento, servicio } = req.params
+  let whereStatement = { instituto }
+  if (departamento !== 'null') {
+    whereStatement.departamento = departamento
+  }
+  if (servicio !== 'null') {
+    whereStatement.servicio = servicio
+  }
+  try {
+    const orders = await Order.findAll({
+      order: [
+        ['id_ot', 'ASC'],
+      ],
+      include: [{
+        model: Device,
+        where: whereStatement
+      }]
+    })
+    if (orders) res.send(orders)
+    else res.status(400).send()
+  } catch (error) {
+    res.status(500).send(error)
+  }
+}
+
 async function getOrdersByInstitute(req, res) {
   const { ins } = req.params
-  console.log('ins: ',ins)
+  console.log('ins: ', ins)
   try {
     const orders = await Order.findAll({
       order: [
@@ -123,6 +149,7 @@ module.exports = {
   createOrder,
   getOrders,
   getOrdersByUser,
+  getOrdersByPermission,
   getOrdersByInstitute,
   addCommentary,
   changeState,

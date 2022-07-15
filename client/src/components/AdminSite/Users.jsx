@@ -44,6 +44,8 @@ export default function Users() {
               <tr>
                 <th>Nombre</th>
                 <th>Instituto</th>
+                <th>Departamento</th>
+                <th>Servicio</th>
                 <th>Verificado</th>
                 <th>Borrar usuario</th>
               </tr>
@@ -56,6 +58,12 @@ export default function Users() {
                   </th>
                   <th className='font-thin'>
                     {u.institute}
+                  </th>
+                  <th className='font-thin'>
+                    {u.department}
+                  </th>
+                  <th className='font-thin'>
+                    {u.service}
                   </th>
                   <th>
                     <label>

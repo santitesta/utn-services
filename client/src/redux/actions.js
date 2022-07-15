@@ -113,6 +113,14 @@ export function getOrdersByUser(email) {
 	};
 };
 
+export function getOrdersByPermission(user) {
+	return function (dispatch) {
+		return axios.get(`${url}/orders/${user.institute}/${user.department}/${user.service}`)
+			.then(resp => dispatch({ type: GET_ORDERS, payload: resp.data }))
+			.catch(error => console.log('Action error in getOrdersByUser: ', error))
+	};
+};
+
 export function getOrdersByInstitute(ins) {
 	return function (dispatch) {
 		return axios.get(`${url}/orders/institute/${ins}`)
