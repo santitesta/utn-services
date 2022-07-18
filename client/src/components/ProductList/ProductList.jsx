@@ -36,10 +36,10 @@ export default function ProductList() {
               <div class="card-body p-4 ">
 
                 <h2 class="card-title text-base">{product.id_inei}</h2>
-                {/* {ph[product.id_inei] === 1 ?
+                {ph[product.id_inei] === 1 ?
                   <img src={require(`./../../../../../UTNDB/data/fotos/${product.id_inei}.jpg`)} alt="Nada rey" />
                   : <img src={require('./../../utilities/sin_imagen.png')} alt="" />
-                } */}
+                }
                 <h2 class="card-title text-base h-1/3">{product.equipo}</h2>
                 <p className='h-1/3'>{product.instituto}{product.departamento === '-' ? null : ` - ${product.departamento}`}</p>
               </div>
