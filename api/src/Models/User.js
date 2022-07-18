@@ -11,6 +11,9 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    nickname: {
+      type: DataTypes.STRING
+    },
     institute: {
       type: DataTypes.STRING,
       allowNull: false

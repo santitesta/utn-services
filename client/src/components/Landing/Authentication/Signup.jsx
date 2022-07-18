@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { login, signUp } from '../../../redux/actions';
-import { validateSignUp } from './validateSignUp';
+import { signUp } from '../../../redux/actions';
 import { useNavigate } from 'react-router-dom'
-import { institutes } from '../../../utilities/institutes'
 import { hierarchy } from '../../../utilities/hierarchy';
 import { useForm } from 'react-hook-form';
 
@@ -13,9 +11,8 @@ export default function Signup() {
   const { register, handleSubmit, watch, reset, resetField } = useForm();
 
   const onSubmit = async data => {
-    console.log('Data: ', data)
     await dispatch(signUp(data))
-    if(localStorage.user) {
+    if (localStorage.user) {
       navigate("/home")
     }
     reset()
@@ -27,16 +24,23 @@ export default function Signup() {
 
       <input type="text"
         name='email'
-        className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400focus:outline-none
+        className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
         focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
-        placeholder='User'
+        placeholder='Nombre de usuario'
+        {...register("nickname")} />
+
+      <input type="text"
+        name='email'
+        className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
+        focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
+        placeholder='Email'
         {...register("email")} />
 
       <input type="password"
         name='password'
         className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
-        focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none justify-center"
-        placeholder='Password'
+        focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
+        placeholder='Contraseña'
         {...register("password")} />
 
       <div className='w-56 mt-3 grid grid-cols-1 gap-1'>

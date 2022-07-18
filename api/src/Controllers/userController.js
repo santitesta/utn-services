@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const { User } = require('../db');
 
 async function getUsers(req, res) {
@@ -10,15 +11,16 @@ async function getUsers(req, res) {
 }
 
 async function signUp(req, res) {
-  console.log('req body: ',req.body)
-  const { email, password, instituto, departamento, servicio } = req.body;
+  const { email, password, nickname, instituto, departamento, servicio } = req.body;
   try {
     const [user, created] = await User.findOrCreate({
-      where: { email },
-      defaults: { email, password, institute: instituto, department: departamento, service: servicio }
+      where: {
+        [Op.or]: [{ email }, { nickname }]
+      },
+      defaults: { email, password, nickname, institute: instituto, department: departamento, service: servicio }
     })
     if (created) res.json(user)
-    else res.send('Email already in use')
+    else res.send('Email or nickname already in use')
   } catch (error) {
     res.status(500).send(error)
   }
