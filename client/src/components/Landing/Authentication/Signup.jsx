@@ -15,7 +15,6 @@ export default function Signup() {
     if (localStorage.user) {
       navigate("/home")
     }
-    reset()
   };
 
   return (

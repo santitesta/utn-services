@@ -19,7 +19,7 @@ const CreateOrder = () => {
         id_inei: data.id_inei,
         email: localStorage.user,
         motive: data.motive,
-        commentary: `${day}/${month + 1} ${year} ${localStorage.user}: ${data.commentary}`
+        commentary: `${day}/${month + 1} ${year} ${JSON.parse(localStorage.userFull).nickname}: ${data.commentary}`
       }))
       reset()
     }
@@ -30,7 +30,7 @@ const CreateOrder = () => {
     const [day, month, year] = [date.getDate(), date.getMonth(), date.getFullYear()]
     await dispatch(addCommentary({
       id_ot: data.id_ot,
-      commentary: `${day}/${month + 1} ${year} ${localStorage.user}: ${data.commentaryUpdate}`
+      commentary: `${day}/${month + 1} ${year} ${JSON.parse(localStorage.userFull).nickname}: ${data.commentaryUpdate}`
     }))
     reset2()
   };

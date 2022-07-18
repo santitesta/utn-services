@@ -191,7 +191,7 @@ const Orders = () => {
                     {o.motive}
                   </th>
                   <th className='font-thin'>
-                    {o.userEmail}
+                    {o.userNickname}
                   </th>
                   <th className='font-thin'>
                     {o.commentary.map((c, i) => <p key={i}>{c}</p>)}
@@ -230,10 +230,15 @@ const Orders = () => {
                       {o.motive}
                     </th>
                     <th className='font-thin'>
-                      {o.userEmail}
+                      {o.userNickname}
                     </th>
                     <th className='font-thin'>
-                      {o.commentary.map((c, i) => <p key={i}>{c}</p>)}
+                      {o.commentary.map((c, i) => {
+                        return <p key={i}>
+                          <span className='font-bold'>{c.split(':')[0]}</span>
+                          :{c.split(':')[1]}
+                        </p>
+                      })}
                     </th>
                   </tr>
                 })}
@@ -242,7 +247,7 @@ const Orders = () => {
         </div >
         : <h1>No existen ordenes cargadas</h1>
       }
-    </div>
+    </div >
   )
 }
 
