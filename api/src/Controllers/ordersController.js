@@ -4,17 +4,25 @@ async function createOrder(req, res) {
   const { id_inei, email, motive, commentary } = req.body
   const user = await User.findOne({ where: { email } })
   const device = await Device.findOne({ where: { id_inei } })
+
   try {
-    if (user.institute === device.instituto || user.institute === 'Admin') {
+    if (user.institute === 'Admin'
+      || (user.service === device.servicio || !user.service)
+      && (user.department === device.departamento || !user.department)
+      && user.institute === device.instituto) {
+
       const order = await Order.create({
         motive,
         commentary: [commentary]
       })
+
       if (order) {
         await order.setUser(user)
         await order.setDevice(device)
         res.status(201).json(order)
+
       } else res.status(400).send()
+
     } else res.status(200).send({ denied: `No tiene permisos sobre el equipo ${id_inei}` })
   } catch (error) {
     res.status(500).send(error)
