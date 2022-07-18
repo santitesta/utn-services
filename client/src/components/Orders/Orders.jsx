@@ -18,7 +18,6 @@ const Orders = () => {
     } else if (localStorage.institute === institutes.INPB) {
       dispatch(getOrdersByInstitute(localStorage.institute))
     } else {
-      // dispatch(getOrdersByUser(localStorage.user))
       dispatch(getOrdersByPermission(JSON.parse(localStorage.userFull)))
     }
   }, [dispatch])
@@ -155,6 +154,7 @@ const Orders = () => {
                     : null}
                 </th>
 
+                <th>Creador</th>
                 <th>Comentarios</th>
               </tr>
             </thead>
@@ -191,6 +191,9 @@ const Orders = () => {
                     {o.motive}
                   </th>
                   <th className='font-thin'>
+                    {o.userEmail}
+                  </th>
+                  <th className='font-thin'>
                     {o.commentary.map((c, i) => <p key={i}>{c}</p>)}
                   </th>
                 </tr>
@@ -225,6 +228,9 @@ const Orders = () => {
                     </th>
                     <th className='font-thin'>
                       {o.motive}
+                    </th>
+                    <th className='font-thin'>
+                      {o.userEmail}
                     </th>
                     <th className='font-thin'>
                       {o.commentary.map((c, i) => <p key={i}>{c}</p>)}
