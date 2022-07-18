@@ -43,6 +43,7 @@ export default function Users() {
             <thead>
               <tr>
                 <th>Nombre</th>
+                <th>Email</th>
                 <th>Instituto</th>
                 <th>Departamento</th>
                 <th>Servicio</th>
@@ -53,6 +54,9 @@ export default function Users() {
             <tbody>
               {users.map(u => {
                 return <tr key={u.email}>
+                  <th className='font-thin'>
+                    {u.nickname}
+                  </th>
                   <th className='font-thin'>
                     {u.email}
                   </th>
