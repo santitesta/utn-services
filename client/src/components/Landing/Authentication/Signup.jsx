@@ -11,10 +11,16 @@ export default function Signup() {
   const { register, handleSubmit, watch, resetField, formState: { errors } } = useForm();
 
   const onSubmit = async data => {
-    if(data.departamento === '') {
+    if (data.director) {
+      data.departamento = null
+      data.servicio = null
+    } else if (data.jefe) {
+      data.servicio = null
+    }
+    if (data.departamento === '') {
       data.departamento = null
     }
-    if(data.servicio === '') {
+    if (data.servicio === '') {
       data.servicio = null
     }
     await dispatch(signUp(data))
@@ -24,95 +30,158 @@ export default function Signup() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}
-      className='border-solid border-2 border-sky-500 p-2 grid place-items-center gap-1'>
+    <div className='flex items-center gap-5 w-3/5'>
 
-      <input type="text"
-        name='nickname'
-        className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
-        focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
-        placeholder='Nombre de usuario'
-        {...register("nickname", { required: 'Nombre de usuario requerido' })}
-      />
+      <div className='flex flex-col w-2/5 gap-3'>
 
-      <input type="text"
-        name='email'
-        className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
-        focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
-        placeholder='Email'
-        {...register("email", {
-          required: 'Email requerido',
-          pattern: {
-            value: /\S+@\S+\.\S+/,
-            message: 'Email inválido'
-          }
-        })} />
+        <div class="alert alert-info shadow-lg h-20">
+          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+          <div className='flex flex-col justify-center'>
+            <p>Seleccione el servicio al que pertenece para ver sus equipos y generar órdenes de trabajo</p>
+          </div>
+        </div>
 
-      <input type="password"
-        name='password'
-        className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
-        focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
-        placeholder='Contraseña'
-        {...register("password", { required: 'Contraseña requerida' })} />
+        <div class="alert alert-info shadow-lg h-20">
+          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+          <div className='flex flex-col justify-center'>
+            <p>Si es director de un instituto o jefe de departamento marque la casilla correspondiente</p>
+          </div>
+        </div>
 
-      <div className='w-56 mt-3 grid grid-cols-1 gap-1'>
-
-        <select
-          className='select select-accent m-1 w-44 max-w-xs'
-          {...register("instituto", {
-            onChange: () => {
-              resetField("departamento")
-              resetField("servicio")
-            }
-          })}>
-
-          <option defaultValue="" value="">Instituto...</option>
-          {Object.keys(hierarchy).map(d => {
-            return <option key={d} value={d}>{d}</option>
-          })}
-        </select>
-
-        <select
-          className='select select-accent m-1 w-44 max-w-xs'
-          {...register("departamento")}
-          disabled={!watch("instituto") || watch("instituto") === 'Admin'}>
-
-          <option defaultValue="" value="">Departamento...</option>
-          {watch("instituto") && Object.keys(hierarchy[watch("instituto")]).map(d => {
-            return <option key={d} value={d}>{d}</option>
-          })}
-        </select>
-
-        <select
-          className='select select-accent m-1 w-44 max-w-xs'
-          {...register("servicio")}
-          disabled={!watch("instituto") || watch("instituto") === 'Admin' || !watch("departamento")}>
-
-          <option defaultValue="" value="">Servicio...</option>
-          {watch("instituto") && watch("departamento") && hierarchy[watch("instituto")][watch("departamento")].map(s => {
-            return <option key={s} value={s}>{s}</option>
-          })}
-        </select>
+        <div class="alert alert-info shadow-lg h-28">
+          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+          <div className='flex flex-col justify-center'>
+            <p>No todos los institutos tienen departamentos. En esos casos verá <span className='font-bold'>NA: no aplica</span>. Seleccionelo para ver los servicios de su instituto.</p>
+          </div>
+        </div>
 
       </div>
 
-      <input type="submit"
-        value="Crear cuenta"
-        className="btn btn-primary w-4/5" />
+      <form onSubmit={handleSubmit(onSubmit)}
+        className='border-solid border-2 border-sky-500 p-2 grid place-items-center gap-1 w-2/5'>
 
-      {Object.keys(errors).length ?
-        <div class="alert alert-warning shadow-lg">
-          <div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-            <div className='flex flex-col justify-center'>
-              <p>{errors.nickname?.message}</p>
-              <p>{errors.email?.message}</p>
-              <p>{errors.password?.message}</p>
+        <input type="text"
+          name='nickname'
+          className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
+        focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
+          placeholder='Nombre de usuario'
+          {...register("nickname", { required: 'Nombre de usuario requerido' })}
+          />
+
+        <input type="text"
+          name='email'
+          className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
+          focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
+          placeholder='Email'
+          {...register("email", {
+            required: 'Email requerido',
+            pattern: {
+              value: /\S+@\S+\.\S+/,
+              message: 'Email inválido'
+            }
+          })} />
+
+        <input type="password"
+          name='password'
+          className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
+          focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
+          placeholder='Contraseña'
+          {...register("password", { required: 'Contraseña requerida' })} />
+
+        <div className='w-56 mt-3 grid grid-cols-1 gap-1'>
+
+          <div className='flex items-center gap-1'>
+            <select
+              className='select select-accent m-1 w-44 max-w-xs'
+              {...register("instituto", {
+                onChange: () => {
+                  resetField("departamento")
+                  resetField("servicio")
+                  resetField("jefe")
+                }
+              })}>
+
+              <option defaultValue="" value="">Instituto...</option>
+              {Object.keys(hierarchy).map(d => {
+                return <option key={d} value={d}>{d}</option>
+              })}
+            </select>
+
+            <input type='checkbox'
+              {...register("director", {
+                onChange: () => {
+                  resetField("departamento")
+                  resetField("servicio")
+                }
+              })}
+              disabled={watch("jefe") || !watch("instituto")} />
+            <span>Director</span>
+          </div>
+
+          <div className='flex items-center gap-1'>
+            <select
+              className='select select-accent m-1 w-44 max-w-xs'
+              {...register("departamento", {
+                required: {
+                  value: !watch("director"),
+                  message: 'Elija su departamento'
+                }
+              })}
+              disabled={!watch("instituto") || watch("instituto") === 'Admin' || watch("director")}>
+
+              <option defaultValue="" value="">Departamento...</option>
+              {watch("instituto") && Object.keys(hierarchy[watch("instituto")]).map(d => {
+                return <option key={d} value={d}>{d}</option>
+              })}
+            </select>
+            <input type='checkbox'
+              {...register("jefe", {
+                onChange: () => {
+                  resetField("servicio")
+                }
+              })}
+              disabled={watch("director") || !watch("departamento")} />
+            <span>Jefe</span>
+          </div>
+
+          <select
+            className='select select-accent m-1 w-44 max-w-xs'
+            {...register("servicio", {
+              required: {
+                value: !(watch("jefe") || watch("director")),
+                message: 'Elija su servicio'
+              }
+            })}
+            disabled={!watch("instituto") || watch("instituto") === 'Admin' || !watch("departamento") || watch("jefe")}>
+
+            <option defaultValue="" value="">Servicio...</option>
+            {watch("instituto") && watch("departamento") && hierarchy[watch("instituto")][watch("departamento")].map(s => {
+              return <option key={s} value={s}>{s}</option>
+            })}
+          </select>
+
+        </div>
+
+        <input type="submit"
+          value="Crear cuenta"
+          className="btn btn-primary w-4/5" />
+
+        {Object.keys(errors).length ?
+          <div class="alert alert-warning shadow-lg">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+              <div className='flex flex-col justify-center'>
+                <p>{errors.nickname?.message}</p>
+                <p>{errors.email?.message}</p>
+                <p>{errors.password?.message}</p>
+                <p>{errors.departamento?.message}</p>
+                <p>{errors.servicio?.message}</p>
+              </div>
             </div>
           </div>
-        </div>
-        : null}
+          : null}
 
-    </form >
+      </form >
+    </div>
   );
 };
