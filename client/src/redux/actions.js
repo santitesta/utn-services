@@ -25,6 +25,9 @@ export const getDeviceByInstitute = (ins) => {
 	return function (dispatch) {
 		return axios.get(`${url}/equipos/ins/${ins}`)
 			.then(resp => {
+				if(resp.status === 204) {
+					return alert('No tiene equipos cargados')
+				}
 				dispatch({ type: GET_DEVICE_BY_INSTITUTE, payload: resp.data })
 			})
 			.catch(error => alert('Action Error in getDeviceByInstitute: ', error))
