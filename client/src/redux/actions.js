@@ -25,7 +25,7 @@ export const getDeviceByInstitute = (ins) => {
 	return function (dispatch) {
 		return axios.get(`${url}/equipos/ins/${ins}`)
 			.then(resp => {
-				if(resp.status === 204) {
+				if (resp.status === 204) {
 					return alert('No tiene equipos cargados')
 				}
 				dispatch({ type: GET_DEVICE_BY_INSTITUTE, payload: resp.data })
@@ -135,7 +135,11 @@ export function getOrdersByInstitute(ins) {
 export function addCommentary(commentary) {
 	return function () {
 		return axios.put(`${url}/orders/commentary`, commentary)
-			.then(alert('Comentario agregado exitosamente'))
+			.then(resp => {
+				if (resp.status === 200 && resp.data.denied) {
+					return alert(resp.data.denied)
+				} else return alert('Comentario agregado exitosamente')
+			})
 			.catch(error => {
 				if (error.response.status === 400) alert('No existe esa orden de trabajo')
 				console.log('Action error in addCommentary: ', error)

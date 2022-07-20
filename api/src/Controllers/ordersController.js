@@ -110,16 +110,28 @@ async function getOrdersByInstitute(req, res) {
 }
 
 async function addCommentary(req, res) {
-  const { id_ot, commentary } = req.body
+  const { id_ot, email, commentary } = req.body
+  const user = await User.findOne({ where: { email } })
+
   try {
     const order = await Order.findOne({
-      where: { id_ot }
+      where: { id_ot },
+      include: Device
     })
     if (order) {
-      await order.update({ commentary: [...order.commentary, commentary] })
-      res.send(order)
-    }
-    else res.status(400).send()
+
+      if (user.institute === 'Admin'
+        || (user.service === order.device.servicio || !user.service)
+        && (user.department === order.device.departamento || !user.department)
+        && user.institute === order.device.instituto) {
+
+        await order.update({ commentary: [...order.commentary, commentary] })
+        res.send(order)
+
+      } else res.status(200).send({ denied: `No tiene permisos sobre la orden ${id_ot}` })
+
+    } else res.status(400).send()
+
   } catch (error) {
     res.status(500).send(error)
   }

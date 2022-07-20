@@ -30,6 +30,7 @@ const CreateOrder = () => {
     const [day, month, year] = [date.getDate(), date.getMonth(), date.getFullYear()]
     await dispatch(addCommentary({
       id_ot: data.id_ot,
+      email: localStorage.user,
       commentary: `${day}/${month + 1} ${year} ${JSON.parse(localStorage.userFull).nickname}: ${data.commentaryUpdate}`
     }))
     reset2()
