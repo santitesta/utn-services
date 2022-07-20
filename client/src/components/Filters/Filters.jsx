@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getDeviceById, getDeviceByInstitute, getDeviceByService } from '../../redux/actions';
 import { useForm } from "react-hook-form";
@@ -9,6 +9,12 @@ import { hierarchy } from '../../utilities/hierarchy';
 function Filters() {
   const dispatch = useDispatch()
   const { register, handleSubmit, watch, reset } = useForm();
+
+  useEffect(() => {
+    if(localStorage.institute === 'Admin') dispatch(getDeviceByInstitute('I.N.E.I.'))
+    else dispatch(getDeviceByInstitute(localStorage.institute))
+  }, [])
+
 
   const onSubmit = async data => {
     console.log('Data: ', data)
