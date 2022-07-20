@@ -20,9 +20,9 @@ function Filters() {
     } else if (data.servicio) {
       dispatch(getDeviceByService(data.servicio))
       reset()
-    // } else if (data.departamento) {
-    //   dispatch(getDeviceByDepartment(data.servicio))
-    //   reset()
+      // } else if (data.departamento) {
+      //   dispatch(getDeviceByDepartment(data.servicio))
+      //   reset()
     } else if (data.instituto.length) {
       dispatch(getDeviceByInstitute(data.instituto))
       reset()
@@ -49,7 +49,7 @@ function Filters() {
 
             <option defaultValue="" value="">Instituto...</option>
             {Object.keys(institutes).map(i => {
-              return <option key={i} value={institutes[i]}>{institutes[i]}</option>
+              return institutes[i] !== 'Admin' && <option key={i} value={institutes[i]}>{institutes[i]}</option>
             })}
           </select>
 

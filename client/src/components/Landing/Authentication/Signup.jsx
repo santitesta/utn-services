@@ -11,6 +11,12 @@ export default function Signup() {
   const { register, handleSubmit, watch, resetField, formState: { errors } } = useForm();
 
   const onSubmit = async data => {
+    if(data.departamento === '') {
+      data.departamento = null
+    }
+    if(data.servicio === '') {
+      data.servicio = null
+    }
     await dispatch(signUp(data))
     if (localStorage.user) {
       navigate("/home")
