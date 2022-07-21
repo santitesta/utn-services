@@ -19,11 +19,11 @@ export default function Login() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}
-      className='border-solid border-2 border-sky-500 p-2 grid place-items-center gap-1'>
-
+      className='grid place-items-center gap-1'>
+        
       <input type="text"
         className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
-        focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
+        focus:border-blue-200 focus:ring-1 focus:ring-blue-300 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
         placeholder='Email'
         {...register("email", {
           required: 'Ingrese un email válido',
@@ -33,20 +33,18 @@ export default function Login() {
           }
         })} />
 
-      <input type="password"
+      <input type="password" 
         className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
-        focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none justify-center"
+        focus:border-blue-200 focus:ring-1 focus:ring-blue-300 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none justify-center"
         placeholder='Contraseña'
-        {...register("password", { required: 'Ingrese su contraseña' })} />
-
-      <br />
-
+        {...register("password", { required: 'Ingrese una contraseña' })} />
+      
       <input type='submit'
-        value='Login'
-        className="btn btn-primary w-3/5" />
+        value="Iniciar Sesión"
+        className="mt-3 transition ease-in-out active:scale-90 cursor-pointer flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-900 hover:bg-blue-800  active:bg-blue-700 w-60" />
 
       {Object.keys(errors).length ?
-        <div class="alert alert-warning shadow-lg">
+        <div class="mt-3 alert shadow-lg alert-error border border-red-400 text-red-700 px-4 py-3 rounded relative">
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
             <div className='flex flex-col justify-center'>

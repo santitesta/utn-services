@@ -116,50 +116,30 @@ export default function Landing() {
                 Sitio web creado por el personal de UTN con la finalidad de facilitar el seguimiento del mantenimiento de los equipos de los distintos departamentos del Instituto Malbrán.
               </p>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                {/* <div className="rounded-md shadow">
-                  <a
-                    href="#"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-900 hover:bg-blue-800 md:py-4 md:text-lg md:px-10"
-                  >
-                    Iniciar Sesión
-                  </a>
-                </div> */}
-                <div className="rounded-md shadow">
+              
 
-                  <label for="my-modal" className="btn modal-button">Iniciar sesión</label>
-
+                {/* Boton de inicio de sesion */}
+                <div className="rounded-md shadow hover:shadow-none">
+                  <label for="my-modal" className="transition ease-in-out active:scale-90 cursor-pointer w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-900 hover:bg-blue-800 md:py-4 md:text-lg md:px-10  active:bg-blue-700">Iniciar sesión</label>
                   <input type="checkbox" id="my-modal" className="modal-toggle" />
-
-                  <div className="modal">
-                    <div className="modal-box relative">
-                      <label for="my-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                  <div className="modal ">
+                    <div className="modal-box relative w-80 ">
+                      <label for="my-modal" className="btn btn-xs btn-circle absolute right-2 top-2">✕</label>
                       <Login />
                     </div>
                   </div>
-
                 </div>
 
-                {/* <div className="mt-3 sm:mt-0 sm:ml-3">
-                  <a
-                    href="#"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 md:py-4 md:text-lg md:px-10"
-                  >
-                    Registrarse
-                  </a>
-                </div> */}
-                <div className="rounded-md shadow">
-
-                  <label for="my-modal-2" className="btn modal-button">Registrarse</label>
-
+                 {/* Boton de registrarse */}
+                <div className="mt-3 sm:mt-0 sm:ml-3 rounded-md shadow hover:shadow-none">
+                  <label for="my-modal-2" className="transition ease-in-out active:scale-90 cursor-pointer w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-200 hover:bg-blue-300 md:py-4 md:text-lg md:px-10">Registrarse</label>
                   <input type="checkbox" id="my-modal-2" className="modal-toggle" />
-
                   <div className="modal">
-                    <div className="modal-box relative">
-                      <label for="my-modal-2" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <div className="modal-box relative w-96 ">
+                      <label for="my-modal-2" className="btn btn-xs btn-circle absolute right-2 top-2">✕</label>
                       <Signup />
                     </div>
                   </div>
-
                 </div>
               </div>
             </div>

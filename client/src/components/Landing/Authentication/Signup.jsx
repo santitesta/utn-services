@@ -18,13 +18,13 @@ export default function Signup() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}
-      className='border-solid border-2 border-sky-500 p-2 grid place-items-center gap-1'>
+    <form onSubmit={handleSubmit(onSubmit)} autocomplete="off"
+      className='grid place-items-center gap-1'>
 
       <input type="text"
         name='nickname'
         className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
-        focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
+        focus:border-blue-200 focus:ring-1 focus:ring-blue-300 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
         placeholder='Nombre de usuario'
         {...register("nickname", { required: 'Nombre de usuario requerido' })}
       />
@@ -32,7 +32,7 @@ export default function Signup() {
       <input type="text"
         name='email'
         className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
-        focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
+        focus:border-blue-200 focus:ring-1 focus:ring-blue-300 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
         placeholder='Email'
         {...register("email", {
           required: 'Email requerido',
@@ -45,14 +45,13 @@ export default function Signup() {
       <input type="password"
         name='password'
         className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
-        focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
+        focus:border-blue-200 focus:ring-1 focus:ring-blue-300 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
         placeholder='Contraseña'
         {...register("password", { required: 'Contraseña requerida' })} />
 
-      <div className='w-56 mt-3 grid grid-cols-1 gap-1'>
-
+      <div className='w-60 mt-3 grid grid-cols-1 gap-1'>
         <select
-          className='select select-accent m-1 w-44 max-w-xs'
+          className='select select-accent w-60 max-w-xs'
           {...register("instituto", {
             onChange: () => {
               resetField("departamento")
@@ -67,7 +66,7 @@ export default function Signup() {
         </select>
 
         <select
-          className='select select-accent m-1 w-44 max-w-xs'
+          className='select select-accent w-60 max-w-xs'
           {...register("departamento")}
           disabled={!watch("instituto") || watch("instituto") === 'Admin'}>
 
@@ -78,7 +77,7 @@ export default function Signup() {
         </select>
 
         <select
-          className='select select-accent m-1 w-44 max-w-xs'
+          className='select select-accent w-60 max-w-xs'
           {...register("servicio")}
           disabled={!watch("instituto") || watch("instituto") === 'Admin' || !watch("departamento")}>
 
