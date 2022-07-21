@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { NavLink } from 'react-router-dom'
-import { countVerified, logout } from '../../redux/actions'
+import { countPendingOrders, countVerified, logout } from '../../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 
@@ -14,6 +14,7 @@ function classNames(...classes) {
 export default function NavBar() {
   const dispatch = useDispatch();
   const verifiedPending = useSelector(state => state.verifiedPending)
+  const pendingOrders = useSelector(state => state.pendingOrders)
 
   let navigation = [
     { name: 'Ingresar', href: '/' },
@@ -30,12 +31,18 @@ export default function NavBar() {
 
   navigation.push({ name: 'Sobre nosotros', href: '/about' })
 
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     dispatch(countVerified())
+  //     dispatch(countPendingOrders())
+  //   }, 1000);
+  //   return () => clearInterval(interval);
+  // }, [])
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      dispatch(countVerified())
-    }, 60000);
-    return () => clearInterval(interval);
+    dispatch(countPendingOrders())
   }, [])
+
 
   return (
     <Disclosure as="nav" className="bg-sky-700 h-20 mb-2 flex items-center justify-between">
@@ -75,10 +82,16 @@ export default function NavBar() {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
                 {localStorage.institute === 'Admin' &&
-                  <div className="indicator mr-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-                    <span className="badge badge-md indicator-item">{verifiedPending}</span>
-                  </div>
+                  <>
+                    <div className="indicator mr-3">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                      <span className="badge badge-md indicator-item">{pendingOrders}</span>
+                    </div>
+                    <div className="indicator mr-3">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+                      <span className="badge badge-md indicator-item">{verifiedPending}</span>
+                    </div>
+                  </>
                 }
 
                 {/* Profile dropdown */}

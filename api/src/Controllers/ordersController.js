@@ -165,6 +165,17 @@ async function changeRefrigeration(req, res) {
   }
 }
 
+async function countPendingOrders(req, res) {
+  try {
+    const count = await Order.count({
+      where: { state: 'Pendiente' },
+    });
+    res.status(200).json(count)
+  } catch (error) {
+    res.status(404).send()
+  }
+}
+
 module.exports = {
   createOrder,
   getOrders,
@@ -173,5 +184,6 @@ module.exports = {
   getOrdersByInstitute,
   addCommentary,
   changeState,
-  changeRefrigeration
+  changeRefrigeration,
+  countPendingOrders
 }
