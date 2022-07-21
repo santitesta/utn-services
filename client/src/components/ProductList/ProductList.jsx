@@ -27,7 +27,7 @@ export default function ProductList() {
           <div class="card w-96 bg-base-100 shadow-xl">
             <div class="card-body">
               <h2 class="card-title">{device.id_inei} - {device.equipo}</h2>
-              <p>{device.instituto} - {device.departamento}</p>
+              <p>{device.instituto} - {device.departamento} - {device.servicio}</p>
             </div>
           </div>
 

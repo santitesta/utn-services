@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getDeviceById, getDeviceByInstitute, getDeviceByService } from '../../redux/actions';
 import { useForm } from "react-hook-form";
@@ -10,6 +10,12 @@ function Filters() {
   const dispatch = useDispatch()
   const { register, handleSubmit, watch, reset } = useForm();
 
+  useEffect(() => {
+    if(localStorage.institute === 'Admin') dispatch(getDeviceByInstitute('I.N.E.I.'))
+    else dispatch(getDeviceByInstitute(localStorage.institute))
+  }, [])
+
+
   const onSubmit = async data => {
     console.log('Data: ', data)
     if (localStorage.institute !== 'Admin') data.instituto = localStorage.institute
@@ -20,9 +26,9 @@ function Filters() {
     } else if (data.servicio) {
       dispatch(getDeviceByService(data.servicio))
       reset()
-    // } else if (data.departamento) {
-    //   dispatch(getDeviceByDepartment(data.servicio))
-    //   reset()
+      // } else if (data.departamento) {
+      //   dispatch(getDeviceByDepartment(data.servicio))
+      //   reset()
     } else if (data.instituto.length) {
       dispatch(getDeviceByInstitute(data.instituto))
       reset()
@@ -49,7 +55,7 @@ function Filters() {
 
             <option defaultValue="" value="">Instituto...</option>
             {Object.keys(institutes).map(i => {
-              return <option key={i} value={institutes[i]}>{institutes[i]}</option>
+              return institutes[i] !== 'Admin' && <option key={i} value={institutes[i]}>{institutes[i]}</option>
             })}
           </select>
 
