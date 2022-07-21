@@ -6,7 +6,8 @@ import {
     LOGIN,
     LOGOUT,
     GET_ORDERS,
-    COUNT_VERIFIED
+    COUNT_VERIFIED,
+    COUNT_PENDING_ORDERS
 } from "./actions"
 
 const initialState = {
@@ -18,7 +19,8 @@ const initialState = {
     verified: undefined,
     users: {},
     orders: undefined,
-    verifiedPending: 0
+    verifiedPending: 0,
+    pendingOrders: 0
 }
 
 export function rootReducer(state = initialState, { type, payload }) {
@@ -74,7 +76,10 @@ export function rootReducer(state = initialState, { type, payload }) {
             return { ...state, orders: payload }
 
         case COUNT_VERIFIED:
-            return {...state, verifiedPending: payload}
+            return { ...state, verifiedPending: payload }
+
+        case COUNT_PENDING_ORDERS:
+            return { ...state, pendingOrders: payload }
 
         default: return state;
     }
