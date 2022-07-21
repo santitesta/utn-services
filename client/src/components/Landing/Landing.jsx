@@ -2,13 +2,15 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import Login from './Authentication/Login';
+import Signup from './Authentication/Signup';
 
 const navigation = [
-  { name: 'Home', href: '#' },
-  { name: 'Proyectos', href: '#' },
-  { name: 'Servicios', href: '#' },
-  { name: 'Contacto', href: '#' },
-  { name: 'Nosotros', href: '#' },
+  { name: 'Home', href: 'home' },
+  { name: 'Proyectos', href: 'proyectos' },
+  { name: 'Servicios', href: 'servicios' },
+  { name: 'Contacto', href: 'contacto' },
+  { name: 'Nosotros', href: 'nosotros' },
 ]
 
 export default function Landing() {
@@ -114,33 +116,62 @@ export default function Landing() {
                 Sitio web creado por el personal de UTN con la finalidad de facilitar el seguimiento del mantenimiento de los equipos de los distintos departamentos del Instituto Malbrán.
               </p>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                <div className="rounded-md shadow">
+                {/* <div className="rounded-md shadow">
                   <a
                     href="#"
                     className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-900 hover:bg-blue-800 md:py-4 md:text-lg md:px-10"
                   >
                     Iniciar Sesión
                   </a>
+                </div> */}
+                <div className="rounded-md shadow">
+
+                  <label for="my-modal" className="btn modal-button">Iniciar sesión</label>
+
+                  <input type="checkbox" id="my-modal" className="modal-toggle" />
+
+                  <div className="modal">
+                    <div className="modal-box relative">
+                      <label for="my-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                      <Login />
+                    </div>
+                  </div>
+
                 </div>
-                <div className="mt-3 sm:mt-0 sm:ml-3">
+
+                {/* <div className="mt-3 sm:mt-0 sm:ml-3">
                   <a
                     href="#"
                     className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 md:py-4 md:text-lg md:px-10"
                   >
                     Registrarse
                   </a>
+                </div> */}
+                <div className="rounded-md shadow">
+
+                  <label for="my-modal-2" className="btn modal-button">Registrarse</label>
+
+                  <input type="checkbox" id="my-modal-2" className="modal-toggle" />
+
+                  <div className="modal">
+                    <div className="modal-box relative">
+                      <label for="my-modal-2" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                      <Signup />
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
           </main>
         </div>
-      </div>
+      </div >
       <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2  ">
         <video height="256" loop="true" autoplay="autoplay" id="vid" muted className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full">
           <source src={require("./video.mp4")} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
-    </div>
+    </div >
   )
 }
