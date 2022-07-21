@@ -135,7 +135,7 @@ export default function Landing() {
                   <label for="my-modal-2" className="transition ease-in-out active:scale-90 cursor-pointer w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-200 hover:bg-blue-300 md:py-4 md:text-lg md:px-10">Registrarse</label>
                   <input type="checkbox" id="my-modal-2" className="modal-toggle" />
                   <div className="modal">
-                    <div className="modal-box relative w-96 ">
+                    <div className="modal-box relative w-80 ">
                       <label for="my-modal-2" className="btn btn-xs btn-circle absolute right-2 top-2">✕</label>
                       <Signup />
                     </div>
