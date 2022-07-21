@@ -70,10 +70,22 @@ async function deleteUser(req, res) {
   }
 }
 
+async function countVerified(req, res) {
+  try {
+    const count = await User.count({
+      where: { verified: false },
+    });
+    res.status(200).json(count)
+  } catch (error) {
+    res.status(500).send()
+  }
+}
+
 module.exports = {
   getUsers,
   signUp,
   login,
   changeVerification,
-  deleteUser
+  deleteUser,
+  countVerified
 }

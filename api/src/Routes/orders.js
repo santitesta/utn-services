@@ -1,20 +1,22 @@
 const router = require('express').Router();
-const { createOrder, getOrders, getOrdersByUser, getOrdersByPermission, getOrdersByInstitute, addCommentary, changeState, changeRefrigeration } = require('../Controllers/ordersController');
+const { createOrder, getOrders, getOrdersByUser, getOrdersByPermission, getOrdersByInstitute, addCommentary, changeState, changeRefrigeration, countPendingOrders } = require('../Controllers/ordersController');
 
 router.post("/", createOrder);
 
 router.get("/", getOrders);
 
-router.get("/:email", getOrdersByUser);
+router.get("/byuser/:email", getOrdersByUser);
 
-router.get("/:instituto/:departamento/:servicio", getOrdersByPermission);
+router.get("/bypermission/:instituto/:departamento/:servicio", getOrdersByPermission);
 
-router.get("/institute/:ins", getOrdersByInstitute);
+router.get("/byinstitute/:ins", getOrdersByInstitute);
 
 router.put("/commentary", addCommentary);
 
 router.put("/state", changeState);
 
 router.put("/refrigeration", changeRefrigeration);
+
+router.get("/count", countPendingOrders);
 
 module.exports = router;

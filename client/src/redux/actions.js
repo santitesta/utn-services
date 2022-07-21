@@ -12,6 +12,9 @@ export const GET_DEVICE_BY_SERVICE = "GET_DEVICE_BY_SERVICE"
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const GET_ORDERS = "GET_ORDERS";
+export const COUNT_VERIFIED = "COUNT_VERIFIED";
+export const COUNT_PENDING_ORDERS = "COUNT_PENDING_ORDERS";
+
 
 export const getDeviceById = (device) => {
 	return function (dispatch) {
@@ -110,7 +113,7 @@ export function getOrders() {
 
 export function getOrdersByUser(email) {
 	return function (dispatch) {
-		return axios.get(`${url}/orders/${email}`)
+		return axios.get(`${url}/orders/byuser/${email}`)
 			.then(resp => dispatch({ type: GET_ORDERS, payload: resp.data }))
 			.catch(error => console.log('Action error in getOrdersByUser: ', error))
 	};
@@ -118,7 +121,7 @@ export function getOrdersByUser(email) {
 
 export function getOrdersByPermission(user) {
 	return function (dispatch) {
-		return axios.get(`${url}/orders/${user.institute}/${user.department}/${user.service}`)
+		return axios.get(`${url}/orders/bypermission/${user.institute}/${user.department}/${user.service}`)
 			.then(resp => dispatch({ type: GET_ORDERS, payload: resp.data }))
 			.catch(error => console.log('Action error in getOrdersByUser: ', error))
 	};
@@ -126,7 +129,7 @@ export function getOrdersByPermission(user) {
 
 export function getOrdersByInstitute(ins) {
 	return function (dispatch) {
-		return axios.get(`${url}/orders/institute/${ins}`)
+		return axios.get(`${url}/orders/byinstitute/${ins}`)
 			.then(resp => dispatch({ type: GET_ORDERS, payload: resp.data }))
 			.catch(error => console.log('Action error in getOrdersByInstitute: ', error))
 	};
@@ -171,5 +174,25 @@ export function deleteUser(email) {
 				else alert('Action error in deleteUser')
 			})
 			.catch(error => console.log('Action error in deleteUser: ', error))
+	};
+};
+
+export function countVerified() {
+	return function (dispatch) {
+		return axios.get(`${url}/user/count`)
+			.then(resp => {
+				dispatch({ type: COUNT_VERIFIED, payload: resp.data })
+			})
+			.catch(error => console.log('Action error in countVerified: ', error))
+	};
+};
+
+export function countPendingOrders() {
+	return function (dispatch) {
+		return axios.get(`${url}/orders/count`)
+			.then(resp => {
+				dispatch({ type: COUNT_PENDING_ORDERS, payload: resp.data })
+			})
+			.catch(error => console.log('Action error in countPendingOrders: ', error))
 	};
 };
