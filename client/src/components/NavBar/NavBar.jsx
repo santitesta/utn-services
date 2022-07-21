@@ -3,8 +3,9 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { NavLink } from 'react-router-dom'
-import { logout } from '../../redux/actions'
-import { useDispatch } from 'react-redux'
+import { countVerified, logout } from '../../redux/actions'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -12,6 +13,7 @@ function classNames(...classes) {
 
 export default function NavBar() {
   const dispatch = useDispatch();
+  const verifiedPending = useSelector(state => state.verifiedPending)
 
   let navigation = [
     { name: 'Ingresar', href: '/' },
@@ -27,6 +29,13 @@ export default function NavBar() {
   }
 
   navigation.push({ name: 'Sobre nosotros', href: '/about' })
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      dispatch(countVerified())
+    }, 60000);
+    return () => clearInterval(interval);
+  }, [])
 
   return (
     <Disclosure as="nav" className="bg-sky-700 h-20 mb-2 flex items-center justify-between">
@@ -65,6 +74,13 @@ export default function NavBar() {
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
+                {localStorage.institute === 'Admin' &&
+                  <div className="indicator mr-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+                    <span className="badge badge-md indicator-item">{verifiedPending}</span>
+                  </div>
+                }
+
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-3 relative z-50">
                   <div>
@@ -77,6 +93,7 @@ export default function NavBar() {
                       </div>
                     </Menu.Button>
                   </div>
+
                   <Transition
                     as={Fragment}
                     enter="transition ease-out duration-100"

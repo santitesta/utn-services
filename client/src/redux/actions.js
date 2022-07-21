@@ -12,6 +12,8 @@ export const GET_DEVICE_BY_SERVICE = "GET_DEVICE_BY_SERVICE"
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const GET_ORDERS = "GET_ORDERS";
+export const COUNT_VERIFIED = "COUNT_VERIFIED";
+
 
 export const getDeviceById = (device) => {
 	return function (dispatch) {
@@ -171,5 +173,15 @@ export function deleteUser(email) {
 				else alert('Action error in deleteUser')
 			})
 			.catch(error => console.log('Action error in deleteUser: ', error))
+	};
+};
+
+export function countVerified() {
+	return function (dispatch) {
+		return axios.get(`${url}/user/count`)
+			.then(resp => {
+				dispatch({ type: COUNT_VERIFIED, payload: resp.data })
+			})
+			.catch(error => console.log('Action error in countVerified: ', error))
 	};
 };
