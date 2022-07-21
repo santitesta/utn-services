@@ -39,6 +39,7 @@ export default function NavBar() {
     return () => clearInterval(interval);
   }, [])
 
+
   return (
     <Disclosure as="nav" className="bg-sky-700 h-20 mb-2 flex items-center justify-between">
       {({ open }) => (
