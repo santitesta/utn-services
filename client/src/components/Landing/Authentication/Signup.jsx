@@ -30,48 +30,53 @@ export default function Signup() {
   };
 
   return (
+
     <div className='flex items-center gap-5 w-3/5'>
+      {/* <div className='flex flex-col w-2/5 gap-3'>
 
-      <div className='flex flex-col w-2/5 gap-3'>
-
-        <div class="alert alert-info shadow-lg h-20">
-          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+        <div className="alert alert-info shadow-lg h-20">
+          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
           <div className='flex flex-col justify-center'>
             <p>Seleccione el servicio al que pertenece para ver sus equipos y generar órdenes de trabajo</p>
           </div>
         </div>
 
-        <div class="alert alert-info shadow-lg h-20">
-          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+        <div className="alert alert-info shadow-lg h-20">
+          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
           <div className='flex flex-col justify-center'>
             <p>Si es director de un instituto o jefe de departamento marque la casilla correspondiente</p>
           </div>
         </div>
 
-        <div class="alert alert-info shadow-lg h-28">
-          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+        <div className="alert alert-info shadow-lg h-28">
+          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
           <div className='flex flex-col justify-center'>
             <p>No todos los institutos tienen departamentos. En esos casos verá <span className='font-bold'>NA: no aplica</span>. Seleccionelo para ver los servicios de su instituto.</p>
           </div>
         </div>
 
-      </div>
+      </div> */}
 
-      <form onSubmit={handleSubmit(onSubmit)}
-        className='border-solid border-2 border-sky-500 p-2 grid place-items-center gap-1 w-2/5'>
+      <form onSubmit={handleSubmit(onSubmit)} autoComplete="off"
+        className='p-1 grid place-items-center gap-1 w-2/5'>
+
+        <div className="alert alert-sm place-content-start w-64 flex-row">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className=" stroke-info flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <p className="text-sm text-gray-700 align-middle" >Crea tu cuenta!</p>
+        </div>
 
         <input type="text"
           name='nickname'
-          className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
-        focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
+          className="h-8 mt-1 block w-64 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
+          focus:border-blue-200 focus:ring-1 focus:ring-blue-300 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
           placeholder='Nombre de usuario'
           {...register("nickname", { required: 'Nombre de usuario requerido' })}
-          />
+        />
 
         <input type="text"
           name='email'
-          className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
-          focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
+          className="h-8 mt-1 block w-64 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
+          focus:border-blue-200 focus:ring-1 focus:ring-blue-300 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
           placeholder='Email'
           {...register("email", {
             required: 'Email requerido',
@@ -83,16 +88,17 @@ export default function Signup() {
 
         <input type="password"
           name='password'
-          className="mt-1 block w-60 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
-          focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
+          className="h-8 mt-1 block w-64 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
+          focus:border-blue-200 focus:ring-1 focus:ring-blue-300 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
           placeholder='Contraseña'
           {...register("password", { required: 'Contraseña requerida' })} />
 
-        <div className='w-56 mt-3 grid grid-cols-1 gap-1'>
+        <div className='w-64 mt-1 grid grid-cols-1 gap-2'>
 
           <div className='flex items-center gap-1'>
             <select
-              className='select select-accent m-1 w-44 max-w-xs'
+              className="form-select h-8 block w-44 px-3 py-1 text-sm text-gray-400 bg-white border border-solid border-slate-300 rounded
+              transition ease-in-out shadow-sm focus:text-gray-600 focus:ring-blue-300 focus:border-blue-200 focus:outline-none"
               {...register("instituto", {
                 onChange: () => {
                   resetField("departamento")
@@ -107,7 +113,7 @@ export default function Signup() {
               })}
             </select>
 
-            <input type='checkbox'
+            <input type='checkbox' className="checkbox checkbox-sm"
               {...register("director", {
                 onChange: () => {
                   resetField("departamento")
@@ -115,12 +121,13 @@ export default function Signup() {
                 }
               })}
               disabled={watch("jefe") || !watch("instituto")} />
-            <span>Director</span>
+            <span className="text-sm text-gray-700" >Director</span>
           </div>
 
           <div className='flex items-center gap-1'>
             <select
-              className='select select-accent m-1 w-44 max-w-xs'
+              className="form-select h-8 block w-44 px-3 py-1 text-sm text-gray-400 bg-white border border-solid border-slate-300 rounded
+              transition ease-in-out shadow-sm focus:text-gray-600 focus:ring-blue-300 focus:border-blue-200 focus:outline-none"
               {...register("departamento", {
                 required: {
                   value: !watch("director"),
@@ -134,18 +141,19 @@ export default function Signup() {
                 return <option key={d} value={d}>{d}</option>
               })}
             </select>
-            <input type='checkbox'
+            <input type='checkbox' className="checkbox checkbox-sm"
               {...register("jefe", {
                 onChange: () => {
                   resetField("servicio")
                 }
               })}
               disabled={watch("director") || !watch("departamento")} />
-            <span>Jefe</span>
+            <span className="text-sm text-gray-700" >Jefe</span>
           </div>
 
           <select
-            className='select select-accent m-1 w-44 max-w-xs'
+            className="form-select h-8 block w-44 px-3 py-1 text-sm text-gray-400 bg-white border border-solid border-slate-300 rounded
+            transition ease-in-out shadow-sm focus:text-gray-600 focus:ring-blue-300 focus:border-blue-200 focus:outline-none"
             {...register("servicio", {
               required: {
                 value: !(watch("jefe") || watch("director")),
@@ -164,12 +172,13 @@ export default function Signup() {
 
         <input type="submit"
           value="Crear cuenta"
-          className="btn btn-primary w-4/5" />
+          className="mt-3 h-10 transition ease-in-out active:scale-90 cursor-pointer flex items-center justify-center  
+          border border-transparent text-base font-medium rounded-2xl text-white bg-blue-900 hover:bg-blue-800  active:bg-blue-700 w-64"/>
 
         {Object.keys(errors).length ?
-          <div class="alert alert-warning shadow-lg">
+          <div className="mt-3 text-xs font-medium alert shadow-lg alert-error border border-red-400 text-red-700 px-4 py-3 rounded relative">
             <div>
-              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
               <div className='flex flex-col justify-center'>
                 <p>{errors.nickname?.message}</p>
                 <p>{errors.email?.message}</p>
