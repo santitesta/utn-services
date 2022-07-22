@@ -120,11 +120,11 @@ export default function Landing() {
 
                 {/* Boton de inicio de sesion */}
                 <div className="rounded-md shadow hover:shadow-none">
-                  <label for="my-modal" className="transition ease-in-out active:scale-90 cursor-pointer w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-900 hover:bg-blue-800 md:py-4 md:text-lg md:px-10  active:bg-blue-700">Iniciar sesión</label>
+                  <label htmlFor="my-modal" className="transition ease-in-out active:scale-90 cursor-pointer w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-2xl text-white bg-blue-900 hover:bg-blue-800 md:py-4 md:text-lg md:px-10  active:bg-blue-700">Iniciar sesión</label>
                   <input type="checkbox" id="my-modal" className="modal-toggle" />
                   <div className="modal ">
                     <div className="modal-box relative w-80 ">
-                      <label for="my-modal" className="btn btn-xs btn-circle absolute right-2 top-2">✕</label>
+                      <label htmlFor="my-modal" className="btn btn-xs btn-circle absolute right-2 top-2">✕</label>
                       <Login />
                     </div>
                   </div>
@@ -132,11 +132,11 @@ export default function Landing() {
 
                  {/* Boton de registrarse */}
                 <div className="mt-3 sm:mt-0 sm:ml-3 rounded-md shadow hover:shadow-none">
-                  <label for="my-modal-2" className="transition ease-in-out active:scale-90 cursor-pointer w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-200 hover:bg-blue-300 md:py-4 md:text-lg md:px-10">Registrarse</label>
+                  <label htmlFor="my-modal-2" className="transition ease-in-out active:scale-90 cursor-pointer w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-2xl text-blue-700 bg-blue-200 hover:bg-blue-300 md:py-4 md:text-lg md:px-10">Registrarse</label>
                   <input type="checkbox" id="my-modal-2" className="modal-toggle" />
                   <div className="modal">
                     <div className="modal-box relative w-80 ">
-                      <label for="my-modal-2" className="btn btn-xs btn-circle absolute right-2 top-2">✕</label>
+                      <label htmlFor="my-modal-2" className="btn btn-xs btn-circle absolute right-2 top-2">✕</label>
                       <Signup />
                     </div>
                   </div>
@@ -147,8 +147,8 @@ export default function Landing() {
         </div>
       </div >
       <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2  ">
-        <video height="256" loop="true" autoplay="autoplay" id="vid" muted className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full">
-          <source src={require("./video.mp4")} type="video/mp4" />
+        <video height="256" loop={true} autoPlay="autoPlay" id="vid" muted className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full">
+          <source src={require(`./video${Math.floor(Math.random()*3)}.mp4`)} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>

@@ -42,12 +42,12 @@ export default function Login() {
       <input type='submit'
         value="Iniciar Sesión"
         className="mt-3 transition ease-in-out active:scale-90 cursor-pointer flex items-center justify-center px-8 py-3 
-        border border-transparent text-base font-medium rounded-md text-white bg-blue-900 hover:bg-blue-800  active:bg-blue-700 w-60" />
+        border border-transparent text-base font-medium rounded-3xl text-white bg-blue-900 hover:bg-blue-800  active:bg-blue-700 w-60" />
 
       {Object.keys(errors).length ?
-        <div class="mt-3 text-xs font-medium alert shadow-lg alert-error border border-red-400 text-red-700 px-4 py-3 rounded relative">
+        <div className="mt-3 text-xs font-medium alert shadow-lg alert-error border border-red-400 text-red-700 px-4 py-3 rounded relative">
           <div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
             <div className='flex flex-col justify-center'>
               <p>{errors.email?.message}</p>
               <p>{errors.password?.message}</p>

@@ -34,22 +34,22 @@ export default function Signup() {
     <div className='flex items-center gap-5 w-3/5'>
       {/* <div className='flex flex-col w-2/5 gap-3'>
 
-        <div class="alert alert-info shadow-lg h-20">
-          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+        <div className="alert alert-info shadow-lg h-20">
+          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
           <div className='flex flex-col justify-center'>
             <p>Seleccione el servicio al que pertenece para ver sus equipos y generar órdenes de trabajo</p>
           </div>
         </div>
 
-        <div class="alert alert-info shadow-lg h-20">
-          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+        <div className="alert alert-info shadow-lg h-20">
+          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
           <div className='flex flex-col justify-center'>
             <p>Si es director de un instituto o jefe de departamento marque la casilla correspondiente</p>
           </div>
         </div>
 
-        <div class="alert alert-info shadow-lg h-28">
-          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+        <div className="alert alert-info shadow-lg h-28">
+          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
           <div className='flex flex-col justify-center'>
             <p>No todos los institutos tienen departamentos. En esos casos verá <span className='font-bold'>NA: no aplica</span>. Seleccionelo para ver los servicios de su instituto.</p>
           </div>
@@ -57,11 +57,11 @@ export default function Signup() {
 
       </div> */}
 
-      <form onSubmit={handleSubmit(onSubmit)} autocomplete="off"
+      <form onSubmit={handleSubmit(onSubmit)} autoComplete="off"
         className='p-1 grid place-items-center gap-1 w-2/5'>
 
-        <div class="alert alert-sm place-content-start w-64 flex-row">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class=" stroke-info flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <div className="alert alert-sm place-content-start w-64 flex-row">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className=" stroke-info flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           <p className="text-sm text-gray-700 align-middle" >Crea tu cuenta!</p>
         </div>
 
@@ -113,7 +113,7 @@ export default function Signup() {
               })}
             </select>
 
-            <input type='checkbox' class="checkbox checkbox-sm"
+            <input type='checkbox' className="checkbox checkbox-sm"
               {...register("director", {
                 onChange: () => {
                   resetField("departamento")
@@ -141,7 +141,7 @@ export default function Signup() {
                 return <option key={d} value={d}>{d}</option>
               })}
             </select>
-            <input type='checkbox' class="checkbox checkbox-sm"
+            <input type='checkbox' className="checkbox checkbox-sm"
               {...register("jefe", {
                 onChange: () => {
                   resetField("servicio")
@@ -178,7 +178,7 @@ export default function Signup() {
         {Object.keys(errors).length ?
           <div className="mt-3 text-xs font-medium alert shadow-lg alert-error border border-red-400 text-red-700 px-4 py-3 rounded relative">
             <div>
-              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
               <div className='flex flex-col justify-center'>
                 <p>{errors.nickname?.message}</p>
                 <p>{errors.email?.message}</p>
