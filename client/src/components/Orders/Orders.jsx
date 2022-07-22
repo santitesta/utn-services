@@ -45,6 +45,7 @@ const Orders = () => {
     };
 
     if (ins) newOrders = aux.filter(o => o.device.instituto === ins)
+    if (refrigeration === false || refrigeration === true) newOrders = newOrders.filter(o => o.refrigeration === refrigeration)
     if (state) newOrders = newOrders.filter(o => o.state === state)
     if (motive) newOrders = newOrders.filter(o => o.motive === motive)
 
@@ -71,11 +72,6 @@ const Orders = () => {
   const filterRefrigeration = refrigeration => {
     let bool = refrigeration === 'true'
     setRefrigeration(bool)
-    // if (refrigeration !== 'all') {
-    //   setOrdersFiltered(orders.filter(o => o.refrigeration === bool))
-    // } else {
-    //   setOrdersFiltered([])
-    // }
   }
 
   async function handleRefrigeration(e) {
