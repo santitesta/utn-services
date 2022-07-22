@@ -10,7 +10,21 @@ import { motivos } from '../../utilities/motives'
 const Orders = () => {
   const dispatch = useDispatch()
   const orders = useSelector(state => state.orders)
-  let [ordersFiltered, setOrdersFiltered] = useState([]);
+  let [ordersFiltered, setOrdersFiltered] = useState();
+  let newOrders = orders;
+
+  let [ins, setIns] = useState();
+  let [state, setState] = useState();
+  let [motive, setMotive] = useState();
+  let [refrigeration, setRefrigeration] = useState();
+
+  useEffect(() => {
+    setOrdersFiltered(orders)
+    if (ordersFiltered) {
+      filterAll()
+    }
+  }, [orders, ins, state, motive, refrigeration])
+
 
   useEffect(() => {
     if (localStorage.institute === 'Admin') {
@@ -22,37 +36,48 @@ const Orders = () => {
     }
   }, [dispatch])
 
-  const filterInstitute = ins => {
-    if (ins !== 'all') {
-      setOrdersFiltered(orders.filter(o => o.device.instituto === ins))
+  function filterAll() {
+    let aux = []
+    if (orders) {
+      orders.forEach(element => {
+        aux.push(element)
+      })
+    };
+
+    if (ins) newOrders = aux.filter(o => o.device.instituto === ins)
+    if (refrigeration === false || refrigeration === true) newOrders = newOrders.filter(o => o.refrigeration === refrigeration)
+    if (state) newOrders = newOrders.filter(o => o.state === state)
+    if (motive) newOrders = newOrders.filter(o => o.motive === motive)
+
+    if (newOrders.length) {
+      setOrdersFiltered(newOrders)
+
     } else {
       setOrdersFiltered([])
     }
+  }
+
+  const filterInstitute = ins => {
+    setIns(ins)
   }
 
   const filterState = state => {
-    if (state !== 'all') {
-      setOrdersFiltered(orders.filter(o => o.state === state))
-    } else {
-      setOrdersFiltered([])
-    }
+    setState(state)
   }
 
   const filterMotive = motive => {
-    if (motive !== 'all') {
-      setOrdersFiltered(orders.filter(o => o.motive === motive))
-    } else {
-      setOrdersFiltered([])
-    }
+    setMotive(motive)
   }
 
   const filterRefrigeration = refrigeration => {
     let bool = refrigeration === 'true'
-    if (refrigeration !== 'all') {
-      setOrdersFiltered(orders.filter(o => o.refrigeration === bool))
-    } else {
-      setOrdersFiltered([])
-    }
+    setRefrigeration(bool)
+    console.log(bool)
+    // if (refrigeration !== 'all') {
+    //   setOrdersFiltered(orders.filter(o => o.refrigeration === bool))
+    // } else {
+    //   setOrdersFiltered([])
+    // }
   }
 
   async function handleRefrigeration(e) {
@@ -68,7 +93,7 @@ const Orders = () => {
       <>
         <div className="alert shadow-lg w-2/5 ml-3 mt-3">
           <div>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info flex-shrink-0 w-6 h-6"><path strokeLinecap="round" stroke-linejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             <span>El equipo de UTN te dejará entrar pronto! Cuando te habiliten, cierra sesión e ingresa nuevamente con esta cuenta para tener acceso completo</span>
           </div>
         </div>
@@ -80,7 +105,7 @@ const Orders = () => {
     return (
       <div className="alert shadow-lg w-2/5 ml-3 mt-3">
         <div>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info flex-shrink-0 w-6 h-6"><path strokeLinecap="round" stroke-linejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           <span>Ingrese con su cuenta para ver sus equipos y crear órdenes</span>
         </div>
       </div>
@@ -102,7 +127,7 @@ const Orders = () => {
                 <th className='flex flex-col items-center'>Instituto
                   {localStorage.institute === 'Admin' ?
                     <select className='select select-xs h-3' onChange={e => filterInstitute(e.target.value)}>
-                      <option defaultValue value='all'>Todos</option>
+                      <option defaultValue value=''>Todos</option>
                       <option value={institutes.CENDIE}>CENDIE</option>
                       <option value={institutes.CNCCB}>CNCCB</option>
                       <option value={institutes.CNGM}>CNGM</option>
@@ -123,7 +148,7 @@ const Orders = () => {
                 {localStorage.institute === 'Admin' ?
                   <th>Refrigeración
                     <select className='select select-xs h-3' onChange={e => filterRefrigeration(e.target.value)}>
-                      <option defaultValue value='all'>Todos</option>
+                      <option defaultValue value=''>Todos</option>
                       <option value={true}>Sí</option>
                       <option value={false}>No</option>
                     </select>
@@ -133,7 +158,7 @@ const Orders = () => {
                 <th>Estado
                   {localStorage.institute === 'Admin' ?
                     <select className='select select-xs h-3' onChange={e => filterState(e.target.value)}>
-                      <option defaultValue value='all'>Todos</option>
+                      <option defaultValue value=''>Todos</option>
                       <option value='Pendiente'>Pendiente</option>
                       <option value='En reparación'>En reparación</option>
                       <option value='Espera repuestos por UTN'>Espera repuestos por UTN</option>
@@ -146,7 +171,7 @@ const Orders = () => {
                 <th>Motivo
                   {localStorage.institute === 'Admin' ?
                     <select className='select select-xs h-3' onChange={e => filterMotive(e.target.value)}>
-                      <option defaultValue value='all'>Todos</option>
+                      <option defaultValue value=''>Todos</option>
                       {motivos.map(m => {
                         return <option key={m} value={m}>{m}</option>
                       })}
@@ -159,7 +184,7 @@ const Orders = () => {
               </tr>
             </thead>
             <tbody>
-              {ordersFiltered.length ? ordersFiltered.map(o => {
+              {ordersFiltered?.length ? ordersFiltered.map(o => {
                 return <tr key={o.id_ot} className='hover'>
                   <th className='font-thin'>
                     {o.id_ot}
@@ -198,50 +223,8 @@ const Orders = () => {
                   </th>
                 </tr>
               })
-                : orders.map(o => {
-                  return <tr key={o.id_ot} className='hover'>
-                    <th className='font-thin'>
-                      {o.id_ot}
-                    </th>
-                    <th className='font-thin'>
-                      {o.deviceIdInei}
-                    </th>
-                    <th className='font-thin'>
-                      {o.device.instituto}
-                    </th>
-                    <th className='font-thin'>
-                      {o.device.departamento}
-                    </th>
-                    <th className='font-thin'>
-                      {o.device.servicio}
-                    </th>
-                    {localStorage.institute === 'Admin' ?
-                      <th className='font-thin'>
-                        <input id={o.id_ot} type="checkbox" className='checkbox' checked={o.refrigeration} onChange={e => handleRefrigeration(e)} />
-                      </th>
-                      : null}
-                    <th className='font-thin'>
-                      {localStorage.institute === 'Admin' ?
-                        <Estado props={{ id_ot: o.id_ot, state: o.state }} />
-                        : o.state
-                      }
-                    </th>
-                    <th className='font-thin'>
-                      {o.motive}
-                    </th>
-                    <th className='font-thin'>
-                      {o.userNickname}
-                    </th>
-                    <th className='font-thin'>
-                      {o.commentary.map((c, i) => {
-                        return <p key={i}>
-                          <span className='font-bold'>{c.split(':')[0]}</span>
-                          :{c.split(':')[1]}
-                        </p>
-                      })}
-                    </th>
-                  </tr>
-                })}
+                : <p>No existen órdenes con esos filtros</p>
+              }
             </tbody>
           </table>
         </div >
