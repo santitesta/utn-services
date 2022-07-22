@@ -23,10 +23,10 @@ export default function NavBar() {
 
   if (localStorage.institute === 'Admin') {
     navigation.shift()
-    navigation.push({ name: 'Panel de Admin', href: '/admin' })
+    navigation.push({ name: 'Administrador', href: '/admin' })
   } else if (localStorage.institute) {
     navigation.shift()
-    navigation.push({ name: 'Panel de usuario', href: '/user' })
+    navigation.push({ name: 'Usuario', href: '/user' })
   }
 
   navigation.push({ name: 'Sobre nosotros', href: '/about' })
@@ -41,7 +41,7 @@ export default function NavBar() {
 
 
   return (
-    <Disclosure as="nav" className="bg-sky-700 h-20 mb-2 flex items-center justify-between">
+    <Disclosure as="nav" className="bg-primary flex justify-between items-center border-b-2 border-gray-100 py-1 md:justify-start md:space-x-10">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 w-full">
@@ -49,7 +49,7 @@ export default function NavBar() {
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-black hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                  <span className="sr-only">Open main menu</span>
+                  <span className="sr-only">Abrir menú</span>
                   {open ? (
                     <XIcon className="block h-6 w-6" aria-hidden="true" />
                   ) : (
@@ -61,18 +61,34 @@ export default function NavBar() {
                 <div className="flex-shrink-0 flex items-center w-80">
                   <img src={require("./Logos.png")} alt="No esta el amigo logo" />
                 </div>
-                <div className="flex space-x-4 h-9 ml-5 items-center">
+                <div className="flex space-x-4 h-9 ml-10 items-center">
                   {navigation.map((item) => (
-                    <NavLink
-                      key={item.name}
-                      to={item.href}
-                      className={({ isActive }) => (isActive
-                        ? 'nav-link bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium'
-                        : 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium')}
-                    >
-                      {item.name}
-                    </NavLink>
+
+                    item.name === "Administrador" ?
+
+                      <div className="dropdown dropdown-hover ">
+                        <label tabindex="0"
+                          className=" shadow bg-base-100 rounded-box text-gray-900 hover:text-gray-500 px-3 py-2 text-sm font-medium">
+                          {item.name}
+                        </label>
+                        <ul tabindex="0" className="transition delay-300 duration-300 dropdown-content mt-2 menu p-1 shadow bg-base-100 rounded-box w-36">
+                          <li><a>Usuarios</a></li>
+                          <li><a>Ver órdenes</a></li>
+                          <li><a>Crear orden</a></li>
+                        </ul>
+                      </div>
+
+                      : <NavLink
+                        key={item.name}
+                        to={item.href}
+                        className={({ isActive }) => (isActive
+                          ? 'shadow rounded-box border bg-slate-800 text-gray-50 border-slate-600 px-3 py-2 text-sm font-medium'
+                          : 'shadow bg-base-100 rounded-box text-gray-900 hover:text-gray-500 px-3 py-2 text-sm font-medium')}
+                      >
+                        {item.name}
+                      </NavLink>
                   ))}
+
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -94,7 +110,7 @@ export default function NavBar() {
                 <Menu as="div" className="ml-3 relative z-50">
                   <div>
                     <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                      <span className="sr-only">Open user menu</span>
+                      <span className="sr-only">Abrir menú de usuario</span>
                       <div className="avatar placeholder">
                         <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
                           <span>{localStorage.user ? localStorage.user.slice(0, 2).toUpperCase() : '-'}</span>

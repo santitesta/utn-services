@@ -29,7 +29,7 @@ export default function Landing() {
           </svg>
 
           <Popover>
-            <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
+            <div className="relative py-3 px-4 sm:px-6 lg:px-8 bg-primary w-full">
               <nav className="relative flex items-center justify-between sm:h-10 lg:justify-start" aria-label="Global">
                 <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
                   <div className="flex items-center justify-between w-full md:w-auto">
@@ -146,7 +146,7 @@ export default function Landing() {
           </main>
         </div>
       </div >
-      <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2  ">
+      <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 z-100">
         <video height="256" loop={true} autoPlay="autoPlay" id="vid" muted className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full">
           <source src={require(`./video${Math.floor(Math.random()*3)}.mp4`)} type="video/mp4" />
           Your browser does not support the video tag.
