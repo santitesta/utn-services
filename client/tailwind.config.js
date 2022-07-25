@@ -8,22 +8,22 @@ module.exports = {
         mytheme: {
 
           "primary": "#224778",
-
-          "secondary": "#91D1E8",
-
-          "accent": "#37CDBE",
-
-          "neutral": "#3D4451",
-
+          
+          "secondary": "#91d1e8",
+                   
+          "accent": "#93c5fd",
+                   
+          "neutral": "#d1d5db",
+                   
           "base-100": "#FFFFFF",
-
-          "info": "#3ABFF8",
-
-          "success": "#36D399",
-
-          "warning": "#FBBD23",
-
-          "error": "#fecaca",
+                   
+          "info": "#bae6fd",
+                   
+          "success": "#86efac",
+                   
+          "warning": "#fde68a",
+                   
+          "error": "#Fecaca",
         },
       },
     ],
