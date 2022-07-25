@@ -29,7 +29,7 @@ export default function Landing() {
           </svg>
 
           <Popover>
-            <div className="relative py-3 px-4 sm:px-6 lg:px-8 bg-primary w-full">
+            <div className="relative py-3 px-4 sm:px-6 lg:px-8 w-full">
               <nav className="relative flex items-center justify-between sm:h-10 lg:justify-start" aria-label="Global">
                 <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
                   <div className="flex items-center justify-between w-full md:w-auto">
