@@ -8,7 +8,7 @@ import Users from "./Users";
 export default function AdminPage() {
   const [Page, setPage] = useState('viewOrders');
 
-  function HandlePage(e) {
+ function HandlePage(e) {
     if (e === 'Users') setPage('Users')
     if (e === 'viewOrders') setPage('viewOrders')
     if (e === 'createOrder') setPage('createOrder')

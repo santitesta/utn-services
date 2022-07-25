@@ -18,15 +18,16 @@ export default function NavBar() {
 
   let navigation = [
     { name: 'Ingresar', href: '/' },
-    { name: 'Inicio', href: '/home' }
+    { name: 'Inicio', href: '/home' },
+    { name: 'Crear órden', href: '/admin' },
+    { name: 'Ver órdenes', href: '/admin' }
   ]
 
   if (localStorage.institute === 'Admin') {
     navigation.shift()
-    navigation.push({ name: 'Administrador', href: '/admin' })
+    navigation.push({ name: 'Usuarios', href: '/admin' })
   } else if (localStorage.institute) {
     navigation.shift()
-    navigation.push({ name: 'Usuario', href: '/user' })
   }
 
   navigation.push({ name: 'Sobre nosotros', href: '/about' })
@@ -64,21 +65,9 @@ export default function NavBar() {
                 <div className="flex space-x-4 h-9 ml-10 items-center">
                   {navigation.map((item) => (
 
-                    item.name === "Administrador" ?
 
-                      <div className="dropdown dropdown-hover ">
-                        <label tabindex="0"
-                          className=" shadow bg-base-100 rounded-box text-gray-900 hover:text-gray-500 px-3 py-2 text-sm font-medium">
-                          {item.name}
-                        </label>
-                        <ul tabindex="0" className="transition delay-300 duration-300 dropdown-content mt-2 menu p-1 shadow bg-base-100 rounded-box w-36">
-                          <li><a>Usuarios</a></li>
-                          <li><a>Ver órdenes</a></li>
-                          <li><a>Crear orden</a></li>
-                        </ul>
-                      </div>
 
-                      : <NavLink
+                      <NavLink
                         key={item.name}
                         to={item.href}
                         className={({ isActive }) => (isActive
