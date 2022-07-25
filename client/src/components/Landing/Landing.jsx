@@ -149,7 +149,7 @@ export default function Landing() {
       <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 z-100">
         <video height="256" loop={true} autoPlay="autoPlay" id="vid" muted className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full">
           <source src={require(`./video${Math.floor(Math.random()*3)}.mp4`)} type="video/mp4" />
-          Your browser does not support the video tag.
+          Tu navegador no soporta el video.
         </video>
       </div>
     </div >
