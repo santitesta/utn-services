@@ -166,7 +166,7 @@ const Orders = () => {
                 </th>
 
                 <th className="py-1 px-8 w-12 border-r border-r-gray-400">Creador</th>
-                <th>Comentarios</th>
+                <th className="py-1 px-8 w-48">Comentarios</th>
               </tr>
             </thead>
             <tbody>
@@ -244,12 +244,26 @@ const Orders = () => {
                       {o.userNickname}
                     </th>
                     <th className='font-thin'>
-                      {o.commentary.map((c, i) => {
+                      
+                      <div className="m-auto rounded-md shadow hover:shadow-none w-32">
+                        <label htmlFor="my-modal" className="transition ease-in-out active:scale-90 cursor-pointer w-32 h-8 flex items-center 
+                        justify-center border border-transparent text-sm font-medium rounded-2xl text-white bg-blue-900
+                        hover:bg-blue-800 active:bg-blue-700">Ver comentarios</label>
+                        <input type="checkbox" id="my-modal" className="modal-toggle" />
+                        <div className="modal ">
+                          <div className="modal-box relative w-80 ">
+                            <label htmlFor="my-modal" className="btn btn-xs btn-circle absolute right-2 top-2">✕</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* {o.commentary.map((c, i) => {
                         return <p key={i}>
                           <span className='font-bold'>{c.split(':')[0]}</span>
                           :{c.split(':')[1]}
                         </p>
-                      })}
+                      })} */}
+
                     </th>
                   </tr>
                 })}
