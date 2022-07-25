@@ -91,17 +91,19 @@ const Orders = () => {
     <div className='flex flex-col w-full items-center mb-10'>
       {/* Tabla de estados de ordenes */}
       {orders?.length ?
-        <div className="mt-5 overflow-x-auto w-11/12 z-50">
-          <table className="table w-full">
+        <div className="relative shadow-md sm:rounded-lg ">
+          <table className="table-auto w-full text-xs text-center text-gray-800 dark:text-gray-400">
             {/* <!-- head --> */}
-            <thead>
+            <thead className='border-b h-16 text-xs text-gray-700  bg-info dark:bg-gray-700 dark:text-gray-400'>
               <tr>
-                <th>Orden de trabajo</th>
-                <th>Equipo</th>
+                <th className="py-1 px-2 w-12">Orden de trabajo</th>
+                <th className="py-1 px-2 w-12">Equipo</th>
 
-                <th className='flex flex-col items-center'>Instituto
+                <th className='py-1 px-2 w-12'>Instituto
                   {localStorage.institute === 'Admin' ?
-                    <select className='select select-xs h-3' onChange={e => filterInstitute(e.target.value)}>
+                    <select className='form-select block text-xs text-gray-500 bg-white border border-solid border-slate-300 rounded
+                    transition ease-in-out shadow-sm focus:text-gray-700 focus:ring-blue-300 focus:border-blue-200 focus:outline-none h-6 w-16 mt-2' 
+                    onChange={e => filterInstitute(e.target.value)}>
                       <option defaultValue value='all'>Todos</option>
                       <option value={institutes.CENDIE}>CENDIE</option>
                       <option value={institutes.CNCCB}>CNCCB</option>
@@ -117,12 +119,14 @@ const Orders = () => {
                     : null}
                 </th>
 
-                <th>Departamento</th>
-                <th>Servicio</th>
+                <th className="py-1 px-2 w-12">Departamento</th>
+                <th className="py-1 px-2 w-12">Servicio</th>
 
                 {localStorage.institute === 'Admin' ?
-                  <th>Refrigeración
-                    <select className='select select-xs h-3' onChange={e => filterRefrigeration(e.target.value)}>
+                  <th className="py-1 px-2 w-12">Refrig.
+                    <select className='form-select block text-xs text-gray-500 bg-white border border-solid border-slate-300 rounded
+                    transition ease-in-out shadow-sm focus:text-gray-700 focus:ring-blue-300 focus:border-blue-200 focus:outline-none h-6 w-16 mt-2'
+                    onChange={e => filterRefrigeration(e.target.value)}>
                       <option defaultValue value='all'>Todos</option>
                       <option value={true}>Sí</option>
                       <option value={false}>No</option>
@@ -130,9 +134,11 @@ const Orders = () => {
                   </th>
                   : null}
 
-                <th>Estado
+                <th className="py-1 px-4 w-12">Estado
                   {localStorage.institute === 'Admin' ?
-                    <select className='select select-xs h-3' onChange={e => filterState(e.target.value)}>
+                    <select className='form-select block text-xs text-gray-500 bg-white border border-solid border-slate-300 rounded
+                    transition ease-in-out shadow-sm focus:text-gray-700 focus:ring-blue-300 focus:border-blue-200 focus:outline-none h-6 w-32 mt-2'
+                    onChange={e => filterState(e.target.value)}>
                       <option defaultValue value='all'>Todos</option>
                       <option value='Pendiente'>Pendiente</option>
                       <option value='En reparación'>En reparación</option>
@@ -143,9 +149,11 @@ const Orders = () => {
                     : null}
                 </th>
 
-                <th>Motivo
+                <th className="py-1 px-3 w-12">Motivo
                   {localStorage.institute === 'Admin' ?
-                    <select className='select select-xs h-3' onChange={e => filterMotive(e.target.value)}>
+                    <select className='form-select block text-xs text-gray-500 bg-white border border-solid border-slate-300 rounded
+                    transition ease-in-out shadow-sm focus:text-gray-700 focus:ring-blue-300 focus:border-blue-200 focus:outline-none h-6 w-32 mt-2'
+                    onChange={e => filterMotive(e.target.value)}>
                       <option defaultValue value='all'>Todos</option>
                       {motivos.map(m => {
                         return <option key={m} value={m}>{m}</option>
@@ -154,13 +162,13 @@ const Orders = () => {
                     : null}
                 </th>
 
-                <th>Creador</th>
+                <th className="py-1 px-8 w-12">Creador</th>
                 <th>Comentarios</th>
               </tr>
             </thead>
             <tbody>
               {ordersFiltered.length ? ordersFiltered.map(o => {
-                return <tr key={o.id_ot} className='hover'>
+                return <tr key={o.id_ot} className=''>
                   <th className='font-thin'>
                     {o.id_ot}
                   </th>
@@ -178,7 +186,7 @@ const Orders = () => {
                   </th>
                   {localStorage.institute === 'Admin' ?
                     <th className='font-thin'>
-                      <input id={o.id_ot} type="checkbox" className='checkbox' checked={o.refrigeration} onChange={e => handleRefrigeration(e)} />
+                      <input id={o.id_ot} type='checkbox' className="checkbox checkbox-xs" checked={o.refrigeration} onChange={e => handleRefrigeration(e)} />
                     </th>
                     : null}
                   <th className='font-thin'>
@@ -199,8 +207,8 @@ const Orders = () => {
                 </tr>
               })
                 : orders.map(o => {
-                  return <tr key={o.id_ot} className='hover'>
-                    <th className='font-thin'>
+                  return <tr key={o.id_ot} className='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 '>
+                    <th className='font-thin py-10'>
                       {o.id_ot}
                     </th>
                     <th className='font-thin'>
@@ -217,7 +225,7 @@ const Orders = () => {
                     </th>
                     {localStorage.institute === 'Admin' ?
                       <th className='font-thin'>
-                        <input id={o.id_ot} type="checkbox" className='checkbox' checked={o.refrigeration} onChange={e => handleRefrigeration(e)} />
+                        <input id={o.id_ot} type="checkbox" className='checkbox checkbox-sm checkbox-primary' checked={o.refrigeration} onChange={e => handleRefrigeration(e)} />
                       </th>
                       : null}
                     <th className='font-thin'>

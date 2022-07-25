@@ -64,9 +64,6 @@ export default function NavBar() {
                 </div>
                 <div className="flex space-x-4 h-9 ml-10 items-center">
                   {navigation.map((item) => (
-
-
-
                       <NavLink
                         key={item.name}
                         to={item.href}
