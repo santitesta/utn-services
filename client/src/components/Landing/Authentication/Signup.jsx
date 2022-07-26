@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { signUp } from '../../../redux/actions';
 import { useNavigate } from 'react-router-dom'
 import { hierarchy } from '../../../utilities/hierarchy';
+import { positions } from '../../../utilities/positions';
 import { useForm } from 'react-hook-form';
 
 export default function Signup() {
@@ -61,13 +62,13 @@ export default function Signup() {
         className='p-1 grid place-items-center gap-1 w-2/5'>
 
         <div className="alert alert-sm place-content-start w-64 flex-row">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className=" stroke-info flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-primary flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           <p className="text-sm text-gray-700 align-middle" >Crea tu cuenta!</p>
         </div>
 
         <input type="text"
           name='nickname'
-          className="h-8 mt-1 block w-64 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
+          className="h-8 mt-1 block w-64 px-3 py-2 bg-white border border-slate-300 text-gray-500 focus:text-gray-700 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
           focus:border-blue-200 focus:ring-1 focus:ring-blue-300 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
           placeholder='Nombre de usuario'
           {...register("nickname", { required: 'Nombre de usuario requerido' })}
@@ -75,7 +76,7 @@ export default function Signup() {
 
         <input type="text"
           name='email'
-          className="h-8 mt-1 block w-64 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
+          className="h-8 mt-1 block w-64 px-3 py-2 bg-white border border-slate-300 text-gray-500 focus:text-gray-700 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
           focus:border-blue-200 focus:ring-1 focus:ring-blue-300 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none "
           placeholder='Email'
           {...register("email", {
@@ -88,7 +89,7 @@ export default function Signup() {
 
         <input type="password"
           name='password'
-          className="h-8 mt-1 block w-64 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
+          className="h-8 mt-1 block w-64 px-3 py-2 bg-white border border-slate-300 text-gray-500 focus:text-gray-700 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none
           focus:border-blue-200 focus:ring-1 focus:ring-blue-300 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
           placeholder='Contraseña'
           {...register("password", { required: 'Contraseña requerida' })} />
@@ -97,63 +98,63 @@ export default function Signup() {
 
           <div className='flex items-center gap-1'>
             <select
-              className="form-select h-8 block w-44 px-3 py-1 text-sm text-gray-400 bg-white border border-solid border-slate-300 rounded
-              transition ease-in-out shadow-sm focus:text-gray-600 focus:ring-blue-300 focus:border-blue-200 focus:outline-none"
+              className="form-select h-8 block w-64 px-3 py-1 text-sm text-gray-500 bg-white border border-solid border-slate-300 rounded
+              transition ease-in-out shadow-sm focus:text-gray-700 focus:ring-blue-300 focus:border-blue-200 focus:outline-none"
+              {...register("puesto", {
+                onChange: () => {
+                  resetField("instituto")
+                  resetField("departamento")
+                  resetField("servicio")
+                }
+              })}>
+
+              <option defaultValue="" value="">Seleccione su puesto</option>
+              {Object.values(positions).map(d => {
+                return <option key={d} value={d}>{d}</option>
+              })}
+            </select>
+          </div>
+
+          <div className='flex items-center gap-1'>
+            <select
+              className="disabled:text-gray-300 form-select h-8 block w-64 px-3 py-1 text-sm text-gray-500 bg-white border border-solid border-slate-300 rounded
+              transition ease-in-out shadow-sm focus:text-gray-700 focus:ring-blue-300 focus:border-blue-200 focus:outline-none"
               {...register("instituto", {
                 onChange: () => {
                   resetField("departamento")
                   resetField("servicio")
-                  resetField("jefe")
                 }
-              })}>
+              })}
+              disabled={!watch("puesto") || watch("puesto") === 'Administrador'}>
 
-              <option defaultValue="" value="">Instituto...</option>
+              <option defaultValue="" value="">Seleccione su instituto</option>
               {Object.keys(hierarchy).map(d => {
                 return <option key={d} value={d}>{d}</option>
               })}
             </select>
 
-            <input type='checkbox' className="checkbox checkbox-sm"
-              {...register("director", {
-                onChange: () => {
-                  resetField("departamento")
-                  resetField("servicio")
-                }
-              })}
-              disabled={watch("jefe") || !watch("instituto")} />
-            <span className="text-sm text-gray-700" >Director</span>
           </div>
 
           <div className='flex items-center gap-1'>
             <select
-              className="form-select h-8 block w-44 px-3 py-1 text-sm text-gray-400 bg-white border border-solid border-slate-300 rounded
-              transition ease-in-out shadow-sm focus:text-gray-600 focus:ring-blue-300 focus:border-blue-200 focus:outline-none"
-              {...register("departamento", {
-                required: {
-                  value: !watch("director"),
-                  message: 'Elija su departamento'
-                }
-              })}
-              disabled={!watch("instituto") || watch("instituto") === 'Admin' || watch("director")}>
+              className="disabled:text-gray-300 form-select h-8 block w-64 px-3 py-1 text-sm text-gray-500 bg-white border border-solid border-slate-300 rounded
+              transition ease-in-out shadow-sm focus:text-gray-700 focus:ring-blue-300 focus:border-blue-200 focus:outline-none"
+              {...register("departamento",
+                {
+                  required: { message: 'Elija su departamento'}
+                })}
+              disabled={!watch("instituto")}>
 
-              <option defaultValue="" value="">Departamento...</option>
+              <option defaultValue="" value="">Seleccione su departamento</option>
               {watch("instituto") && Object.keys(hierarchy[watch("instituto")]).map(d => {
                 return <option key={d} value={d}>{d}</option>
               })}
             </select>
-            <input type='checkbox' className="checkbox checkbox-sm"
-              {...register("jefe", {
-                onChange: () => {
-                  resetField("servicio")
-                }
-              })}
-              disabled={watch("director") || !watch("departamento")} />
-            <span className="text-sm text-gray-700" >Jefe</span>
           </div>
 
           <select
-            className="form-select h-8 block w-44 px-3 py-1 text-sm text-gray-400 bg-white border border-solid border-slate-300 rounded
-            transition ease-in-out shadow-sm focus:text-gray-600 focus:ring-blue-300 focus:border-blue-200 focus:outline-none"
+            className="disabled:text-gray-300 form-select h-8 block w-64 px-3 py-1 text-sm text-gray-500 bg-white border border-solid border-slate-300 rounded
+            transition ease-in-out shadow-sm focus:text-gray-700 focus:ring-blue-300 focus:border-blue-200 focus:outline-none"
             {...register("servicio", {
               required: {
                 value: !(watch("jefe") || watch("director")),
@@ -162,7 +163,7 @@ export default function Signup() {
             })}
             disabled={!watch("instituto") || watch("instituto") === 'Admin' || !watch("departamento") || watch("jefe")}>
 
-            <option defaultValue="" value="">Servicio...</option>
+            <option defaultValue="" value="">Seleccione su servicio</option>
             {watch("instituto") && watch("departamento") && hierarchy[watch("instituto")][watch("departamento")].map(s => {
               return <option key={s} value={s}>{s}</option>
             })}
