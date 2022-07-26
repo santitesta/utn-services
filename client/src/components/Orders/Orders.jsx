@@ -96,9 +96,9 @@ const Orders = () => {
             {/* <!-- head --> */}
             <thead className=' h-20 text-xs text-gray-700 '>
               <tr>
-                <th className="py-1 px-1.4 w-16 border-r border-r-gray-400">Orden de trabajo</th>
-                <th className="py-1 px-2 w-12 border-r border-r-gray-400">Equipo</th>
-                <th className='py-1 px-2 w-12 border-r border-r-gray-400'>Instituto
+                <th className="py-1 px-1.4 w-16 border-r border-r-accent">Orden de trabajo</th>
+                <th className="py-1 px-2 w-12 border-r border-r-accent">Equipo</th>
+                <th className='py-1 px-2 w-12 border-r border-r-accent'>Instituto
                   {localStorage.institute === 'Admin' ?
                     <select className='form-select block text-xs text-gray-500 bg-white border border-solid border-slate-300 rounded
                     transition ease-in-out shadow-sm focus:text-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:secondary
@@ -119,11 +119,11 @@ const Orders = () => {
                     : null}
                 </th>
 
-                <th className="py-1 px-2 w-12 border-r border-r-gray-400">Departamento</th>
-                <th className="py-1 px-2 w-12 border-r border-r-gray-400">Servicio</th>
+                <th className="py-1 px-2 w-12 border-r border-r-accent">Departamento</th>
+                <th className="py-1 px-2 w-12 border-r border-r-accent">Servicio</th>
 
                 {localStorage.institute === 'Admin' ?
-                  <th className="py-1 px-2 w-12 border-r border-r-gray-400">Refrig.
+                  <th className="py-1 px-2 w-12 border-r border-r-accent">Refrig.
                     <select className='form-select block text-xs text-gray-500 bg-white border border-solid border-slate-300 rounded
                     transition ease-in-out shadow-sm focus:text-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:secondary
                     focus:outline-none h-6 w-16 mt-2'
@@ -135,7 +135,7 @@ const Orders = () => {
                   </th>
                   : null}
 
-                <th className="py-1 px-4 w-12 border-r border-r-gray-400">Estado
+                <th className="py-1 px-4 w-12 border-r border-r-accent">Estado
                   {localStorage.institute === 'Admin' ?
                     <select className='form-select block text-xs text-gray-500 bg-white border border-solid border-slate-300 rounded
                     transition ease-in-out shadow-sm focus:text-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:secondary
@@ -151,7 +151,7 @@ const Orders = () => {
                     : null}
                 </th>
 
-                <th className="py-1 px-3 w-12 border-r border-r-gray-400">Motivo
+                <th className="py-1 px-3 w-12 border-r border-r-accent">Motivo
                   {localStorage.institute === 'Admin' ?
                     <select className='form-select block text-xs text-gray-500 bg-white border border-solid border-slate-300 rounded
                     transition ease-in-out shadow-sm focus:text-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:secondary
@@ -165,7 +165,7 @@ const Orders = () => {
                     : null}
                 </th>
 
-                <th className="py-1 px-8 w-12 border-r border-r-gray-400">Creador</th>
+                <th className="py-1 px-8 w-12 border-r border-r-accent">Creador</th>
                 <th className="py-1 px-8 w-48">Comentarios</th>
               </tr>
             </thead>
@@ -211,36 +211,36 @@ const Orders = () => {
               })
                 : orders.map(o => {
                   return <tr key={o.id_ot} className='bg-white border-b hover:bg-gray-100'>
-                    <th className='font-thin py-10 border-r border-r-slate-200'>
+                    <th className='font-thin py-10 border-r border-r-neutral'>
                       {o.id_ot}
                     </th>
-                    <th className='font-thin border-r border-r-slate-200'>
+                    <th className='font-thin border-r border-r-neutral'>
                       {o.deviceIdInei}
                     </th>
-                    <th className='font-thin border-r border-r-slate-200'>
+                    <th className='font-thin border-r border-r-neutral'>
                       {o.device.instituto}
                     </th>
-                    <th className='font-thin border-r border-r-slate-200'>
+                    <th className='font-thin border-r border-r-neutral'>
                       {o.device.departamento}
                     </th>
-                    <th className='font-thin border-r border-r-slate-200'>
+                    <th className='font-thin border-r border-r-neutral'>
                       {o.device.servicio}
                     </th>
                     {localStorage.institute === 'Admin' ?
-                      <th className='font-thin border-r border-r-slate-200'>
+                      <th className='font-thin border-r border-r-neutral'>
                         <input id={o.id_ot} type="checkbox" className='checkbox checkbox-sm checkbox-primary' checked={o.refrigeration} onChange={e => handleRefrigeration(e)} />
                       </th>
                       : null}
-                    <th className='font-thin border-r border-r-slate-200'>
+                    <th className='font-thin border-r border-r-neutral'>
                       {localStorage.institute === 'Admin' ?
                         <Estado props={{ id_ot: o.id_ot, state: o.state }} />
                         : o.state
                       }
                     </th>
-                    <th className='font-thin border-r border-r-slate-200'>
+                    <th className='font-thin border-r border-r-neutral'>
                       {o.motive}
                     </th>
-                    <th className='font-thin border-r border-r-slate-200'>
+                    <th className='font-thin border-r border-r-neutral'>
                       {o.userNickname}
                     </th>
                     
