@@ -76,18 +76,22 @@ export default function Users() {
                   <th>
                     {/* <button id={u.email} name={u.institute} onClick={e => handleDeletion(e)}>Eliminar</button> */}
                     <div>
-                      <label for="modaleliminar" class="btn btn-xs btn-circle bg-error">
+                      <label for="modaleliminar" className="btn btn-xs btn-circle bg-error">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
                       </label>
 
                       <input type="checkbox" id="modaleliminar" className="modal-toggle" />
                       <div class="modal">
-                        <div class="modal-box">
-                          <h3 class="font-bold text-lg">Esta a punto de eliminar un usuario</h3>
-                          <p class="py-4">¿Esta seguro que desea eliminar al usuario XXX? Esta accion es irreversible.</p>
+                        <div class="modal-box w-80">
+                          <h3 class="font-bold text-lg py-2">Esta a punto de eliminar un usuario</h3>
+                          <p class="py-2">¿Esta seguro que desea eliminar al usuario XXX? Esta accion es irreversible.</p>
                           <div class="modal-action">
-                            <label for="modaleliminar" class="btn">Aceptar</label>
-                            <label for="modaleliminar" class="btn">Atrás</label>
+                            <label for="modaleliminar" className="flex mr-24 btn transition ease-in-out active:scale-90 cursor-pointer 
+                             border border-transparent text-xs rounded-2xl text-white
+                             bg-red-900 hover:bg-red-800 active:bg-red-700">Atrás</label>
+                            <label for="modaleliminar" className="flex btn transition ease-in-out active:scale-90 cursor-pointer 
+                             border border-transparent text-xs rounded-2xl text-white
+                             bg-green-900 hover:bg-green-800 active:bg-green-700">Aceptar</label>
                           </div>
                         </div>
                       </div>
