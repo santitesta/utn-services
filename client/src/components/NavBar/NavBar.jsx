@@ -42,14 +42,16 @@ export default function NavBar() {
 
 
   return (
-    <Disclosure as="nav" className="bg-primary flex justify-between items-center border-b-2 border-gray-100 py-1 md:justify-start md:space-x-10">
+    <Disclosure as="nav" className="bg-primary flex justify-between items-center border-b-2 
+    border-gray-100 py-1 md:justify-start md:space-x-10">
       {({ open }) => (
         <>
-          <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 w-full">
+          <div className="max-w-7xl mx-auto px-10 sm:px-6 lg:px-8 w-full">
             <div className="flex items-center justify-between h-16">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+              <div className="inset-y-5 left-2 flex items-center md:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-black hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-primary hover:bg-white 
+                focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Abrir menú</span>
                   {open ? (
                     <XIcon className="block h-6 w-6" aria-hidden="true" />
@@ -58,21 +60,21 @@ export default function NavBar() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex items-center justify-center">
-                <div className="flex-shrink-0 flex items-center w-80">
+              <div className="flex items-center justify-center bg-bl">
+                <div className="flex-shrink-0 items-center w-80 ">
                   <img src={require("./Logos.png")} alt="No esta el amigo logo" />
                 </div>
-                <div className="flex space-x-4 h-9 ml-10 items-center">
+                <div className="space-x-4 h-9 ml-10 items-center hidden md:flex">
                   {navigation.map((item) => (
-                      <NavLink
-                        key={item.name}
-                        to={item.href}
-                        className={({ isActive }) => (isActive
-                          ? 'shadow rounded-box border bg-slate-800 text-gray-50 border-slate-600 px-3 py-2 text-sm font-medium'
-                          : 'shadow bg-base-100 rounded-box text-gray-900 hover:text-gray-500 px-3 py-2 text-sm font-medium')}
-                      >
-                        {item.name}
-                      </NavLink>
+                    <NavLink
+                      key={item.name}
+                      to={item.href}
+                      className={({ isActive }) => (isActive
+                        ? 'shadow rounded-box border bg-slate-800 text-gray-50 border-slate-600 px-3 py-2 text-sm font-medium'
+                        : 'shadow bg-base-100 rounded-box text-gray-900 hover:text-gray-500 px-3 py-2 text-sm font-medium')}
+                    >
+                      {item.name}
+                    </NavLink>
                   ))}
 
                 </div>
@@ -136,26 +138,28 @@ export default function NavBar() {
                 </Menu>
               </div>
             </div>
-          </div>
 
-          <Disclosure.Panel className="sm:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block px-3 py-2 rounded-md text-base font-medium'
-                  )}
-                  aria-current={item.current ? 'page' : undefined}
-                >
-                  {item.name}
-                </Disclosure.Button>
-              ))}
+            <div>
+              <Disclosure.Panel className="sm:hidden rounded-md shadow-lg py-1 bg-slate-800 ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div className="px-2 pt-2 pb-3 space-y-1">
+                  {navigation.map((item) => (
+                    <Disclosure.Button
+                      key={item.name}
+                      as="a"
+                      href={item.href}
+                      className={classNames(
+                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        'block px-3 py-2 rounded-md text-base font-medium'
+                      )}
+                      aria-current={item.current ? 'page' : undefined}
+                    >
+                      {item.name}
+                    </Disclosure.Button>
+                  ))}
+                </div>
+              </Disclosure.Panel>
             </div>
-          </Disclosure.Panel>
+          </div>
         </>
       )
       }
