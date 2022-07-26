@@ -46,7 +46,7 @@ export default function NavBar() {
     border-gray-100 py-1 md:justify-start md:space-x-10">
       {({ open }) => (
         <>
-          <div className="max-w-7xl mx-auto px-10 sm:px-6 lg:px-8 w-full">
+          <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 w-full">
             <div className="flex items-center justify-between h-16">
               <div className="inset-y-5 left-2 flex items-center md:hidden">
                 {/* Mobile menu button*/}
@@ -60,8 +60,8 @@ export default function NavBar() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex items-center justify-center bg-bl">
-                <div className="flex-shrink-0 items-center w-80 ">
+              <div className="flex items-center justify-center">
+                <div className="flex-shrink-0 items-center w-64 md:w-80 ">
                   <img src={require("./Logos.png")} alt="No esta el amigo logo" />
                 </div>
                 <div className="space-x-4 h-9 ml-10 items-center hidden md:flex">
@@ -79,17 +79,13 @@ export default function NavBar() {
 
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className=" inset-y-0 right-0 flex items-center pr-2 static inset-auto ml-6 sm:pr-0">
 
                 {localStorage.institute === 'Admin' &&
                   <>
-                    <div className="indicator mr-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                      <span className="badge badge-md indicator-item">{pendingOrders}</span>
-                    </div>
-                    <div className="indicator mr-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-                      <span className="badge badge-md indicator-item">{verifiedPending}</span>
+                    <div className="indicator mr-3 ">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 stroke-slate-300 hover:stroke-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+                      <span className="badge badge-md indicator-item bg-white">{verifiedPending}</span>
                     </div>
                   </>
                 }
@@ -100,7 +96,7 @@ export default function NavBar() {
                     <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                       <span className="sr-only">Abrir menú de usuario</span>
                       <div className="avatar placeholder">
-                        <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
+                        <div className="bg-slate-200 text-neutral-content rounded-full w-12 hover:bg-accent">
                           <span>{localStorage.user ? localStorage.user.slice(0, 2).toUpperCase() : '-'}</span>
                         </div>
                       </div>
@@ -140,7 +136,8 @@ export default function NavBar() {
             </div>
 
             <div>
-              <Disclosure.Panel className="sm:hidden rounded-md shadow-lg py-1 bg-slate-800 ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Disclosure.Panel className="sm:hidden rounded-xl shadow-lg py-1 mb-2 w-64 bg-slate-800 ring-1 
+              ring-black ring-opacity-5 focus:outline-none">
                 <div className="px-2 pt-2 pb-3 space-y-1">
                   {navigation.map((item) => (
                     <Disclosure.Button
@@ -148,7 +145,8 @@ export default function NavBar() {
                       as="a"
                       href={item.href}
                       className={classNames(
-                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        item.current ? 'bg-gray-900 text-white' 
+                        :'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'block px-3 py-2 rounded-md text-base font-medium'
                       )}
                       aria-current={item.current ? 'page' : undefined}
