@@ -243,27 +243,29 @@ const Orders = () => {
                     <th className='font-thin border-r border-r-slate-200'>
                       {o.userNickname}
                     </th>
+                    
                     <th className='font-thin'>
-                      
-                      <div className="m-auto rounded-md shadow hover:shadow-none w-32">
-                        <label htmlFor="my-modal" className="transition ease-in-out active:scale-90 cursor-pointer w-32 h-8 flex items-center 
+
+                        {/* <div className="m-auto rounded-md shadow hover:shadow-none w-32">
+                          <label htmlFor="my-modal" className="transition ease-in-out active:scale-90 cursor-pointer w-32 h-8 flex items-center 
                         justify-center border border-transparent text-sm font-medium rounded-2xl text-white bg-blue-900
                         hover:bg-blue-800 active:bg-blue-700">Ver comentarios</label>
-                        <input type="checkbox" id="my-modal" className="modal-toggle" />
-                        <div className="modal ">
-                          <div className="modal-box relative w-80 ">
-                            <label htmlFor="my-modal" className="btn btn-xs btn-circle absolute right-2 top-2">✕</label>
-                          </div>
-                        </div>
-                      </div>
+                          <input type="checkbox" id="my-modal" className="modal-toggle" />
+                          <div className="modal ">
+                            <div className="modal-box relative w-80 ">
+                              <label htmlFor="my-modal" className="btn btn-xs btn-circle absolute right-2 top-2">✕</label>
 
-                      {/* {o.commentary.map((c, i) => {
+                            </div>
+                          </div>
+                        </div> */}
+                        
+                        {o.commentary.map((c, i) => {
                         return <p key={i}>
                           <span className='font-bold'>{c.split(':')[0]}</span>
                           :{c.split(':')[1]}
                         </p>
-                      })} */}
-
+                      })}
+                      
                     </th>
                   </tr>
                 })}
