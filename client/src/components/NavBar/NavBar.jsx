@@ -19,7 +19,7 @@ export default function NavBar() {
   let navigation = [
     { name: 'Ingresar', href: '/' },
     { name: 'Inicio', href: '/home' },
-    { name: 'Crear órden', href: '/admin' },
+    { name: 'Crear orden', href: '/admin' },
     { name: 'Ver órdenes', href: '/admin' }
   ]
 
