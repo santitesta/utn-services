@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { addCommentary, createOrder } from '../../redux/actions';
 import { motivos } from '../../utilities/motives'
+import { format } from "date-fns";
 
 const CreateOrder = () => {
   const dispatch = useDispatch()
@@ -11,7 +12,7 @@ const CreateOrder = () => {
 
   const onSubmit = async data => {
     const date = new Date()
-    const [day, month, year] = [date.getDate(), date.getMonth(), date.getFullYear()]
+    var dateformatted = format(date, "dd/MM/yy H:mm");
     if (!data.motive.length) alert('Falta un motivo para esta órden')
     else if (!data.id_inei) alert('Si no sabe el Nº UTN o no está inventariado aún, ingrese 0')
     else {
@@ -19,7 +20,7 @@ const CreateOrder = () => {
         id_inei: data.id_inei,
         email: localStorage.user,
         motive: data.motive,
-        commentary: `${day}/${month + 1} ${year} ${JSON.parse(localStorage.userFull).nickname}: ${data.commentary}`
+        commentary: `${dateformatted};${JSON.parse(localStorage.userFull).nickname};${data.commentary}`
       }))
       reset()
     }
@@ -27,11 +28,11 @@ const CreateOrder = () => {
 
   const onSubmitBro = async data => {
     const date = new Date()
-    const [day, month, year] = [date.getDate(), date.getMonth(), date.getFullYear()]
+    var dateformatted = format(date, "dd/MM/yy H:mm");
     await dispatch(addCommentary({
       id_ot: data.id_ot,
       email: localStorage.user,
-      commentary: `${day}/${month + 1} ${year} ${JSON.parse(localStorage.userFull).nickname}: ${data.commentaryUpdate}`
+      commentary: `${dateformatted};${JSON.parse(localStorage.userFull).nickname};${data.commentaryUpdate}`
     }))
     reset2()
   };
